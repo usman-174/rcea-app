@@ -1,0 +1,1 @@
+export { SchoolSelectScreen } from './schoolSelectScreen';

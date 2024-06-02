@@ -1,0 +1,116 @@
+BehaviorScreening (req.body): 
+	works_well_with_peers
+	follows_directions
+	handles_emotions
+	self_confidence
+	plays_well_with_peers
+	verbally_aggressive
+	physically_aggressive
+	steals
+	dishonest
+	acts_on_anger
+	destroys_property
+	nervous
+	difficulty_concentrating
+	withdrawn
+	sad
+	worried
+	does_not_talk
+
+CommuncicationScreening (req.body):
+	articulation
+	difficultyParticipating
+
+FineMotorScreening (req.body):
+	pipeT
+	pipeC
+	negativeT
+	negativeC
+	circleT
+	circleC
+	plusT
+	plusC
+	rectangleT
+	rectangleC
+	forwardSlashT
+	forwardSlashC
+	backSlashT
+	backSlashC
+	crossT
+	crossC
+	triangleT
+	triangleC
+
+GrossMotorScreening (req.body):
+	balance_left
+	balance_right
+	bilateral
+	upper
+
+
+
+	Screenings	
+
+letterNamingScreening
+language
+attempted
+correct
+errors
+
+letterSoundScreening
+language
+attempted
+correct
+errors
+
+phonemicsSegmentationScreening
+language
+attempted
+correct
+errors
+
+nonsenseWordScreening
+language
+attempted
+correct
+errors
+
+oralReadingScreening
+language
+attempted
+correct
+errors
+
+silentReadingScreening
+language
+attempted
+correct
+errors
+
+mathematicsScreening
+type
+attempted
+correct
+errors
+
+
+
+Marking scheme	
+
+Marking Scheme Create (req.body)
+subject => string 
+grade => (int , string) (Jo b he pehle)
+section  => string
+itemNumber => number
+questionNumber => number
+topic => string
+subTopic => string
+marks => number
+
+
+
+Marking Scheme (get) (req.body)
+grade => (int , string) (Jo b he pehle)
+section  => stringsubject => string
+
+Note: If no results found, return empty object {} 

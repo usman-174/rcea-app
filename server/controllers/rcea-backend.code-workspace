@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "rcea-backend",
+			"path": ".."
+		},
+		{
+			"name": "models",
+			"path": "../../../../Awais__aBdulla_project2/rcea-backend/models"
+		}
+	],
+	"settings": {}
+}

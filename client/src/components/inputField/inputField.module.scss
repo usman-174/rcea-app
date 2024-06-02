@@ -1,0 +1,60 @@
+@import '../../utils/sass/variables.scss';
+
+.inputContainer {
+	width: 100%;
+
+	label {
+		align-self: flex-start;
+		margin: 10px 0 5px;
+		font-size: 15px;
+	}
+
+	input,
+	textarea {
+		width: 100%;
+		padding: 8px 10px;
+		border: 1px solid #d6d6d6;
+		border-radius: 3px;
+		outline: none;
+		transition: border 0.1s ease-in-out;
+
+		&:focus {
+			border-color: $secondary-color;
+		}
+	}
+
+	textarea {
+		height: 130px;
+		resize: none;
+	}
+
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		margin: 0;
+		appearance: none;
+	}
+
+	input[type='number'] {
+		appearance: textfield;
+	}
+
+	.inputField {
+		position: relative;
+	}
+
+	.visibilityIcon {
+		position: absolute;
+		top: 0;
+		right: 15px;
+		bottom: 0;
+		height: 25px;
+		margin: auto;
+	}
+}
+
+.editableInputField > div {
+	padding: 8px 10px;
+	border: 1px solid $secondary-color;
+	border-radius: 3px;
+	background-color: #fff !important;
+}

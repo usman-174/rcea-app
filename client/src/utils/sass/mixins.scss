@@ -1,0 +1,98 @@
+@import './variables.scss';
+
+@mixin flex($justify: center, $align: center, $direction: row) {
+	display: flex;
+	flex-direction: $direction;
+	align-items: $align;
+	justify-content: $justify;
+}
+
+@mixin primaryButton {
+	display: inline-flex;
+	-webkit-box-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	justify-content: center;
+	position: relative;
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: transparent;
+	outline: 0px;
+	border: 0px;
+	margin: 0px;
+	cursor: pointer;
+	user-select: none;
+	vertical-align: middle;
+	appearance: none;
+	text-decoration: none;
+	font-weight: 600;
+	font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+	font-size: 0.875rem;
+	line-height: 1.75;
+	min-width: 64px;
+	transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+	color: rgb(255, 255, 255);
+	background-color: $primary-color;
+	box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 5px;
+	border-radius: 12px;
+	text-transform: none;
+	padding: 8px 20px;
+
+	&:hover {
+		text-decoration: none;
+		background-color: rgb(67, 56, 202);
+		box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 10px;
+	}
+
+	&:focus {
+		outline: none;
+		background-color: rgb(67, 56, 202);
+		border: 0px;
+		color: inherit;
+		color: #fff;
+		box-shadow: unset;
+	}
+}
+
+@mixin secondaryButton {
+	display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    background-color: transparent;
+    outline: 0px;
+    border: 0px currentcolor;
+    margin: 0px;
+    cursor: pointer;
+    user-select: none;
+    vertical-align: middle;
+    appearance: none;
+    text-decoration: none;
+    font-weight: 600;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 0.875rem;
+    line-height: 1.75;
+    min-width: 64px;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    color: inherit;
+    border-radius: 12px;
+    text-transform: none;
+    padding: 9px 16px;
+
+	&:hover {
+		text-decoration: none;
+    	background-color: rgba(17, 25, 39, 0.04);
+	}
+
+	&:focus {
+		outline: none;
+		background-color: rgba(17, 25, 39, 0.04);
+		border: 0px;
+		color: inherit;
+		color: #fff;
+		box-shadow: unset;
+	}
+}

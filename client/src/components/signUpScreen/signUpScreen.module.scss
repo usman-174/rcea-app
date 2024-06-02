@@ -1,0 +1,78 @@
+.mainContainer {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f857a6;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ff5858, #f857a6);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ff5858, #f857a6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.innerContainer {
+    background-color: rgba(255, 255, 255, 0.716);
+    width: 500px;
+    padding: 20px;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.inputsContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 30px 0 10px;
+
+    .loginText {
+        position: absolute;
+        left: 20px;
+        top: -10px;
+        background-color: #fff;
+        padding: 4px 10px;
+        border-radius: 6px;
+    }
+
+    .alreadyAccount {
+        text-decoration: underline;
+        margin-top: 20px;
+    }
+}
+
+.inputContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 4px 0;
+
+    input, select {
+        padding: 4px;
+        border: 1px solid rgb(201, 201, 201);
+        width: 60%;
+    }
+
+    label {
+        width: 20%;
+        margin-right: 20px;
+        text-align: right;
+    }
+}
+
+.formButton {
+    display: block;
+    border: 0;
+    outline: none;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 6px;
+    margin: 15px 0;
+    padding: 10px 0;
+    box-shadow: 0 0 1px 1px #fff;
+
+    &:hover {
+        background-color: rgb(224, 224, 224);
+    }
+}

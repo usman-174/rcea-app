@@ -1,0 +1,5 @@
+@import '../../../utils//sass/mixins.scss';
+
+.submitButton {
+    @include primaryButton();
+}

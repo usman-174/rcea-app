@@ -1,0 +1,1 @@
+export { QafWeeklyPlanSpecialists } from "./QafWeeklyPlanSpecialists";

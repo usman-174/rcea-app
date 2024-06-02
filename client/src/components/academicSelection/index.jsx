@@ -1,0 +1,1 @@
+export { AcademicSelection } from './academicSelection';

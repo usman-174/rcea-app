@@ -1,0 +1,1 @@
+export { CommunicationScreen } from './communicationScreen';

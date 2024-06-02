@@ -1,0 +1,19 @@
+# 1. Choose a base image
+FROM node:18-alpine 
+
+# 2. Create a working directory
+WORKDIR /app
+
+# 3. Copy your application code
+COPY package*.json ./
+COPY ./ ./
+
+# 4. Install dependencies
+RUN npm install
+
+# 5. Expose the port your application listens on
+EXPOSE 4000  
+# Replace 3000 with your app's actual port
+
+# 6. Specify the command to start your app
+CMD [ "node", "src/index.js" ]

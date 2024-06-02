@@ -1,0 +1,75 @@
+@import '../../utils/sass/variables.scss';
+
+.sidebarContainer {
+    max-width: 30vw;
+    min-height: 100vh;
+    height: 100%;
+    background-color: #1C2536;
+    color: #fff;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    padding: 12px;
+
+    .sidebarItems {
+        text-decoration: none;
+        margin-top: 20px;
+    }
+
+    :global(.accordion-button:not(.collapsed)) {
+        background-color: $active-sidebar-item !important;
+        color: $sidebar-active-item-color !important;
+    }
+
+    .accordionItem {
+        margin-bottom: 4px;
+
+        .accordionHeader {
+            button {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: transparent;
+                color: $sidebar-item-color;
+                outline: none;
+                border: none;
+                width: 100%;
+                font-size: 12px;
+                font-weight: 600;
+                line-height: 22px;
+                white-space: nowrap;
+                padding: 6px 10px;
+                border-radius: 8px;
+                transition: background-color 0.2s ease-in-out;
+    
+                &:hover {
+                    background-color: $active-sidebar-item;
+                }
+            }
+        }
+    
+        .accordionBody {
+            .navLink {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: transparent;
+                color: $sidebar-item-color;
+                outline: none;
+                border: none;
+                width: 90%;
+                font-size: 12px;
+                font-weight: 600;
+                line-height: 22px;
+                white-space: nowrap;    ;
+                margin-left: auto;
+                margin-bottom: 4px;
+                padding: 6px 10px;
+                border-radius: 8px;
+                transition: background-color 0.2s ease-in-out;
+    
+                &:hover {
+                    background-color: $active-sidebar-item;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,1 @@
+export { CreatePupilsScreen } from './create';

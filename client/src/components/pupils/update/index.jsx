@@ -1,0 +1,1 @@
+export { UpdatePupilsScreen } from './update';

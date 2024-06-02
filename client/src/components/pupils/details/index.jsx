@@ -1,0 +1,1 @@
+export { PupilDetailsScreen } from './details';

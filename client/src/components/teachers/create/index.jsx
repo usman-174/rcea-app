@@ -1,0 +1,1 @@
+export { CreateTeacherScreen } from './create';

@@ -1,0 +1,1 @@
+export { NonsenseWordScreen } from './nonsenseWordScreen';

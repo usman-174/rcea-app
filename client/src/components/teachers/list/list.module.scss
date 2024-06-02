@@ -1,0 +1,19 @@
+@import '../../../utils/sass/mixins.scss';
+
+.teacher {
+    &:hover {
+        background-color: rgb(239, 239, 239);
+    }
+
+    .name {
+        cursor: pointer;
+    }
+}
+
+.searchButton {
+    @include primaryButton();
+
+    border-radius: 6px;
+    margin-left: 10px;
+    padding: 8px 30px;
+}

@@ -1,0 +1,1 @@
+export { BehaviorScreen } from './behaviorScreen';
