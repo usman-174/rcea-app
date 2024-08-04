@@ -15,6 +15,8 @@ import {
   prescribedBooks,
   qatLessonPlanThemes2,
   sections,
+  specialization,
+  subjects,
   subjects2,
   teachingStrategies,
   topicsOrSubtopics2
@@ -330,7 +332,7 @@ const QafSchemeOfWork = () => {
               onChange={(e) => setSelectedSubject(e)}
               isSearchable={false}
               name="subject"
-              options={subjects2[selectedGrade?.value]}
+              options={[...subjects,...specialization]}
             />
           </div>
         </div>

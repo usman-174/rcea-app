@@ -11,6 +11,7 @@ import {
   grades,
   sections,
   specialization,
+  // specialization,
   subjects2,
   topicsOrSubtopics2,
 } from "../../../utils/globals";
@@ -105,9 +106,9 @@ const QafWeeklyPlanSpecialists = () => {
 
   const educatorsOptions = educators
     ? educators.map((educator) => ({
-        value: educator._id,
-        label: educator.firstName + " " + educator.lastName,
-      }))
+      value: educator._id,
+      label: educator.firstName + " " + educator.lastName,
+    }))
     : [];
 
   const updateWeeklyPlanSpecialists = useMutation({
@@ -273,6 +274,7 @@ const QafWeeklyPlanSpecialists = () => {
       }
     });
   };
+  
 
   return (
     <div>
@@ -445,7 +447,7 @@ const QafWeeklyPlanSpecialists = () => {
                                   options={subjects2[row.grades?.value] || []}
                                 />
                               </td>
-                            
+
                               <td>
                                 <Select
                                   value={row.sections}
@@ -498,7 +500,7 @@ const QafWeeklyPlanSpecialists = () => {
                                   type="text"
                                   className="form-control"
                                   name={`classworkOrHomework_${tableIndex}`}
-                                  
+
                                 />
                               </td>
                               <td>
@@ -517,7 +519,7 @@ const QafWeeklyPlanSpecialists = () => {
                                   type="text"
                                   className="form-control"
                                   name={`remarks_${tableIndex}`}
-                                  
+
                                 />
                               </td>
                               {tableIndex === 0 ? null : (

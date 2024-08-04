@@ -1,6 +1,6 @@
-const mongoose = require('mongoose')
-const schema = mongoose.Schema
-const School = require('./school')
+const mongoose = require("mongoose");
+const schema = mongoose.Schema;
+const School = require("./school");
 
 const userSchema = new schema(
   {
@@ -10,7 +10,7 @@ const userSchema = new schema(
     },
     school: {
       type: schema.Types.ObjectId,
-      ref: 'School',
+      ref: "School",
       required: false,
     },
     firstName: {
@@ -35,7 +35,7 @@ const userSchema = new schema(
     },
     postingYear: {
       type: String,
-      required: true
+      required: true,
     },
     qualifications: [
       {
@@ -61,9 +61,17 @@ const userSchema = new schema(
       type: String,
       required: true,
     },
+    appointmentDate: {
+      type: Date,
+      required: false,
+    },
+    remarks: {
+      type: String,
+      required: false,
+    },
   },
-  { timestamps: true,suppressReservedKeysWarning: true }
-)
+  { timestamps: true, suppressReservedKeysWarning: true }
+);
 
-const Teacher = mongoose.model('TeachersUpdated', userSchema)
-module.exports = Teacher
+const Teacher = mongoose.model("TeachersUpdated", userSchema);
+module.exports = Teacher;

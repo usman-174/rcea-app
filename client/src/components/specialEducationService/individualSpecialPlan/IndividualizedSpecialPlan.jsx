@@ -3,21 +3,26 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, Link, useSearchParams } from "react-router-dom";
 import AxiosConfig from "../../../utils/axiosConfig";
 
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { successToast } from "../../../utils";
 import { initialData } from "./initialData";
+import { useSelector } from "react-redux";
 
 const IndividualizedSpecialPlan = () => {
     const navigate = useNavigate(); // axios
     const [searchParams] = useSearchParams();
+
     const specialData = searchParams.get("specialData");
     const [formData, setFormData] = useState(
         initialData
     );
-
+    const { selectedSchool } = useSelector((state) => state.school);
+    const currentSelectedSchoolId =
+        searchParams.get("school") || (selectedSchool && selectedSchool._id);
+    const selected = searchParams.get("selected");
     const addRow = () => {
         setFormData(e => ({
             ...e,
@@ -98,7 +103,7 @@ const IndividualizedSpecialPlan = () => {
     useEffect(() => {
         console.log(IndividualizedSpecialPlan);
         if (IndividualizedSpecialPlan && !isLoading) {
-            
+
             if (IndividualizedSpecialPlan?.accomodation?.table?.length === 0) {
                 IndividualizedSpecialPlan.accomodation.table.push({
                     need: "",
@@ -191,8 +196,8 @@ const IndividualizedSpecialPlan = () => {
                         <thead>
                             <tr>
                                 <th>Related Services</th>
-                                <th>Duration</th>
-                                <th>Frequence</th>
+                                <th>Duration (in-minutes)</th>
+                                <th>Frequency</th>
                                 <th>Place</th>
                                 <th>Service Provider</th>
                                 <th>Action</th>
@@ -216,7 +221,16 @@ const IndividualizedSpecialPlan = () => {
                                     <td>
                                         <Form.Control
                                             value={item.duration}
+                                            type="text"
                                             onChange={(e) => {
+                                                //donot add any other character except number
+                                                if (isNaN(e.target.value)) {
+
+
+                                                    return;
+                                                }
+
+
                                                 const newTable = [...formData.realtedService.table];
                                                 newTable[index].duration = e.target.value;
                                                 setFormData({
@@ -303,10 +317,10 @@ const IndividualizedSpecialPlan = () => {
                 </Row>
                 <Row>
                     <h2 className="my-5">Accomodations and modifications</h2>
-                    <table className="table">
+                    <table className="table table-responsive-xl">
                         <thead>
                             <tr>
-                                <th>Area of Needs</th>
+                                <th>Area of Needs</th>
                                 <th>Accomodations(instructions)</th>
                                 <th>Accomodations(assessments)</th>
                                 <th>Modifications(instructions)</th>
@@ -317,7 +331,9 @@ const IndividualizedSpecialPlan = () => {
                         </thead>
                         <tbody>
                             {formData?.accomodation?.table?.map((item, index) => (
-                                <tr key={index}>
+                                <tr key={index} style={{
+                                    minWidth: "300px"
+                                }}>
                                     <td> <Form.Control
                                         value={item.need}
                                         onChange={(e) => {
@@ -436,11 +452,19 @@ const IndividualizedSpecialPlan = () => {
                 <center>
                     <button
                         type="submit"
-                        className="primaryButton"
+                        className="primaryButton mr-2"
                         disabled={mutation.isPending}
                     >
                         Save
                     </button>
+                    <Link
+                        to={`/data-portal/special-education-service?school=${currentSelectedSchoolId}&selected=${selected}`}
+                        className="secondaryButton m-2"
+                        disabled={mutation.isPending}
+                    >
+
+                        Back
+                    </Link>
                 </center>
             </Form>
         </div>

@@ -19,7 +19,7 @@ const TeacherController = {
   getBySchool: catchAsync(async (req, res) => {
     try {
       const schoolID = req.params.schoolID;
-    
+
       Teacher.find({ school: schoolID })
         .then((user) => {
           res.send(user);
@@ -93,9 +93,11 @@ const TeacherController = {
         grade,
         nationalID,
         school_id,
-        postingYear
+        postingYear,
+        appointmentDate,
+        remarks,
       } = req.body;
-  
+
       if (
         !address ||
         !firstName ||
@@ -105,15 +107,16 @@ const TeacherController = {
         !gender ||
         !qualifications ||
         !grade ||
-        !nationalID,
-        !school_id,
-        !postingYear
+        !nationalID ||
+        !school_id ||
+        !postingYear ||
+        !appointmentDate
       ) {
         return res.status(400).json({
           error: "Please fill required fields",
         });
       }
-  
+
       const newTeacher = await Teacher.create({
         address,
         firstName,
@@ -125,11 +128,15 @@ const TeacherController = {
         grade,
         nationalID,
         school: school_id,
-        postingYear
+        postingYear,
+        appointmentDate,
+        remarks,
       });
-  
+
       if (!newTeacher) {
-        return res.status(400).json({ error: "Teacher not created, please try again later" });
+        return res
+          .status(400)
+          .json({ error: "Teacher not created, please try again later" });
       } else {
         res.status(200).json({
           user: {
@@ -152,16 +159,19 @@ const TeacherController = {
       phone,
       hire_date,
       gender,
+      appoinmentDate,
+      remarks,
       qualifications,
       grade,
       nationalID,
       school_id,
-      postingYear
+      postingYear,
     } = req.body;
 
     try {
       const id = req.params.id;
-
+      console.log("remarks", remarks);
+      
       if (!id) {
         return res.status(400).json({ error: "Please provide a valid ID" });
       }
@@ -175,6 +185,8 @@ const TeacherController = {
           phone,
           hire_date,
           gender,
+          appoinmentDate,
+          remarks,
           qualifications,
           grade,
           nationalID,
@@ -192,7 +204,9 @@ const TeacherController = {
           });
         });
     } catch (error) {
-      return res.status(400).json({ error: "An error occurred, try again later" });
+      return res
+        .status(400)
+        .json({ error: "An error occurred, try again later" });
     }
   }),
 

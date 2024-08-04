@@ -66,7 +66,7 @@ const PsychoMotorSchema = new mongoose.Schema({
     {
       skill: {
         type: String,
-        default: "Spave",
+        default: "Space",
       },
 
       level: {

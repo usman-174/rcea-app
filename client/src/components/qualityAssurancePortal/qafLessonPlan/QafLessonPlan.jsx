@@ -31,6 +31,7 @@ import {
   qafTeachingStrategies,
   qatLessonPlanThemes2,
   reinforcementStrategy,
+  specialization,
   sections,
   subjects2,
   topicsOrSubtopics2
@@ -96,6 +97,7 @@ const QafLessonPlan = () => {
   const [selectedEducator, setSelectedEducator] = useState(null);
   const [selectedPeriod, setSelectedPeriod] = useState(null);
   const [selectedSubject, setSelectedSubject] = useState(null);
+  const [selectedSpecialization, setSelectedSpecialization] = useState(null);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [duration, setDuration] = useState("");
@@ -132,6 +134,7 @@ const QafLessonPlan = () => {
         school: currentSelectedSchool?.value,
         subject: selectedSubject?.value,
         period: selectedPeriod?.value,
+        specialization: selectedSpecialization?.value,
       },
     ],
     queryFn: async ({ queryKey }) => {
@@ -146,6 +149,7 @@ const QafLessonPlan = () => {
           subject: parameters.subject,
           period: parameters.period,
           teacher: parameters.teacher,
+          specialization: parameters.specialization,
         },
       });
       return response.data;
@@ -361,6 +365,7 @@ const QafLessonPlan = () => {
       grade: selectedGrade?.value,
       section: selectedSection?.value,
       subject: selectedSubject?.value,
+      specialization: selectedSpecialization?.value,
       term: currentSelectedTerm?.value,
       period: selectedPeriod?.value,
       year: currentSelectedYear?.value,
@@ -433,7 +438,7 @@ const QafLessonPlan = () => {
         )}
         <div className="d-flex align-items-center mb-3">
           <div className="w-50">
-            <h3>School</h3>
+            <h4>School</h4>
             <Select
               value={currentSelectedSchool}
               className="basic-single mr-4"
@@ -451,7 +456,7 @@ const QafLessonPlan = () => {
             />
           </div>
           <div className="w-25">
-            <h3>Educator</h3>
+            <h4>Educator</h4>
             <Select
               value={selectedEducator}
               className="basic-single mr-4"
@@ -462,7 +467,7 @@ const QafLessonPlan = () => {
             />
           </div>
           <div className="w-25">
-            <h3>Grade</h3>
+            <h4>Grade</h4>
             <Select
               value={selectedGrade}
               className="basic-single mr-4"
@@ -473,7 +478,7 @@ const QafLessonPlan = () => {
             />
           </div>
           <div className="w-25">
-            <h3>Section</h3>
+            <h4>Section</h4>
             <Select
               value={selectedSection}
               className="basic-single"
@@ -486,7 +491,7 @@ const QafLessonPlan = () => {
         </div>
         <div className="d-flex align-items-center mb-3">
           <div className="w-25">
-            <h3>Period</h3>
+            <h4>Period</h4>
             <Select
               value={selectedPeriod}
               className="basic-single mr-4"
@@ -497,7 +502,7 @@ const QafLessonPlan = () => {
             />
           </div>
           <div className="w-25">
-            <h3>Subjects</h3>
+            <h4>Subjects</h4>
             <Select
               value={selectedSubject}
               className="basic-single mr-4"
@@ -508,7 +513,18 @@ const QafLessonPlan = () => {
             />
           </div>
           <div className="w-25">
-            <h3>Term</h3>
+            <h4>Specialistization</h4>
+            <Select
+              value={selectedSpecialization}
+              className="basic-single mr-4"
+              onChange={setSelectedSpecialization}
+              isSearchable={false}
+              name="subjects"
+              options={specialization}
+            />
+          </div>
+          <div className="w-25">
+            <h4>Term</h4>
             <Select
               value={currentSelectedTerm}
               className="basic-single mr-4"
@@ -519,7 +535,7 @@ const QafLessonPlan = () => {
             />
           </div>
           <div className="w-25">
-            <h3>Year</h3>
+            <h4>Year</h4>
             <Select
               className="basic-single mr-4 w-100"
               name="year"

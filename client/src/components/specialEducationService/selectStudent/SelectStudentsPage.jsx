@@ -2,17 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useQuery } from "@tanstack/react-query";
+import { DateTime } from "luxon";
 import { Container, Spinner } from "react-bootstrap";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import { Link, useSearchParams } from "react-router-dom";
 import Select from "react-select";
 import { getPupils } from "../../../store/pupil/pupilActions";
-import AxiosConfig from "../../../utils/axiosConfig";
-import { grades, screens, sections } from "../../../utils/globals";
-import Styles from "./list.module.scss";
-import * as moment from "moment";
-import { DateTime } from "luxon";
 import { errorToast } from "../../../utils";
+import AxiosConfig from "../../../utils/axiosConfig";
+import { grades, sections } from "../../../utils/globals";
+import Styles from "./list.module.scss";
 const initialSpecialData = {
   pupil_id: "",
   date_of_referral: "",
@@ -20,15 +19,15 @@ const initialSpecialData = {
   date_of_eligibility: "",
   date_of_consent_iep: "",
 };
-function convertToHTMLDate(mongooseDate) {
-  mongooseDate = new Date(mongooseDate);
-  const year = mongooseDate.getFullYear();
-  let month = (mongooseDate.getMonth() + 1).toString().padStart(2, "0"); // Months are 0 indexed
-  let day = mongooseDate.getDate().toString().padStart(2, "0");
+// function convertToHTMLDate(mongooseDate) {
+//   mongooseDate = new Date(mongooseDate);
+//   const year = mongooseDate.getFullYear();
+//   let month = (mongooseDate.getMonth() + 1).toString().padStart(2, "0"); // Months are 0 indexed
+//   let day = mongooseDate.getDate().toString().padStart(2, "0");
 
-  // Returning the date in HTML date input format
-  return `${year}-${month}-${day}`;
-}
+//   // Returning the date in HTML date input format
+//   return `${year}-${month}-${day}`;
+// }
 
 const SelectStudentsPage = () => {
   const dispatch = useDispatch();
@@ -489,98 +488,98 @@ const SelectStudentsPage = () => {
             </div>
 
             <br />
-               {specialData?.id ? <div>
+            {specialData?.id ? <div>
 
-            <Link
-              to={`/data-portal/special-education-service/speech-and-language?specialData=${specialData.id}`}
-              className="primaryButton mx-2"
-            >
-              SpeechAndLanguage
-            </Link>
-            {/* /data-portal/special-education-service/physically-impairment */}
-            <Link
-              to={`/data-portal/special-education-service/physically-impairment?specialData=${specialData.id}`}
-              className="primaryButton"
-            >
-              Physically Impairment
-            </Link>
+              <Link
+                to={`/data-portal/special-education-service/speech-and-language?specialData=${specialData.id}&school=${currentSelectedSchoolId}&selected=${selected}`}
+                className="primaryButton mx-2"
+              >
+                SpeechAndLanguage
+              </Link>
+              {/* /data-portal/special-education-service/physically-impairment */}
+              <Link
+                to={`/data-portal/special-education-service/physically-impairment?specialData=${specialData.id}&school=${currentSelectedSchoolId}&selected=${selected}`}
+                className="primaryButton"
+              >
+                Physically Impairment
+              </Link>
 
-            <Link
-              to={`/data-portal/special-education-service/emotional-or-behavioural-disorders?specialData=${specialData.id}`}
-              className="primaryButton mx-2"
-            >
-              Emotional Or Behavioiral Disorders
-            </Link>
+              <Link
+                to={`/data-portal/special-education-service/emotional-or-behavioural-disorders?specialData=${specialData.id}&school=${currentSelectedSchoolId}&selected=${selected}`}
+                className="primaryButton mx-2"
+              >
+                Emotional Or Behavioiral Disorders
+              </Link>
 
-            <Link
-              to={`/data-portal/special-education-service/autism-spectrum-disorder?specialData=${specialData.id}`}
-              className="primaryButton mx-2 my-2"
-            >
-              Autism Spectrum Disorder
-            </Link>
+              <Link
+                to={`/data-portal/special-education-service/autism-spectrum-disorder?specialData=${specialData.id}&school=${currentSelectedSchoolId}&selected=${selected}`}
+                className="primaryButton mx-2 my-2"
+              >
+                Autism Spectrum Disorder
+              </Link>
 
-            <Link
-              to={`/data-portal/special-education-service/developmental-cognitive-disability?specialData=${specialData.id}`}
-              className="primaryButton mx-2"
-            >
-              Developmental Cognitive Disability
-            </Link>
+              <Link
+                to={`/data-portal/special-education-service/developmental-cognitive-disability?specialData=${specialData.id}&school=${currentSelectedSchoolId}&selected=${selected}`}
+                className="primaryButton mx-2"
+              >
+                Developmental Cognitive Disability
+              </Link>
 
-            <Link
-              to={`/data-portal/special-education-service/developmental-delay?specialData=${specialData.id}`}
-              className="primaryButton mx-2"
-            >
-              Developmental Delay
-            </Link>
+              <Link
+                to={`/data-portal/special-education-service/developmental-delay?specialData=${specialData.id}&school=${currentSelectedSchoolId}&selected=${selected}`}
+                className="primaryButton mx-2"
+              >
+                Developmental Delay
+              </Link>
 
-            <Link
-              to={`/data-portal/special-education-service/hearing-impairment?specialData=${specialData.id}`}
-              className="primaryButton mx-2"
-            >
-              Hearing Impairment
-            </Link>
+              <Link
+                to={`/data-portal/special-education-service/hearing-impairment?specialData=${specialData.id}&school=${currentSelectedSchoolId}&selected=${selected}`}
+                className="primaryButton mx-2"
+              >
+                Hearing Impairment
+              </Link>
 
-            <Link
-              to={`/data-portal/special-education-service/taumatic-brain-injury?specialData=${specialData.id}`}
-              className="primaryButton mx-2"
-            >
-              Traumatic Brain Injury
-            </Link>
+              <Link
+                to={`/data-portal/special-education-service/taumatic-brain-injury?specialData=${specialData.id}&school=${currentSelectedSchoolId}&selected=${selected}`}
+                className="primaryButton mx-2"
+              >
+                Traumatic Brain Injury
+              </Link>
 
-            <Link
-              to={`/data-portal/special-education-service/visual-impairment?specialData=${specialData.id}`}
-              className="primaryButton mx-2 my-2"
-            >
-              Visual Impairment
-            </Link>
+              <Link
+                to={`/data-portal/special-education-service/visual-impairment?specialData=${specialData.id}&school=${currentSelectedSchoolId}&selected=${selected}`}
+                className="primaryButton mx-2 my-2"
+              >
+                Visual Impairment
+              </Link>
 
-            <Link
-              to={`/data-portal/special-education-service/other-health-impairment?specialData=${specialData.id}`}
-              className="primaryButton mx-2"
-            >
-              Other Health Impairments
-            </Link>
+              <Link
+                to={`/data-portal/special-education-service/other-health-impairment?specialData=${specialData.id}&school=${currentSelectedSchoolId}&selected=${selected}`}
+                className="primaryButton mx-2"
+              >
+                Other Health Impairments
+              </Link>
 
-            <Link
-              to={`/data-portal/special-education-service/specific-learning-disability?specialData=${specialData.id}`}
-              className="primaryButton mx-2"
-            >
-              Specific Learning Disability
-            </Link>
-            <br />
-            <Link
-              to={`/data-portal/special-education-service/individial-education-plan?specialData=${specialData.id}`}
-              className="primaryButton m-2"
-            >
-             Individualized Education Plan
-            </Link>
-            <Link
-            to={`/data-portal/special-education-service/special-scheme-of-work?specialData=${specialData.id}`}
-              className="primaryButton m-2"
-            >
-              SchemeOfWork
-            </Link>
-            </div>:null}
+              <Link
+                to={`/data-portal/special-education-service/specific-learning-disability?specialData=${specialData.id}&school=${currentSelectedSchoolId}&selected=${selected}`}
+                className="primaryButton mx-2"
+              >
+                Specific Learning Disability
+              </Link>
+              <br />
+              <Link
+                to={`/data-portal/special-education-service/individial-education-plan?specialData=${specialData.id}&school=${currentSelectedSchoolId}&selected=${selected}`}
+                className="primaryButton m-2"
+              >
+                Individualized Education Plan
+              </Link>
+              <Link
+                to={`/data-portal/special-education-service/special-scheme-of-work?specialData=${specialData.id}&school=${currentSelectedSchoolId}&selected=${selected}`}
+                className="primaryButton m-2"
+              >
+                SchemeOfWork
+              </Link>
+            </div> : null}
 
           </div>
         ) : null}

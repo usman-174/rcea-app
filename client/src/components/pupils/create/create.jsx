@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Placeholder } from 'react-bootstrap';
 import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
 import { Toaster } from 'react-hot-toast';
@@ -9,93 +9,84 @@ import { errorToast, successToast } from '../../../utils/index';
 import Styles from './create.module.scss';
 import { InputField } from '../../inputField';
 import { getSchools } from '../../../store/school/schoolActions';
-
-const sections = [
-	{
-		value: 'red',
-		label: 'red',
-	},
-	{
-		value: 'blue',
-		label: 'blue',
-	},
-	{
-		value: 'yellow',
-		label: 'yellow',
-	},
-	{
-		value: 'green',
-		label: 'green',
-	},
-	{
-		value: 'orange',
-		label: 'orange',
-	},
-	{
-		value: 'pink',
-		label: 'pink',
-	}
-];
+import { sections } from '../../../utils/globals';
 
 function CreatePupilsScreen() {
 	const dispatch = useDispatch();
 	const { selectedSchool } = useSelector((state) => state.school);
-  const [selectOpen, setSelectOpen] = useState(false);
 	const { selectedTerm, selectedYear } = useSelector((state) => state.academics);
-	const [firstName, setFirstName] = useState('');
-	const [lastName, setLastName] = useState('');
-	const [dateOfBirth, setDateOfBirth] = useState('');
-	const [gradeNumber, setGradeNumber] = useState('');
-	const [gender, setGender] = useState('Male');
-	const [nID, setNID] = useState('');
-	const [primaryResponsible, setPrimaryResponsible] = useState({
+
+	const [fields, setFields] = useState({
 		firstName: '',
 		lastName: '',
-		nationalID: '',
-		relationship: '',
-		phone: '',
-		address: ''
+		dateOfBirth: '',
+		gradeNumber: '',
+		gender: 'Male',
+		nID: '',
+		primaryResponsible: {
+			firstName: '',
+			lastName: '',
+			nationalID: '',
+			relationship: '',
+			phone: '',
+			address: ''
+		},
+		secondaryResponsible: {
+			firstName: '',
+			lastName: '',
+			nationalID: '',
+			relationship: '',
+			phone: '',
+			address: ''
+		},
+		medical: '',
+		address: '',
+		homeNumber: '',
+		mobileNumber: '',
+		admissionNumber: '',
+		dateOfAdmission: '',
+		whichSchool: '',
+		socialAid: '',
+		optionalLanguage: '',
+		sen: '',
+		selectedSection: null
 	});
-	const [secondaryResponsible, setSecondaryResponsible] = useState({
-		firstName: '',
-		lastName: '',
-		nationalID: '',
-		relationship: '',
-		phone: '',
-		address: ''
-	});
-	const [medical, setMedical] = useState('');
-	const [address, setAddress] = useState('');
-	const [homeNumber, setHomeNumber] = useState('');
-	const [mobileNumber, setMobileNumber] = useState('');
-	const [admissionNumber, setAdmissionNumber] = useState('');
-	const [dateOfAdmission, setDateOfAdmission] = useState('');
-	const [whichSchool, setWhichSchool] = useState('');
-	const [socialAid, setSocialAid] = useState('');
-	const [optionalLanguage, setOptionalLanguage] = useState('');
-	const [sen, setSen] = useState('');
-	const [selectedSection, setSelectedSection] = useState(null);
 
 	const inputProps = (label, type, required = true, name) => ({
 		label,
 		type,
 		required,
-		name
+		name,
+		value: fields[name]
+		,
+		Placeholder: `Enter ${label}`
 	});
 
-	const handlePrimaryResponsibleData = (e) => {
-		setPrimaryResponsible({
-			...primaryResponsible, 
-			[e.target.name]: e.target.value
-		})
-	}
+	const handleInputChange = (e) => {
+		const { name, value } = e.target;
+		setFields((prevFields) => ({
+			...prevFields,
+			[name]: value
+		}));
+	};
 
-	const handleSecondaryResponsibleData = (e) => {
-		setSecondaryResponsible({
-			...secondaryResponsible,
-			[e.target.name]: e.target.value
-		})
-	}
+	const handleResponsibleChange = (e, type) => {
+		const { name, value } = e.target;
+		setFields((prevFields) => ({
+			...prevFields,
+			[type]: {
+				...prevFields[type],
+				[name]: value
+			}
+		}));
+	};
+
+	const handleSectionChange = (selectedOption) => {
+		setFields((prevFields) => ({
+			...prevFields,
+			selectedSection: selectedOption
+		}));
+	};
 
 	const pupilCreate = (e) => {
 		e.preventDefault();
@@ -104,29 +95,10 @@ function CreatePupilsScreen() {
 			academicYear: selectedYear,
 			termNumber: selectedTerm,
 			school_id: `${selectedSchool._id}`,
-			firstName,
-			lastName,
-			date_of_birth: dateOfBirth,
-			gradeNumber,
-			section: selectedSection.value,
-			gender,
-			nID,
-			address,
-			homeNumber,
-			mobileNumber,
-			admissionNumber,
-			dateOfAdmission,
-			whichSchool,
-			socialAid,
-			medical,
-			optionalLanguage,
-			primaryResponsible,
-			secondaryResponsible,
-			sen
+			...fields
 		}))
 			.unwrap()
 			.then(() => {
-				// e.target.reset();
 				successToast('Pupil created successfully');
 			})
 			.catch(() => errorToast("Error creating pupil, please try again later"));
@@ -134,7 +106,7 @@ function CreatePupilsScreen() {
 
 	useEffect(() => {
 		dispatch(getSchools());
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
@@ -145,51 +117,51 @@ function CreatePupilsScreen() {
 				<form onSubmit={pupilCreate}>
 					<Row>
 						<Col sm={12} lg={6}>
-							<InputField {...inputProps('First Name', 'text')} onChange={(e) => setFirstName(e.target.value)} />
+							<InputField {...inputProps('First Name', 'text', true, 'firstName')} onChange={handleInputChange} value={fields.firstName} />
 							<label className='mt-3'>Select Section</label>
 							<Select
 								className="basic-single"
-								onChange={(e) => setSelectedSection(e)}
-								onMenuClose={()=>setSelectOpen(false)}
-              onMenuOpen={()=>setSelectOpen(true)}
-              isSearchable={false}
+								onChange={handleSectionChange}
+								isSearchable={false}
 								name="section"
-								options={sections} />
-							<InputField {...inputProps('Grade Number', 'number')} onChange={(e) => setGradeNumber(e.target.value)} />
-							<InputField {...inputProps('Mobile Number', 'number')} onChange={(e) => setMobileNumber(e.target.value)} />
-							<InputField {...inputProps('Admission Number', 'number')} onChange={(e) => setAdmissionNumber(e.target.value)} />
-							<InputField {...inputProps('Social Aid', 'text')} onChange={(e) => setSocialAid(e.target.value)} />
-							<InputField {...inputProps('School from which Admitted', 'text')} onChange={(e) => setWhichSchool(e.target.value)} />
-							<InputField {...inputProps('Add medical conditions (Optional)', 'text', false)} onChange={(e) => setMedical(e.target.value)} />
-							<InputField {...inputProps('Optional Language', 'text')} onChange={(e) => setOptionalLanguage(e.target.value)} />
+								options={sections}
+								value={fields.selectedSection}
+							/>
+							<InputField {...inputProps('Grade Number', 'number', true, 'gradeNumber')} />
+							<InputField {...inputProps('Mobile Number', 'text', true, 'mobileNumber')} isPhoneNumber />
+							<InputField {...inputProps('Admission Number', 'number', true, 'admissionNumber')} />
+							<InputField {...inputProps('Social Aid', 'text', true, 'socialAid')} />
+							<InputField {...inputProps('School from which Admitted', 'text', true, 'whichSchool')} />
+							<InputField {...inputProps('Add medical conditions (Optional)', 'text', false, 'medical')} />
+							<InputField {...inputProps('Optional Language', 'text', true, 'optionalLanguage')} />
 						</Col>
 						<Col sm={12} lg={6}>
-							<InputField {...inputProps('Last Name', 'text')} onChange={(e) => setLastName(e.target.value)} />
-							<div className="mt-4 mb-3" onChange={(e) => setGender(e.target.value)}>
-								<label>Gender *</label><br/>
+							<InputField {...inputProps('Last Name', 'text', true, 'lastName')} />
+							<div className="mt-4 mb-3" onChange={(e) => setFields((prevFields) => ({ ...prevFields, gender: e.target.value }))}>
+								<label>Gender *</label><br />
 								<input type="radio" value="Male" name="gender" defaultChecked /> Male <span className="mr-2"></span>
 								<input type="radio" value="Female" name="gender" /> Female <span className="mr-2"></span>
 								<input type="radio" value="Other" name="gender" /> Other <span className="mr-2"></span>
 							</div>
-							<InputField {...inputProps('nID', 'text')} onChange={(e) => setNID(e.target.value)} />
-							<InputField {...inputProps('Date of Birth', 'date')} onChange={(e) => setDateOfBirth(e.target.value)} />
-							<InputField {...inputProps('Address', 'text')} onChange={(e) => setAddress(e.target.value)} />
-							<InputField {...inputProps('Home Number', 'number')} onChange={(e) => setHomeNumber(e.target.value)} />
-							<InputField {...inputProps('Date of Admission', 'date')} onChange={(e) => setDateOfAdmission(e.target.value)} />
-							<InputField {...inputProps('Sen', 'text')} onChange={(e) => setSen(e.target.value)} />
+							<InputField {...inputProps('nID', 'text', true, 'nID')} value={fields.nID} />
+							<InputField {...inputProps('Date of Birth', 'date', true, 'dateOfBirth')} value={fields.dateOfBirth} />
+							<InputField {...inputProps('Address', 'text', true, 'address')} value={fields.address} />
+							<InputField {...inputProps('Home Number', 'number', true, 'homeNumber')} value={fields.homeNumber} />
+							<InputField {...inputProps('Date of Admission', 'date', true, 'dateOfAdmission')} value={fields.dateOfAdmission} />
+							<InputField {...inputProps('Sen', 'text', true, 'sen')} value={fields.sen} />
 						</Col>
 						<Col sm={12}>
 							<h5 className='mt-4'>Primary Responsible Party</h5>
 							<Row>
 								<Col sm={12} lg={6}>
-									<InputField {...inputProps('First Name', 'text', true, 'firstName')} onChange={handlePrimaryResponsibleData} />
-									<InputField {...inputProps('National ID', 'text', true, 'nationalID')} onChange={handlePrimaryResponsibleData} />
-									<InputField {...inputProps('Telephone Number', 'number', true, 'phone')} onChange={handlePrimaryResponsibleData} />
+									<InputField {...inputProps('First Name', 'text', true, 'firstName')} onChange={(e) => handleResponsibleChange(e, 'primaryResponsible')} value={fields.primaryResponsible.firstName} />
+									<InputField {...inputProps('National ID', 'text', true, 'nationalID')} onChange={(e) => handleResponsibleChange(e, 'primaryResponsible')} value={fields.primaryResponsible.nationalID} />
+									<InputField {...inputProps('Telephone Number', 'number', true, 'phone')} onChange={(e) => handleResponsibleChange(e, 'primaryResponsible')} value={fields.primaryResponsible.phone} />
 								</Col>
 								<Col sm={12} lg={6}>
-									<InputField {...inputProps('Last Name', 'text', true, 'lastName')} onChange={handlePrimaryResponsibleData} />
-									<InputField {...inputProps('Relationship to pupil', 'text', true, 'relationship')} onChange={handlePrimaryResponsibleData} />
-									<InputField {...inputProps('Address', 'text', true, 'address')} onChange={handlePrimaryResponsibleData} />
+									<InputField {...inputProps('Last Name', 'text', true, 'lastName')} onChange={(e) => handleResponsibleChange(e, 'primaryResponsible')} value={fields.primaryResponsible.lastName} />
+									<InputField {...inputProps('Relationship to pupil', 'text', true, 'relationship')} onChange={(e) => handleResponsibleChange(e, 'primaryResponsible')} value={fields.primaryResponsible.relationship} />
+									<InputField {...inputProps('Address', 'text', true, 'address')} onChange={(e) => handleResponsibleChange(e, 'primaryResponsible')} value={fields.primaryResponsible.address} />
 								</Col>
 							</Row>
 						</Col>
@@ -197,23 +169,23 @@ function CreatePupilsScreen() {
 							<h5 className='mt-4'>Secondary Responsible Party</h5>
 							<Row>
 								<Col sm={12} lg={6}>
-									<InputField {...inputProps('First Name', 'text', true, 'firstName')} onChange={handleSecondaryResponsibleData} />
-									<InputField {...inputProps('National ID', 'text', true, 'nationalID')} onChange={handleSecondaryResponsibleData} />
-									<InputField {...inputProps('Telephone Number', 'number', true, 'phone')} onChange={handleSecondaryResponsibleData} />
+									<InputField {...inputProps('First Name', 'text', true, 'firstName')} onChange={(e) => handleResponsibleChange(e, 'secondaryResponsible')} value={fields.secondaryResponsible.firstName} />
+									<InputField {...inputProps('National ID', 'text', true, 'nationalID')} onChange={(e) => handleResponsibleChange(e, 'secondaryResponsible')} value={fields.secondaryResponsible.nationalID} />
+									<InputField {...inputProps('Telephone Number', 'number', true, 'phone')} onChange={(e) => handleResponsibleChange(e, 'secondaryResponsible')} value={fields.secondaryResponsible.phone} />
 								</Col>
 								<Col sm={12} lg={6}>
-									<InputField {...inputProps('Last Name', 'text', true, 'lastName')} onChange={handleSecondaryResponsibleData} />
-									<InputField {...inputProps('Relationship to pupil', 'text', true, 'relationship')} onChange={handleSecondaryResponsibleData} />
-									<InputField {...inputProps('Address', 'text', true, 'address')} onChange={handleSecondaryResponsibleData} />
+									<InputField {...inputProps('Last Name', 'text', true, 'lastName')} onChange={(e) => handleResponsibleChange(e, 'secondaryResponsible')} value={fields.secondaryResponsible.lastName} />
+									<InputField {...inputProps('Relationship to pupil', 'text', true, 'relationship')} onChange={(e) => handleResponsibleChange(e, 'secondaryResponsible')} value={fields.secondaryResponsible.relationship} />
+									<InputField {...inputProps('Address', 'text', true, 'address')} onChange={(e) => handleResponsibleChange(e, 'secondaryResponsible')} value={fields.secondaryResponsible.address} />
 								</Col>
 							</Row>
 						</Col>
 					</Row>
+					<input type="date" name="" id=""
+						format="yyyy-MM-dd"
+					/>
 					<div className="text-center mt-5 d-flex items-center justify-content-end">
-						<button
-							
-							type="submit"
-							className={`px-5 ${Styles.submitButton}`}>
+						<button type="submit" className={`px-5 ${Styles.submitButton}`}>
 							Submit
 						</button>
 					</div>

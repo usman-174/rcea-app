@@ -2,7 +2,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import React, { Fragment, useEffect, useState } from "react";
 import { Alert, Container, Spinner } from "react-bootstrap";
 import { Toaster } from "react-hot-toast";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Select from "react-select";
 import { errorToast, successToast } from "../../../utils";
 import AxiosConfig from "../../../utils/axiosConfig";
@@ -16,15 +16,20 @@ import {
     teachingStrategies,
     topicsOrSubtopics2
 } from "../../../utils/globals";
+import { useSelector } from "react-redux";
 
 const SpecialSchemeOfWork = () => {
 
 
 
-    const [searchParams] = useSearchParams();
-    const specialData = searchParams.get("specialData");
-    const [selectedSubject, setSelectedSubject] = useState(null);
 
+    const [searchParams] = useSearchParams();
+    const { selectedSchool } = useSelector((state) => state.school);
+    const currentSelectedSchoolId =
+        searchParams.get("school") || (selectedSchool && selectedSchool._id);
+    const selected = searchParams.get("selected");
+    const [selectedSubject, setSelectedSubject] = useState(null);
+    const specialData = searchParams.get("specialData");
     const [selectedPrescribedTextbook, setSelectedPrescribedTextbook] = useState(null);
     const [selectedNumberOfPeriodsPerWeek, setSelectedNumberOfPeriodsPerWeek] = useState(null);
     const [form, setForm] = useState([]);
@@ -229,7 +234,8 @@ const SpecialSchemeOfWork = () => {
                             className="basic-single mr-4"
                             onChange={(e) => {
                                 setSelectedSubject("");
-                                setSelectedGrade(e)}}
+                                setSelectedGrade(e)
+                            }}
                             name="grade"
                             isSearchable={false}
                             options={grades}
@@ -493,6 +499,14 @@ const SpecialSchemeOfWork = () => {
                                 >
                                     {!schemeOfWork ? "Save" : "Update"}
                                 </button>
+                                <Link
+                                    to={`/data-portal/special-education-service?school=${currentSelectedSchoolId}&selected=${selected}`}
+                                    className="secondaryButton m-2"
+                                    // disabled={mutation.isPending}
+                                >
+
+                                    Back
+                                </Link>
                             </div>
                         </form>
                     </div>

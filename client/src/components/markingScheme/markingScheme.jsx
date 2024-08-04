@@ -11,11 +11,11 @@ import { Toaster } from "react-hot-toast";
 import Select from "react-select";
 import { errorToast, successToast } from "../../utils";
 import AxiosConfig from "../../utils/axiosConfig";
-import { grades, language, sections } from "../../utils/globals";
+import { grades,  sections, specialization, subjects } from "../../utils/globals";
 import { Spinner } from "../spinner";
 
 export const MarkingScheme = () => {
-  const subjects = language;
+
   const [loading, setLoading] = useState(false);
   const [rows, setRows] = useState([]);
   const [successSave, setSuccessSave] = useState(false);
@@ -178,7 +178,8 @@ export const MarkingScheme = () => {
               onMenuOpen={() => setSelectOpen(true)}
               isSearchable={false}
 							name="subject"
-							options={subjects}
+              options={[...subjects,...specialization]}
+
 						/>
 					</div>
 				</div>

@@ -109,7 +109,7 @@ function ListPupilsScreen() {
                           scope="col"
                           className="border-0 text-uppercase font-weight-normal pl-4"
                         >
-                          Roll
+                          NID
                         </th>
                         <th
                           scope="col"
@@ -145,13 +145,28 @@ function ListPupilsScreen() {
                           scope="col"
                           className="border-0 text-uppercase font-weight-normal text-nowrap"
                         >
+                          SEN
+                        </th>
+                        <th
+                          scope="col"
+                          className="border-0 text-uppercase font-weight-normal text-nowrap"
+                        >
+                          Social Aid
+                        </th>
+                        <th
+                          scope="col"
+                          className="border-0 text-uppercase font-weight-normal text-nowrap"
+                        >
                           Admission No.
                         </th>
                       </tr>
                     </thead>
                     <tbody>
                       {Array.isArray(pupilInfo) &&
-                        pupilInfo.map((pupil) => (
+                        pupilInfo.map((pupil) => {
+                            console.log(pupil);
+                            
+                          return(
                           <tr className={Styles.pupil} key={pupil._id}>
                             <td className="pl-4">{pupil.student__nid}</td>
                             <td
@@ -186,6 +201,16 @@ function ListPupilsScreen() {
                             </td>
                             <td className="align-top text-nowrap">
                               <span className="text-muted">
+                                {pupil.sen}
+                              </span>
+                            </td>
+                            <td className="align-top text-nowrap">
+                              <span className="text-muted">
+                                {pupil.social_aid}
+                              </span>
+                            </td>
+                            <td className="align-top text-nowrap">
+                              <span className="text-muted">
                                 {pupil.admission_no}
                               </span>
                             </td>
@@ -216,7 +241,7 @@ function ListPupilsScreen() {
                               </button>
                             </td>
                           </tr>
-                        ))}
+                        )})}
                     </tbody>
                   </table>
                 </div>

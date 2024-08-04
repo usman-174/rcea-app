@@ -102,7 +102,7 @@ function ListTeachersScreen() {
 															<th scope="col" className="border-0 text-uppercase font-weight-normal text-nowrap">Name</th>
 															<th scope="col" className="border-0 text-uppercase font-weight-normal text-nowrap">Phone</th>
 															<th scope="col" className="border-0 text-uppercase font-weight-normal text-nowrap">Address</th>
-															<th scope="col" className="border-0 text-uppercase font-weight-normal text-nowrap">Salary</th>
+															<th scope="col" className="border-0 text-uppercase font-weight-normal text-nowrap">Posting Year</th>
 															<th scope="col" className="border-0 text-uppercase font-weight-normal text-nowrap">Hire Date</th>
 														</tr>
 													</thead>
@@ -121,7 +121,7 @@ function ListTeachersScreen() {
 																		<span className="text-muted">{teacher.address}</span>
 																	</td>
 																	<td className="align-top text-nowrap">
-																		<span className="text-muted">${teacher.salary}</span>
+																		<span className="text-muted">{teacher.postingYear}</span>
 																	</td>
 																	<td className="align-top text-nowrap">
 																		<span className="text-muted">{dateFormatter(teacher.hire_date)}</span>

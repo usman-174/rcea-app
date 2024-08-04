@@ -33,6 +33,10 @@ const types = [
     value: "mathComputations",
     label: "Math Computations",
   },
+  {
+    value: "conceptsAndApplications",
+    label: "Concepts and Applications",
+  }
 ];
 
 const headerRow = generateHeaderRow(Column_Row_Fields);

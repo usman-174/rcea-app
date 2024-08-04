@@ -3,17 +3,22 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import AxiosConfig from "../../../utils/axiosConfig";
 
 import { initialData } from "./initalData";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { successToast } from "../../../utils";
+import { useSelector } from "react-redux";
 const DevelopmentalCognitiveDisability = () => {
   const navigate = useNavigate(); // axios
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const specialData = searchParams.get("specialData");
+  const { selectedSchool } = useSelector((state) => state.school);
+  const currentSelectedSchoolId =
+    searchParams.get("school") || (selectedSchool && selectedSchool._id);
+  const selected = searchParams.get("selected");
   const [formData, setFormData] = useState(initialData);
 
   const handleFirstOptionChange = (index, subIndex, mode, event) => {
@@ -128,7 +133,7 @@ const DevelopmentalCognitiveDisability = () => {
   }, [developmentalCognitiveDisabilitySpecialData]);
   return (
     <Container className="my-3">
-    <h2 className="my-5">Developmental Cognitive Disability</h2>
+      <h2 className="my-5">Developmental Cognitive Disability</h2>
       <Form
         onSubmit={(e) => {
           e.preventDefault();
@@ -137,7 +142,7 @@ const DevelopmentalCognitiveDisability = () => {
       >
         {formData?.data.map((item, index) => (
           <div key={index} style={{
-            borderBottom: index!==formData?.data.length-1  ?"1px solid #000":"",
+            borderBottom: index !== formData?.data.length - 1 ? "1px solid #000" : "",
             marginBottom: "20px"
           }}>
             <h3>{item.title}</h3>
@@ -220,6 +225,14 @@ const DevelopmentalCognitiveDisability = () => {
           >
             Save
           </button>
+          <Link
+            to={`/data-portal/special-education-service?school=${currentSelectedSchoolId}&selected=${selected}`}
+            className="secondaryButton m-2"
+            disabled={mutation.isPending}
+          >
+
+            Back
+          </Link>
         </center>
       </Form>
     </Container>

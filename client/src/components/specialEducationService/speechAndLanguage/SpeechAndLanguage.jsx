@@ -3,16 +3,21 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import AxiosConfig from "../../../utils/axiosConfig";
 
 import { initialData } from './initalData';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { successToast } from '../../../utils';
+import { useSelector } from 'react-redux';
 const SpeechAndLanguageSpecial = () => {
     const navigate = useNavigate(); // axios
     const [searchParams, setSearchParams] = useSearchParams();
-    const specialData = searchParams.get("specialData");
+const specialData = searchParams.get("specialData");
+     const { selectedSchool } = useSelector((state) => state.school);
+    const currentSelectedSchoolId =
+        searchParams.get("school") || (selectedSchool && selectedSchool._id);
+    const selected = searchParams.get("selected");
     const [formData, setFormData] = useState(initialData)
 
     const handleFirstOptionChange = (index, subIndex, mode, event) => {
@@ -185,6 +190,14 @@ const SpeechAndLanguageSpecial = () => {
                     <button type='submit' className='primaryButton' disabled={mutation.isPending}>
                         Save
                     </button>
+                    <Link
+                        to={`/data-portal/special-education-service?school=${currentSelectedSchoolId}&selected=${selected}`}
+                        className="secondaryButton m-2"
+                        disabled={mutation.isPending}
+                    >
+
+                        Back
+                    </Link>
                 </center>
             </Form>
         </Container>

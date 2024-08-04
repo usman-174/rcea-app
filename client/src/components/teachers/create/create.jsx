@@ -33,13 +33,13 @@ export const qualifications = [
   {
     value: "Other Deploma",
     label: "Other Deploma (Please specify)",
-    isDisabled: true,
+    // isDisabled: true,
   },
   { value: "Bachelor of Education", label: "Bachelor of Education" },
   {
     value: "Other Degree",
     label: "Other Degree (Please specify)",
-    isDisabled: true,
+    // isDisabled: true,
   },
 ];
 
@@ -82,14 +82,19 @@ function CreateTeacherScreen() {
     qualifications: [],
     grade: null,
     nationalID: null,
+    appointmentDate: "",
+    remarks: "",
   });
 
-  const inputProps = (label, type, required = true, name) => ({
+
+  const inputProps = (label, type, required = true, name, placeholder) => ({
     name,
     label,
     type,
     required,
     onChange: handleInputChange,
+    value: fields[name],
+    placeholder,
   });
 
   const handleInputChange = (e) => {
@@ -126,22 +131,21 @@ function CreateTeacherScreen() {
         <form onSubmit={submitHandler}>
           <Row>
             <Col sm={12} lg={6}>
-              <InputField {...inputProps("Address", "text", true, "address")} />
+              <InputField {...inputProps("First Name", "text", true, "firstName", "Enter the first name")} />
+              <InputField {...inputProps("Address", "text", true, "address", "Enter the address")} />
+            </Col>
+            <Col sm={12} lg={6}>
               <InputField
-                {...inputProps("First Name", "text", true, "firstName")}
+                {...inputProps("Last Name", "text", true, "lastName","Enter the first name")}
+              />
+              <InputField
+                {...inputProps("Phone Number", "text", true, "phone", "e.g., 5000 0000 or 8344 444")}
+                isPhoneNumber
               />
             </Col>
             <Col sm={12} lg={6}>
               <InputField
-                {...inputProps("Last Name", "text", true, "lastName")}
-              />
-              <InputField
-                {...inputProps("Phone Number", "number", true, "phone")}
-              />
-            </Col>
-            <Col sm={12} lg={6}>
-              <InputField
-                {...inputProps("National ID", "text", true, "nationalID")}
+                {...inputProps("National ID", "text", true, "nationalID", "Enter the national ID")}
               />
               <div className="mt-2">
                 <label>Qualifications *</label>
@@ -182,11 +186,21 @@ function CreateTeacherScreen() {
                   "Year of Posting",
                   "number",
                   true,
-                  "postingYear"
+                  "postingYear",
+                  "Enter the year of posting"
                 )}
               />
               <InputField
-                {...inputProps("Hire Date", "date", true, "hire_date")}
+                {...inputProps("Hire Date", "date", true, "hire_date", "Select the hire date")}
+              />
+            </Col>
+            <Col sm={12} lg={6}>
+              <InputField
+                {...inputProps("Appointment Date", "date", true, "appointmentDate", "Select the appointment date")}
+              />
+              <InputField
+                {...inputProps("Remarks", "text", false, "remarks", "Enter the remarks")}
+
               />
             </Col>
           </Row>

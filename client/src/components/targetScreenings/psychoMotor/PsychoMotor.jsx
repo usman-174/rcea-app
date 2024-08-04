@@ -30,7 +30,7 @@ const initialFormData = [
     },
    
     {
-        skill: "Spave",
+        skill: "Space",
         level: "",
         score: 0
     },

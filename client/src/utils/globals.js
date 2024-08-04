@@ -295,64 +295,8 @@ const subjects = [
     label: "ICT Skills",
   },
 ];
-const subjects2 = {
-  1: [
-    { value: "Kreol Rodrige", label: "Kreol Rodrige" },
-    { value: "Français", label: "Français" },
-    { value: "English", label: "English" },
-    { value: "Mathematics", label: "Mathematics" },
-  ],
-  2: [
-    { value: "Kreol Rodrige", label: "Kreol Rodrige" },
-    { value: "Français", label: "Français" },
-    { value: "English", label: "English" },
-    { value: "Mathematics", label: "Mathematics" },
-  ],
-  3: [
-    { value: "Kreol Rodrige", label: "Kreol Rodrige" },
-    { value: "Français", label: "Français" },
-    { value: "English", label: "English" },
-    { value: "Mathematics", label: "Mathematics" },
-    {
-      value: "SOCIAL, SCIENTIFIC AND ENVIRONMENTAL EDUCATION",
-      label: "SOCIAL, SCIENTIFIC AND ENVIRONMENTAL EDUCATION",
-    },
-  ],
-  4: [
-    { value: "Kreol Rodrige", label: "Kreol Rodrige" },
-    { value: "Français", label: "Français" },
-    { value: "English", label: "English" },
-    { value: "Mathematics", label: "Mathematics" },
-    { value: "Science", label: "Science" },
-    { value: "History & Geography", label: "History & Geography" },
-  ],
-  5: [
-    { value: "Kreol Rodrige", label: "Kreol Rodrige" },
-    { value: "Français", label: "Français" },
-    { value: "English", label: "English" },
-    { value: "Mathematics", label: "Mathematics" },
-    { value: "Science", label: "Science" },
-    { value: "History & Geography", label: "History & Geography" },
-  ],
-  6: [
-    { value: "Kreol Rodrige", label: "Kreol Rodrige" },
-    { value: "Français", label: "Français" },
-    { value: "English", label: "English" },
-    { value: "Science", label: "Science" },
-    { value: "History & Geography", label: "History & Geography" },
-  ],
-};
+
 const specialization = [
-  { value: "English", label: "English" },
-  { value: "French", label: "French" },
-  { value: "Mathematics", label: "Mathematics" },
-  { value: "Creole", label: "Creole" },
-  { value: "Science", label: "Science" },
-  { value: "History & Geography", label: "History & Geography" },
-  {
-    value: "SSEE-Social, Scientific, and Environmental Education",
-    label: "SSEE-Social, Scientific, and Environmental Education",
-  },
   { value: "Visual Arts", label: "Visual Arts" },
   { value: "Performing Arts", label: "Performing Arts" },
   { value: "Citizenship education", label: "Citizenship education" },
@@ -363,8 +307,11 @@ const specialization = [
   { value: "Compulsory Core Subjects", label: "Compulsory Core Subjects" },
   { value: "Non-Core Subjects", label: "Non-Core Subjects" },
   { value: "Optional Core Subject(s)", label: "Optional Core Subject(s)" },
+  {
+    value: "CitizenshipAndValue",
+    label: "Citizenship And Value",
+  },
 ];
-
 const language = [
   {
     value: "english",
@@ -578,7 +525,64 @@ const academicTerm = [
     label: "12",
   },
 ];
-
+const subjects2 = {
+  1: [
+    { value: "Kreol Rodrige", label: "Kreol Rodrige" },
+    { value: "Français", label: "Français" },
+    { value: "English", label: "English" },
+    { value: "Mathematics", label: "Mathematics" },
+    { value: "Science", label: "Science" },
+    { value: "SSEE", label: "SSEE" },
+    { value: "History", label: "History" },
+    { value: "Geography", label: "Geography" },
+    { value: "Visual Arts", label: "Visual Arts" },
+    { value: "Performing Arts", label: "Performing Arts" },
+    { value: "Health", label: "Health" },
+    { value: "Physical Education", label: "Physical Education" },
+    { value: "Road Safety", label: "Road Safety" },
+    { value: "Citizenship and Values", label: "Citizenship and Values" },
+    { value: "ICT", label: "ICT" },
+  ],
+  2: [
+    { value: "Kreol Rodrige", label: "Kreol Rodrige" },
+    { value: "Français", label: "Français" },
+    { value: "English", label: "English" },
+    { value: "Mathematics", label: "Mathematics" },
+  ],
+  3: [
+    { value: "Kreol Rodrige", label: "Kreol Rodrige" },
+    { value: "Français", label: "Français" },
+    { value: "English", label: "English" },
+    { value: "Mathematics", label: "Mathematics" },
+    {
+      value: "SOCIAL, SCIENTIFIC AND ENVIRONMENTAL EDUCATION",
+      label: "SOCIAL, SCIENTIFIC AND ENVIRONMENTAL EDUCATION",
+    },
+  ],
+  4: [
+    { value: "Kreol Rodrige", label: "Kreol Rodrige" },
+    { value: "Français", label: "Français" },
+    { value: "English", label: "English" },
+    { value: "Mathematics", label: "Mathematics" },
+    { value: "Science", label: "Science" },
+    { value: "History & Geography", label: "History & Geography" },
+  ],
+  5: [
+    { value: "Kreol Rodrige", label: "Kreol Rodrige" },
+    { value: "Français", label: "Français" },
+    { value: "English", label: "English" },
+    { value: "Mathematics", label: "Mathematics" },
+    { value: "Science", label: "Science" },
+    { value: "History & Geography", label: "History & Geography" },
+  ],
+  6: [
+    { value: "Kreol Rodrige", label: "Kreol Rodrige" },
+    { value: "Français", label: "Français" },
+    { value: "English", label: "English" },
+    { value: "Science", label: "Science" },
+    { value: "History & Geography", label: "History & Geography" },
+  ],
+};
 const topicsOrSubtopics = [
   { value: "Ma maison", label: "Ma maison" },
   { value: "Ma famille", label: "Ma famille" },
@@ -729,11 +733,11 @@ const textbooks2 = {
     { value: "Volim 1", label: "Volim 1" },
     { value: "Volim 2", label: "Volim 2" },
   ],
-  1:[
+  1: [
     { value: "Volim 1", label: "Volim 1" },
     { value: "Volim 2", label: "Volim 2" },
   ],
-  2:[
+  2: [
     { value: "Volim 1", label: "Volim 1" },
     { value: "Volim 2", label: "Volim 2" },
   ],
