@@ -31,7 +31,7 @@ const initialSpecialData = {
 
 const SelectStudentsPage = () => {
   const dispatch = useDispatch();
-  const { pupilInfo } = useSelector((state) => state.pupil);
+
 
   const { selectedSchool } = useSelector((state) => state.school);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -82,6 +82,23 @@ const SelectStudentsPage = () => {
     refetchOnWindowFocus: false,
     retry: false,
     enabled: !!shouldFetch,
+  });
+
+  const { data: student, isLoading: studentLoading } = useQuery({
+    queryKey: ["student", selected],
+    queryFn: async () => {
+      // eslint-disable-next-line
+      const response = await AxiosConfig.get("/pupil/" + selected,);
+
+      return response.data;
+    },
+    refetchOnWindowFocus: false,
+    retry: false,
+    enabled: !!selected,
+  });
+  console.log({
+    student,
+    studentLoading,
   });
 
   const {
@@ -254,64 +271,7 @@ const SelectStudentsPage = () => {
             />
           </div>
         </div>
-        {!shouldFetch && pupilInfo?.length ? (
-          <div style={{ marginTop: "24px" }}>
-            {pupilInfo?.length ? (
-              <div className="row">
-                <div className="col-md-12">
-                  <div className="card">
-                    <div className="table-responsive-xl">
-                      <table className="table ">
-                        <thead>
-                          <tr>
-                            <th className="border-0 text-uppercase font-weight-normal text-nowrap">
-                              Roll #
-                            </th>
-                            <th className="border-0 text-uppercase font-weight-normal text-nowrap">
-                              Name
-                            </th>
-                            <th className="border-0 text-uppercase font-weight-normal text-nowrap">
-                              Screenx
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {pupilInfo.map((pupil, i) => (
-                            <tr className={Styles.pupil} key={pupil._id + i}>
-                              <td
-                                className={`align-top text-nowrap ${Styles.pupilRoll}`}
-                              >
-                                {pupil.student__nid}
-                              </td>
-                              <td
-                                className={`align-top text-nowrap ${Styles.pupilName}`}
-                              // onClick={() =>
-                              //     navigate(`/data-portal/pupils/${pupil._id}`)
-                              // }
-                              >
-                                <h5 className="font-medium mb-0">
-                                  {pupil.student_firstname}{" "}
-                                  {pupil.student_lastname}
-                                </h5>
-                              </td>
-                              <td className="align-top text-nowrap d-flex flex-row align-items-center">
-                                <button>Select</button>
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              shouldFetch && (
-                <div className="alert alert-info">No students found</div>
-              )
-            )}
-          </div>
-        ) : shouldFetch && studentsIsLoading ? (
+        {shouldFetch && studentsIsLoading ? (
           <Spinner />
         ) : (
           <div style={{ marginTop: "24px" }}>
@@ -496,7 +456,7 @@ const SelectStudentsPage = () => {
               >
                 SpeechAndLanguage
               </Link>
-              {/* /data-portal/special-education-service/physically-impairment */}
+            
               <Link
                 to={`/data-portal/special-education-service/physically-impairment?specialData=${specialData.id}&school=${currentSelectedSchoolId}&selected=${selected}`}
                 className="primaryButton"

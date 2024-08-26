@@ -89,9 +89,9 @@ function GridExample() {
 
   return (
     <div style={{ margin: "50px" }}>
-      <ReactGrid rows={rows} style={{  overflowX: "auto" }}
-                  stickyLeftColumns={selectOpen ? 0 : 2}
-                    columns={columns} onCellsChanged={handleChanges} />
+      <ReactGrid rows={rows} style={{ overflowX: "auto" }}
+        stickyLeftColumns={selectOpen ? 0 : 2}
+        columns={columns} onCellsChanged={handleChanges} />
       <button onClick={handleSave}>Save</button>
     </div>
   );

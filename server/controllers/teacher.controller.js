@@ -166,6 +166,7 @@ const TeacherController = {
       nationalID,
       school_id,
       postingYear,
+      
     } = req.body;
 
     try {

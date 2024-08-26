@@ -30,12 +30,14 @@ class InputField extends Component {
 	formatPhoneNumber = (e) => {
 		const input = e.target.value.replace(/\D/g, '');
 		let formattedNumber = '';
-
+		
+		
 		if (input.startsWith('5')) {
 			if (input.length > 4) {
 				formattedNumber = `${input.substring(0, 4)} ${input.substring(4, 8)}`;
 			} else {
 				formattedNumber = input;
+				
 			}
 		} else if (input.startsWith('83')) {
 			if (input.length > 5) {
@@ -46,8 +48,9 @@ class InputField extends Component {
 		} else {
 			formattedNumber = input;
 		}
-
+	
 		e.target.value = formattedNumber.trim();
+	
 	};
 
 	handleInputChange = (e) => {
@@ -57,10 +60,13 @@ class InputField extends Component {
 			const numericValue = value.replace(/\D/g, '');
 			if ((numericValue.startsWith('5') && numericValue.length > 8) ||
 				(numericValue.startsWith('83') && numericValue.length > 7)) {
+		
+
 				return;
 			}
 
 			this.formatPhoneNumber(e);
+			
 			const isValid = this.validatePhoneNumber(e.target.value);
 			this.setState({ isValid });
 		} else if (name === 'postingYear') {
@@ -101,7 +107,7 @@ class InputField extends Component {
 						<input
 							placeholder={this.props.placeholder}
 							value={this.props.value}
-							defaultValue={this.props.defaultValue}
+							// defaultValue={this.props.defaultValue}
 							name={this.props.name}
 							id={this.props.id}
 							ref={this.props.inputRef}

@@ -21,6 +21,7 @@ function CreatePupilsScreen() {
 		lastName: '',
 		dateOfBirth: '',
 		gradeNumber: '',
+	
 		gender: 'Male',
 		nID: '',
 		primaryResponsible: {
@@ -51,17 +52,17 @@ function CreatePupilsScreen() {
 		sen: '',
 		selectedSection: null
 	});
-
-	const inputProps = (label, type, required = true, name) => ({
+	
+	const inputProps = (label, type, required = true, name, placeholder) => ({
+		name,
 		label,
 		type,
 		required,
-		name,
-		value: fields[name]
-		,
-		Placeholder: `Enter ${label}`
-	});
-
+		onChange: handleInputChange,
+		value: fields[name],
+		placeholder,
+	  });
+	
 	const handleInputChange = (e) => {
 		const { name, value } = e.target;
 		setFields((prevFields) => ({
@@ -90,7 +91,9 @@ function CreatePupilsScreen() {
 
 	const pupilCreate = (e) => {
 		e.preventDefault();
-
+		console.log(fields);
+	
+		
 		dispatch(createPupil({
 			academicYear: selectedYear,
 			termNumber: selectedTerm,
@@ -128,7 +131,7 @@ function CreatePupilsScreen() {
 								value={fields.selectedSection}
 							/>
 							<InputField {...inputProps('Grade Number', 'number', true, 'gradeNumber')} />
-							<InputField {...inputProps('Mobile Number', 'text', true, 'mobileNumber')} isPhoneNumber />
+							<InputField  {...inputProps("Phone Number", "text", true, "mobileNumber", "e.g., 5000 0000 or 8344 444")} isPhoneNumber  />
 							<InputField {...inputProps('Admission Number', 'number', true, 'admissionNumber')} />
 							<InputField {...inputProps('Social Aid', 'text', true, 'socialAid')} />
 							<InputField {...inputProps('School from which Admitted', 'text', true, 'whichSchool')} />
@@ -148,7 +151,7 @@ function CreatePupilsScreen() {
 							<InputField {...inputProps('Address', 'text', true, 'address')} value={fields.address} />
 							<InputField {...inputProps('Home Number', 'number', true, 'homeNumber')} value={fields.homeNumber} />
 							<InputField {...inputProps('Date of Admission', 'date', true, 'dateOfAdmission')} value={fields.dateOfAdmission} />
-							<InputField {...inputProps('Sen', 'text', true, 'sen')} value={fields.sen} />
+							<InputField {...inputProps('SEN', 'text', true, 'sen')} value={fields.sen} />
 						</Col>
 						<Col sm={12}>
 							<h5 className='mt-4'>Primary Responsible Party</h5>
@@ -181,9 +184,7 @@ function CreatePupilsScreen() {
 							</Row>
 						</Col>
 					</Row>
-					<input type="date" name="" id=""
-						format="yyyy-MM-dd"
-					/>
+					
 					<div className="text-center mt-5 d-flex items-center justify-content-end">
 						<button type="submit" className={`px-5 ${Styles.submitButton}`}>
 							Submit
