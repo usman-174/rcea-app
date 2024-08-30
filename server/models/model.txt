@@ -1,10 +1,10 @@
 BehaviorScreening (req.body): 
-	works_well_with_peers
+	plays_well_with_peers
 	follows_directions
 	handles_emotions
-	self_confidence
+	self_confident
 	plays_well_with_peers
-	verbally_aggressive
+	doesnt_talk
 	physically_aggressive
 	steals
 	dishonest

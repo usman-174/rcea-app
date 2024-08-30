@@ -1,4 +1,4 @@
-const getRows = (pupils, fields, headerRow) => {
+const getRows = (pupils, fields, headerRow, defaultValues = {}) => {
   const rows = [headerRow];
   pupils.forEach((person, index) => {
     const row = {
@@ -9,10 +9,20 @@ const getRows = (pupils, fields, headerRow) => {
           type: "text",
           text: `${person.student_firstname} ${person.student_lastname}`,
         },
-
+        // {
+        //   type: "dropdown",
+        //   values: [
+        //     { value: "react", label: "React" },
+        //     { value: "vue", label: "Vue" },
+        //     { value: "angular", label: "Angular" }
+        //   ],
+        //   isOpen: false,
+        //   // isDisabled: false,
+        //   selectedValue: "react",
+        // },
         ...fields.map((field) => ({
           type: "text",
-          text: person[field]?.toString() || "",
+          text: person[field]?.toString() || defaultValues[field] || "",
         })),
       ],
     };
@@ -23,4 +33,4 @@ const getRows = (pupils, fields, headerRow) => {
   return rows;
 };
 
-export {getRows}
+export { getRows };

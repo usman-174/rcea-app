@@ -11,14 +11,18 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { successToast } from "../../../utils";
 import { useSelector } from "react-redux";
+
+import ServiceSelectBox from "../selectStudent/ServiceSelectBox";
+import ServiceLayout from "../ServiceLayout";
+
 const SpecificLearningDisability = () => {
-  const navigate = useNavigate(); // axios
-const specialData = searchParams.get("specialData");
-  const [searchParams, setSearchParams] = useSearchParams();
-   const { selectedSchool } = useSelector((state) => state.school);
-    const currentSelectedSchoolId =
-        searchParams.get("school") || (selectedSchool && selectedSchool._id);
-    const selected = searchParams.get("selected");
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams(); // Move this line before using searchParams
+  const specialData = searchParams.get("specialData");
+  const { selectedSchool } = useSelector((state) => state.school);
+  const currentSelectedSchoolId =
+    searchParams.get("school") || (selectedSchool && selectedSchool._id);
+  const selected = searchParams.get("selected");
   const [formData, setFormData] = useState(initialData);
 
   const handletable1Change = (index, key, type) => {
@@ -31,10 +35,11 @@ const specialData = searchParams.get("specialData");
     if (type === "check") {
       newFormData.table1[index][key] = true;
     } else {
-      newFormData.table1[index][key] = false
+      newFormData.table1[index][key] = false;
     }
     setFormData(newFormData);
   };
+
   const handletable2Change = (index, key, type) => {
     console.log({
       index,
@@ -45,10 +50,11 @@ const specialData = searchParams.get("specialData");
     if (type === "check") {
       newFormData.table2[index][key] = true;
     } else {
-      newFormData.table2[index][key] = false
+      newFormData.table2[index][key] = false;
     }
     setFormData(newFormData);
   };
+
   const {
     data: specificLearningDisabilitySpecialData,
     error,
@@ -69,15 +75,12 @@ const specialData = searchParams.get("specialData");
 
         return res;
       } catch (error) {
-        // throw new Error("An error occurred while fetching data")
         console.log("errrr", error.message);
-
         return initialData;
       }
     },
     refetchOnWindowFocus: false,
     retry: false,
-
     enabled: !!specialData,
   });
 
@@ -88,7 +91,6 @@ const specialData = searchParams.get("specialData");
           "/specialeducation/specificLearningDisability",
           {
             ...formData,
-
             educationService_id: specialData,
             id: specificLearningDisabilitySpecialData?._id,
           }
@@ -96,9 +98,7 @@ const specialData = searchParams.get("specialData");
         successToast("Data Saved successfully");
         return data;
       } catch (error) {
-        // throw new Error("An error occurred while fetching data")
         console.log(error.message);
-
         return initialData;
       }
     },
@@ -106,24 +106,31 @@ const specialData = searchParams.get("specialData");
       refetch();
     },
   });
+
   useEffect(() => {
     if (!specialData) {
       navigate("/data-portal/special-education-service");
     }
-    // eslint-disable-next-line
   }, [specialData, navigate]);
+
   useEffect(() => {
-
     if (specificLearningDisabilitySpecialData && !isLoading) {
-
       setFormData(specificLearningDisabilitySpecialData);
     } else if (!isLoading) {
       setFormData(initialData);
     }
   }, [specificLearningDisabilitySpecialData]);
+
   return (
-    <Container className="my-3">
+    <ServiceLayout>
       <h2 className="my-5">Specific Learning Disability</h2>
+      <div>
+        <h5>Select a service</h5>
+        <div className="w-50">
+          <ServiceSelectBox currentService="specific-learning-disability" />
+        </div>
+      </div>
+
       <Form
         onSubmit={(e) => {
           e.preventDefault();
@@ -142,12 +149,11 @@ const specialData = searchParams.get("specialData");
               </tr>
             </thead>
             <tbody>
-              {formData?.table1.map((data, index) => (
+              {formData?.table1?.map((data, index) => (
                 <tr key={index}>
                   <td>{data.title}</td>
-                  <td >
+                  <td>
                     <div className="d-flex align-items-center">
-
                       <Form.Check
                         type="checkbox"
                         label="Yes"
@@ -158,17 +164,18 @@ const specialData = searchParams.get("specialData");
                       />
                       <Form.Check
                         type="checkbox"
-                        name='check'
+                        name="check"
                         className="mx-2"
                         label="No"
                         checked={data.check1 === false}
-                        onChange={(event) => handletable1Change(index, "check1", "uncheck")}
+                        onChange={(event) =>
+                          handletable1Change(index, "check1", "uncheck")
+                        }
                       />
                     </div>
                   </td>
                   <td>
                     <div className="d-flex align-items-center">
-
                       <Form.Check
                         type="checkbox"
                         label="Yes"
@@ -179,11 +186,13 @@ const specialData = searchParams.get("specialData");
                       />
                       <Form.Check
                         type="checkbox"
-                        name='check'
+                        name="check"
                         className="mx-2"
                         label="No"
                         checked={data.check2 === false}
-                        onChange={(event) => handletable1Change(index, "check2", "uncheck")}
+                        onChange={(event) =>
+                          handletable1Change(index, "check2", "uncheck")
+                        }
                       />
                     </div>
                   </td>
@@ -199,11 +208,13 @@ const specialData = searchParams.get("specialData");
                       />
                       <Form.Check
                         type="checkbox"
-                        name='check'
+                        name="check"
                         className="mx-2"
                         label="No"
                         checked={data.check3 === false}
-                        onChange={(event) => handletable1Change(index, "check3", "uncheck")}
+                        onChange={(event) =>
+                          handletable1Change(index, "check3", "uncheck")
+                        }
                       />
                     </div>
                   </td>
@@ -219,11 +230,13 @@ const specialData = searchParams.get("specialData");
                       />
                       <Form.Check
                         type="checkbox"
-                        name='check'
+                        name="check"
                         className="mx-2"
                         label="No"
                         checked={data.check4 === false}
-                        onChange={(event) => handletable1Change(index, "check4", "uncheck")}
+                        onChange={(event) =>
+                          handletable1Change(index, "check4", "uncheck")
+                        }
                       />
                     </div>
                   </td>
@@ -241,22 +254,16 @@ const specialData = searchParams.get("specialData");
                 <th>A concern w.r.t peer</th>
                 <th>Inadequate classroom acheivement</th>
                 <th>A concern w.r.t peer</th>
-
               </tr>
             </thead>
             <tbody>
-              {formData?.table2.map((data, index) => (
+              {formData?.table2?.map((data, index) => (
                 <tr key={index}>
                   <td>
-
-                    <span>
-
-                      {data.title}
-                    </span>
+                    <span>{data.title}</span>
                   </td>
-                  <td >
+                  <td>
                     <div className="d-flex align-items-center">
-
                       <Form.Check
                         type="checkbox"
                         label="Yes"
@@ -267,36 +274,19 @@ const specialData = searchParams.get("specialData");
                       />
                       <Form.Check
                         type="checkbox"
-                        name='check'
+                        name="check"
                         className="mx-2"
                         label="No"
                         checked={data.check1 === false}
-                        onChange={(event) => handletable2Change(index, "check1", "uncheck")}
+                        onChange={(event) =>
+                          handletable2Change(index, "check1", "uncheck")
+                        }
                       />
                     </div>
                   </td>
                   <td>
                     <div className="d-flex align-items-center">
-                      {/* 
-                      <Form.Check
-                        type="checkbox"
-                        label="Yes"
-                        checked={data.check2 === true}
-                        onChange={(e) => {
-                          handletable1Change(index, "check2", "check");
-                        }}
-                      />
-                      <Form.Check
-                        type="checkbox"
-                        name='check'
-                        className="mx-2"
-                        label="No"
-                        checked={data.check2 === false}
-                        onChange={(event) => handletable1Change(index, "check2", "uncheck")}
-                      /> */}
-                      <span>{
-                        data.title2
-                      }</span>
+                      <span>{data.title2}</span>
                     </div>
                   </td>
                   <td>
@@ -311,15 +301,16 @@ const specialData = searchParams.get("specialData");
                       />
                       <Form.Check
                         type="checkbox"
-                        name='check'
+                        name="check"
                         className="mx-2"
                         label="No"
                         checked={data.check2 === false}
-                        onChange={(event) => handletable2Change(index, "check2", "uncheck")}
+                        onChange={(event) =>
+                          handletable2Change(index, "check2", "uncheck")
+                        }
                       />
                     </div>
                   </td>
-
                 </tr>
               ))}
             </tbody>
@@ -336,16 +327,15 @@ const specialData = searchParams.get("specialData");
             Save
           </button>
           <Link
-                        to={`/data-portal/special-education-service?school=${currentSelectedSchoolId}&selected=${selected}`}
-                        className="secondaryButton m-2"
-                        disabled={mutation.isPending}
-                    >
-
-                        Back
-                    </Link>
+            to={`/data-portal/special-education-service?school=${currentSelectedSchoolId}&selected=${selected}`}
+            className="secondaryButton m-2"
+            disabled={mutation.isPending}
+          >
+            Back
+          </Link>
         </center>
       </Form>
-    </Container>
+    </ServiceLayout>
   );
 };
 

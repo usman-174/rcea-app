@@ -25,6 +25,10 @@ const userSchema = new schema(
       type: String,
       required: false,
     },
+    remarks: {
+      type: String,
+      required: false,
+    },
   },
   { timestamps: true,suppressReservedKeysWarning: true }
 )

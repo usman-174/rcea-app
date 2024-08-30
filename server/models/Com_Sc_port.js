@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Pupil = require('./pupil');
+const mongoose = require("mongoose");
+const Pupil = require("./pupil");
 
 const { Schema } = mongoose;
 
@@ -10,59 +10,59 @@ const communicationScreeningSchema = new Schema(
       ref: Pupil,
     },
     stuttering: {
-      type: Boolean,
+      type: String,
       default: false,
     },
     articulation_difficulties: {
-      type: Boolean,
+      type: String,
       default: false,
     },
     voice_problems: {
-      type: Boolean,
+      type: String,
       default: false,
     },
     often_says_huh: {
-      type: Boolean,
+      type: String,
       default: false,
     },
     needs_frequent_repetitions: {
-      type: Boolean,
+      type: String,
       default: false,
     },
     can_only_follow_one_step_direction: {
-      type: Boolean,
+      type: String,
       default: false,
     },
     cant_follow_conversations: {
-      type: Boolean,
+      type: String,
       default: false,
     },
     does_not_respond_when_spoken_to: {
-      type: Boolean,
+      type: String,
       default: false,
     },
     struggles_with_vocabulary: {
-      type: Boolean,
+      type: String,
       default: false,
     },
     cant_put_words_together: {
-      type: Boolean,
+      type: String,
       default: false,
     },
     poor_expression: {
-      type: Boolean,
+      type: String,
       default: false,
     },
     tone_does_not_match_words: {
-      type: Boolean,
+      type: String,
       default: false,
     },
   },
-  { timestamps: true,suppressReservedKeysWarning: true }
+  { timestamps: true, suppressReservedKeysWarning: true }
 );
 
-const COM_SC_PORTL  = mongoose.model(
-  'CommunicationScreeningPortals',
+const COM_SC_PORTL = mongoose.model(
+  "CommunicationScreeningPortals",
   communicationScreeningSchema
 );
 

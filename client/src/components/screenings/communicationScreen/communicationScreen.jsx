@@ -10,7 +10,7 @@ import AxiosConfig from "../../../utils/axiosConfig";
 import { Spinner } from "../../spinner";
 import { addPropertiesToPupils } from "../../targetScreenings/settings/addProperties";
 import { generateHeaderRow } from "../../targetScreenings/settings/headerRow";
-import { Column_Row_Fields, fields } from "./fields";
+import { Column_Row_Fields, defaultValues, fields, validOptions } from "./fields";
 import { useSelector } from "react-redux";
 
 import { getColumns } from "../../targetScreenings/settings/getColumns";
@@ -18,34 +18,6 @@ import { getRows } from "../../targetScreenings/settings/getRows";
 import { grades, sections } from "../../../utils/globals";
 
 const headerRow = generateHeaderRow(Column_Row_Fields);
-// const headerRow1 = {
-//   rowId: "header",
-//   cells: [
-//     { type: "header", text: "", rowspan: 2 },
-
-//     { type: "header", text: "Name", rowspan: 2 },
-//     { type: "header", text: "Speech difficulties", colspan: 3 },
-//     { type: "header", text: "Difficulties with Receptive Language ", colspan: 4 },
-
-//   ],
-// };
-
-// const subHeaderRow = {
-//   rowId: "header",
-//   cells: [
-//     { type: "header", text: "" },
-//     { type: "header", text: "" },
-
-//     { type: "header", text: "Stuttering" },
-//     { type: "header", text: "Articulation difficulties " },
-//     { type: "header", text: "Voice problems " },
-//     { type: "header", text: "Often says ‘huh’?" },
-//     { type: "header", text: "Needs frequent repetitions" },
-//     { type: "header", text: "Can only follow one step direction at a time" },
-//     { type: "header", text: "Can’t follow conversations" },
-
-//   ],
-// };
 
 const CommunicationScreen = () => {
   const { selectedSchool } = useSelector((state) => state.school);
@@ -87,7 +59,9 @@ const CommunicationScreen = () => {
       if (change.type === "checkbox" && dataRow) {
         dataRow.selected = !dataRow.selected;
       } else {
-        updatedPeople[personIndex][fieldName] = change.newCell.text;
+
+        const val = validOptions[Number(change.newCell.text)] || change.newCell.text;
+        updatedPeople[personIndex][fieldName] = val || change.newCell.text;
         dataRow.selected = true;
       }
     });
@@ -121,36 +95,13 @@ const CommunicationScreen = () => {
 
     AxiosConfig.post("/com_sc_portal/create", result)
       .then(() => {
-        successToast("Gross motor Screening Created successfully");
+        successToast("Communication Screening Created successfully");
         setSuccessSave(true);
       })
       .catch(() => errorToast("An error happened. try again"));
   };
 
-  // const getRows = (pupils, fields, headerRow, subheader) => {
-  //   const rows = [headerRow, subheader];
-  //   pupils.forEach((person, index) => {
-  //     const row = {
-  //       rowId: index.toString(),
-  //       cells: [
-  //         { type: "checkbox", checked: person["selected"] || false }, // Add checkbox cell
-  //         {
-  //           type: "text",
-  //           text: `${person.student_firstname} ${person.student_lastname}`,
-  //         },
 
-  //         ...fields.map((field) => ({
-  //           type: "text",
-  //           text: person[field]?.toString() || "",
-  //         })),
-  //       ],
-  //     };
-
-  //     rows.push(row);
-  //   });
-
-  //   return rows;
-  // };
   useEffect(() => {
     let pupilx = [];
     let motorData = [];
@@ -189,7 +140,7 @@ const CommunicationScreen = () => {
     if (selectedGrade && selectedSection) {
       Promise.all([fetchStudentData(), fetchScreenPupils()]).then(() => {
         const combined = addPropertiesToPupils(pupilx, motorData, fields);
-        const updatedRows = getRows(combined, fields, headerRow);
+        const updatedRows = getRows(combined, fields, headerRow, defaultValues);
 
         setRows(updatedRows);
         setSuccessSave(false);
@@ -199,7 +150,7 @@ const CommunicationScreen = () => {
 
   useEffect(() => {
     if (pupils.length > 0) {
-      const updatedRows = getRows(pupils, fields, headerRow);
+      const updatedRows = getRows(pupils, fields, headerRow, defaultValues);
 
       setRows(updatedRows);
     }
@@ -286,6 +237,18 @@ const CommunicationScreen = () => {
                 </div>
               </>
             ) : null}
+            <p>
+              Note: Please Enter data as follow
+              <br />
+              0: Not Observed
+              <br />
+              1: Less than aged peers
+              <br />
+              2: same as same aged peers
+              <br />
+              3: More than same aged peers
+
+            </p>
           </div>
         )}
       </Container>

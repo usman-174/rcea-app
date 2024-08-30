@@ -4,12 +4,12 @@ import Select from "react-select";
 import { errorToast, successToast } from "../../../utils";
 import { ReactGrid } from "@silevis/reactgrid";
 import "@silevis/reactgrid/styles.css";
-import { Alert, Button, Container} from "react-bootstrap";
+import { Alert, Button, Container } from "react-bootstrap";
 import AxiosConfig from "../../../utils/axiosConfig";
 import { Spinner } from "../../spinner";
 import { addPropertiesToPupils } from "../../targetScreenings/settings/addProperties";
 import { generateHeaderRow } from "../../targetScreenings/settings/headerRow";
-import { Column_Row_Fields, fields } from "./fields";
+import { Column_Row_Fields, defaultValues, fields, validOptions } from "./fields";
 import { useSelector } from "react-redux";
 
 import { getColumns } from "../../targetScreenings/settings/getColumns";
@@ -20,9 +20,9 @@ import { grades, sections } from "../../../utils/globals";
 const headerRow = generateHeaderRow(Column_Row_Fields);
 
 const GrossMotorScreen = () => {
-const { selectedSchool } = useSelector((state) => state.school);
+  const { selectedSchool } = useSelector((state) => state.school);
   const [selectOpen, setSelectOpen] = useState(false);
-  
+
   const [pupils, setPupils] = useState([]);
   const [successSave, setSuccessSave] = useState(false); // New state variable for success status
   const [loading, setLoading] = useState(false);
@@ -56,8 +56,9 @@ const { selectedSchool } = useSelector((state) => state.school);
       if (change.type === "checkbox" && dataRow) {
         dataRow.selected = !dataRow.selected;
       } else {
-        updatedPeople[personIndex][fieldName] = change.newCell.text;
-        dataRow.selected =true
+        const val = validOptions[Number(change.newCell.text)] || change.newCell.text;
+        updatedPeople[personIndex][fieldName] = val || change.newCell.text;
+        dataRow.selected = true
       }
     });
 
@@ -106,8 +107,8 @@ const { selectedSchool } = useSelector((state) => state.school);
         const response = await AxiosConfig.post("/pupil/getbysectiongrade", {
           student_section: selectedSection.value,
           grade: selectedGrade.value,
-          school_id : selectedSchool._id,
-        
+          school_id: selectedSchool._id,
+
         });
         pupilx = response.data;
         setPupils(response.data);
@@ -122,11 +123,11 @@ const { selectedSchool } = useSelector((state) => state.school);
       try {
         const response = await AxiosConfig.post("/grossmotorscr/all", {
           grade: selectedGrade.value,
-       
+
           student_section: selectedSection.value,
         });
         motorData = response.data;
-       
+
       } catch (err) {
         console.log("error");
       }
@@ -135,17 +136,17 @@ const { selectedSchool } = useSelector((state) => state.school);
     if (selectedGrade && selectedSection) {
       Promise.all([fetchStudentData(), fetchScreenPupils()]).then(() => {
         const combined = addPropertiesToPupils(pupilx, motorData, fields);
-        const updatedRows = getRows(combined, fields, headerRow);
+        const updatedRows = getRows(combined, fields, headerRow, defaultValues);
 
         setRows(updatedRows);
         setSuccessSave(false)
       });
     }
-  }, [selectedGrade, selectedSection, successSave,selectedSchool._id]);
+  }, [selectedGrade, selectedSection, successSave, selectedSchool._id]);
 
   useEffect(() => {
     if (pupils.length > 0) {
-      const updatedRows = getRows(pupils, fields, headerRow);
+      const updatedRows = getRows(pupils, fields, headerRow, defaultValues);
 
       setRows(updatedRows);
     }
@@ -173,8 +174,8 @@ const { selectedSchool } = useSelector((state) => state.school);
               className="basic-single mr-4"
               onChange={(e) => setSelectedGrade(e)}
               name="grade"
-              onMenuClose={()=>setSelectOpen(false)}
-              onMenuOpen={()=>setSelectOpen(true)}
+              onMenuClose={() => setSelectOpen(false)}
+              onMenuOpen={() => setSelectOpen(true)}
               isSearchable={false}
               options={grades}
             />
@@ -185,8 +186,8 @@ const { selectedSchool } = useSelector((state) => state.school);
               value={selectedSection}
               className="basic-single"
               onChange={(e) => setSelectedSection(e)}
-              onMenuClose={()=>setSelectOpen(false)}
-              onMenuOpen={()=>setSelectOpen(true)}
+              onMenuClose={() => setSelectOpen(false)}
+              onMenuOpen={() => setSelectOpen(true)}
               isSearchable={false}
               name="section"
               options={sections}
@@ -196,7 +197,7 @@ const { selectedSchool } = useSelector((state) => state.school);
         {loading ? (
           <Spinner />
         ) : (
-          <div style={{   marginTop: "24px" }}>
+          <div style={{ marginTop: "24px" }}>
             {rows?.length ? (
               <>
                 <div>
@@ -227,15 +228,26 @@ const { selectedSchool } = useSelector((state) => state.school);
                   />
                 </div>
                 <div className="text-center mt-5">
-          <Button className="primaryButton" onClick={handleSave}>
-            Submit
-          </Button>
-        </div>
+                  <Button className="primaryButton" onClick={handleSave}>
+                    Submit
+                  </Button>
+                </div>
               </>
             ) : null}
+            <p>
+              Note: Please Enter data as follow
+              <br />
+              0: Not at all
+              <br />
+              1: Partially
+              <br />
+              2: Yes
+
+
+            </p>
           </div>
         )}
-      
+
       </Container>
     </div>
   );

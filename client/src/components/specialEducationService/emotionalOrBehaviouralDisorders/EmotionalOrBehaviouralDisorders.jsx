@@ -11,14 +11,18 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { successToast } from "../../../utils";
 import { useSelector } from "react-redux";
+
+import ServiceSelectBox from "../selectStudent/ServiceSelectBox";
+import ServiceLayout from "../ServiceLayout";
+
 const EmotionalOrBehaviouralDisorders = () => {
   const navigate = useNavigate(); // axios
   const [searchParams, setSearchParams] = useSearchParams();
-const specialData = searchParams.get("specialData");
-   const { selectedSchool } = useSelector((state) => state.school);
-    const currentSelectedSchoolId =
-        searchParams.get("school") || (selectedSchool && selectedSchool._id);
-    const selected = searchParams.get("selected");
+  const specialData = searchParams.get("specialData");
+  const { selectedSchool } = useSelector((state) => state.school);
+  const currentSelectedSchoolId =
+    searchParams.get("school") || (selectedSchool && selectedSchool._id);
+  const selected = searchParams.get("selected");
   const [formData, setFormData] = useState(initialData);
 
   const handleFirstOptionChange = (index, subIndex, mode, event) => {
@@ -132,8 +136,15 @@ const specialData = searchParams.get("specialData");
     }
   }, [emotionalOrBehaviouralDisordersSpecialData]);
   return (
-    <Container className="my-3">
-    <h2 className="my-5">Emotional / Behavioral Disorder</h2>
+    <ServiceLayout>
+      <h2 className="my-5">Emotional / Behavioral Disorder</h2>
+      <div>
+        <h5>Select a service</h5>
+        <div className="w-50">
+          <ServiceSelectBox currentService="emotional-or-behavioural-disorders" />
+        </div>
+      </div>
+
       <Form
         onSubmit={(e) => {
           e.preventDefault();
@@ -223,16 +234,15 @@ const specialData = searchParams.get("specialData");
             Save
           </button>
           <Link
-                        to={`/data-portal/special-education-service?school=${currentSelectedSchoolId}&selected=${selected}`}
-                        className="secondaryButton m-2"
-                        disabled={mutation.isPending}
-                    >
-
-                        Back
-                    </Link>
+            to={`/data-portal/special-education-service?school=${currentSelectedSchoolId}&selected=${selected}`}
+            className="secondaryButton m-2"
+            disabled={mutation.isPending}
+          >
+            Back
+          </Link>
         </center>
       </Form>
-    </Container>
+    </ServiceLayout>
   );
 };
 

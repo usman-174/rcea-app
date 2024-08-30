@@ -66,8 +66,8 @@ const Controller = {
   //     const data = req.body
   //     data.forEach((pupil) => {
   //       for (let key in pupil) {
-  //         const { pupil_id, works_well_with_peers, follows_directions } = pupil
-  //         if (!pupil_id || !works_well_with_peers || !follows_directions) {
+  //         const { pupil_id, plays_well_with_peers, follows_directions } = pupil
+  //         if (!pupil_id || !plays_well_with_peers || !follows_directions) {
   //           return res.status(400).json({
   //             error: 'Please fill required  fields',
   //           })

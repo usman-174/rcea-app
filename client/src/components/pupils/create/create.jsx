@@ -9,7 +9,7 @@ import { errorToast, successToast } from '../../../utils/index';
 import Styles from './create.module.scss';
 import { InputField } from '../../inputField';
 import { getSchools } from '../../../store/school/schoolActions';
-import { sections } from '../../../utils/globals';
+import { grades, sections } from '../../../utils/globals';
 
 function CreatePupilsScreen() {
 	const dispatch = useDispatch();
@@ -21,7 +21,7 @@ function CreatePupilsScreen() {
 		lastName: '',
 		dateOfBirth: '',
 		gradeNumber: '',
-	
+
 		gender: 'Male',
 		nID: '',
 		primaryResponsible: {
@@ -52,7 +52,7 @@ function CreatePupilsScreen() {
 		sen: '',
 		selectedSection: null
 	});
-	
+
 	const inputProps = (label, type, required = true, name, placeholder) => ({
 		name,
 		label,
@@ -61,8 +61,8 @@ function CreatePupilsScreen() {
 		onChange: handleInputChange,
 		value: fields[name],
 		placeholder,
-	  });
-	
+	});
+
 	const handleInputChange = (e) => {
 		const { name, value } = e.target;
 		setFields((prevFields) => ({
@@ -92,8 +92,8 @@ function CreatePupilsScreen() {
 	const pupilCreate = (e) => {
 		e.preventDefault();
 		console.log(fields);
-	
-		
+
+
 		dispatch(createPupil({
 			academicYear: selectedYear,
 			termNumber: selectedTerm,
@@ -106,7 +106,13 @@ function CreatePupilsScreen() {
 			})
 			.catch(() => errorToast("Error creating pupil, please try again later"));
 	};
-
+	const handleGradeChange = (selectedOption) => {
+		setFields((prevFields) => ({
+		  ...prevFields,
+		  gradeNumber: selectedOption.value,
+		}));
+	  };
+	
 	useEffect(() => {
 		dispatch(getSchools());
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -130,8 +136,18 @@ function CreatePupilsScreen() {
 								options={sections}
 								value={fields.selectedSection}
 							/>
-							<InputField {...inputProps('Grade Number', 'number', true, 'gradeNumber')} />
-							<InputField  {...inputProps("Phone Number", "text", true, "mobileNumber", "e.g., 5000 0000 or 8344 444")} isPhoneNumber  />
+							<label className="mt-3">Grade Number</label>
+							<Select
+								className="basic-single"
+								onChange={handleGradeChange}
+								isSearchable={false}
+								name="gradeNumber"
+								options={grades}
+								value={grades.find(
+									(option) => option.value === fields.gradeNumber
+								)}
+							/>
+							<InputField  {...inputProps("Phone Number", "text", true, "mobileNumber", "e.g., 5000 0000 or 8344 444")} isPhoneNumber />
 							<InputField {...inputProps('Admission Number', 'number', true, 'admissionNumber')} />
 							<InputField {...inputProps('Social Aid', 'text', true, 'socialAid')} />
 							<InputField {...inputProps('School from which Admitted', 'text', true, 'whichSchool')} />
@@ -184,7 +200,7 @@ function CreatePupilsScreen() {
 							</Row>
 						</Col>
 					</Row>
-					
+
 					<div className="text-center mt-5 d-flex items-center justify-content-end">
 						<button type="submit" className={`px-5 ${Styles.submitButton}`}>
 							Submit

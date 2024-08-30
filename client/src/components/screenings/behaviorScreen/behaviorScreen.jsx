@@ -10,7 +10,7 @@ import AxiosConfig from "../../../utils/axiosConfig";
 import { Spinner } from "../../spinner";
 import { addPropertiesToPupils } from "../../targetScreenings/settings/addProperties";
 import { generateHeaderRow } from "../../targetScreenings/settings/headerRow";
-import { Column_Row_Fields, fields } from "./fields";
+import { Column_Row_Fields, defaultValues, fields, validOptions } from "./fields";
 import { useSelector } from "react-redux";
 
 import { getColumns } from "../../targetScreenings/settings/getColumns";
@@ -31,7 +31,7 @@ const BehaviorScreen = () => {
   const [columns, setColumns] = useState(getColumns(Column_Row_Fields));
   const { selectedSchool } = useSelector((state) => state.school);
   const [selectOpen, setSelectOpen] = useState(false);
- 
+
 
   const [error, setError] = useState("");
   const [selectAll, setSelectAll] = useState(false);
@@ -48,7 +48,11 @@ const BehaviorScreen = () => {
   };
 
   const handleChanges = (changes) => {
+
     setPupils((prevPeople) => applyChangesToPeople(changes, prevPeople));
+
+
+
   };
 
   const applyChangesToPeople = (changes, prevPeople) => {
@@ -62,8 +66,11 @@ const BehaviorScreen = () => {
       if (change.type === "checkbox" && dataRow) {
         dataRow.selected = !dataRow.selected;
       } else {
-        updatedPeople[personIndex][fieldName] = change.newCell.text;
-        dataRow.selected =true
+        const val = validOptions[Number(change.newCell.text)] || change.newCell.text;
+        updatedPeople[personIndex][fieldName] = val || change.newCell.text;
+
+
+        dataRow.selected = true
       }
     });
 
@@ -105,7 +112,7 @@ const BehaviorScreen = () => {
   useEffect(() => {
     let pupilx = [];
     let motorData = [];
-   
+
     const fetchStudentData = async () => {
       setLoading(true);
 
@@ -113,8 +120,8 @@ const BehaviorScreen = () => {
         const response = await AxiosConfig.post("/pupil/getbysectiongrade", {
           student_section: selectedSection.value,
           grade: selectedGrade.value,
-          school_id : selectedSchool._id,
-        
+          school_id: selectedSchool._id,
+
         });
         pupilx = response.data;
         setPupils(response.data);
@@ -133,7 +140,7 @@ const BehaviorScreen = () => {
           student_section: selectedSection.value,
         });
         motorData = response.data;
-       
+
       } catch (err) {
         console.log("error");
       }
@@ -142,17 +149,20 @@ const BehaviorScreen = () => {
     if (selectedGrade && selectedSection) {
       Promise.all([fetchStudentData(), fetchScreenPupils()]).then(() => {
         const combined = addPropertiesToPupils(pupilx, motorData, fields);
-        const updatedRows = getRows(combined, fields, headerRow);
+        const updatedRows = getRows(combined, fields, headerRow, defaultValues);
 
         setRows(updatedRows);
         setSuccessSave(false)
       });
     }
-  }, [selectedGrade, selectedSection, successSave,selectedSchool._id]);
+  }, [selectedGrade, selectedSection, successSave, selectedSchool._id]);
 
   useEffect(() => {
     if (pupils.length > 0) {
-      const updatedRows = getRows(pupils, fields, headerRow);
+
+
+      const updatedRows = getRows(pupils, fields, headerRow, defaultValues);
+
 
       setRows(updatedRows);
     }
@@ -180,8 +190,8 @@ const BehaviorScreen = () => {
               className="basic-single mr-4"
               onChange={(e) => setSelectedGrade(e)}
               name="grade"
-              onMenuClose={()=>setSelectOpen(false)}
-              onMenuOpen={()=>setSelectOpen(true)}
+              onMenuClose={() => setSelectOpen(false)}
+              onMenuOpen={() => setSelectOpen(true)}
               isSearchable={false}
               options={grades}
             />
@@ -192,8 +202,8 @@ const BehaviorScreen = () => {
               value={selectedSection}
               className="basic-single"
               onChange={(e) => setSelectedSection(e)}
-              onMenuClose={()=>setSelectOpen(false)}
-              onMenuOpen={()=>setSelectOpen(true)}
+              onMenuClose={() => setSelectOpen(false)}
+              onMenuOpen={() => setSelectOpen(true)}
               isSearchable={false}
               name="section"
               options={sections}
@@ -203,7 +213,7 @@ const BehaviorScreen = () => {
         {loading ? (
           <Spinner />
         ) : (
-          <div style={{   marginTop: "24px" }}>
+          <div style={{ marginTop: "24px" }}>
             {rows?.length ? (
               <>
                 <div>
@@ -234,18 +244,28 @@ const BehaviorScreen = () => {
                   />
                 </div>
                 <div className="text-center mt-5">
-          <Button className="primaryButton" onClick={handleSave}>
-            Submit
-          </Button>
-        </div>
+                  <Button className="primaryButton" onClick={handleSave}>
+                    Submit
+                  </Button>
+                </div>
               </>
             ) : null}
+            <p>
+              Note: Please Enter data as follow
+              <br />
+              0: Not at all
+              <br />
+              1: Some of the time
+              <br />
+              2: Most of the time
+
+            </p>
           </div>
         )}
-        
+
       </Container>
     </div>
   );
 };
 
-export  {BehaviorScreen};
+export { BehaviorScreen };

@@ -12,6 +12,9 @@ import toast from "react-hot-toast";
 import { successToast } from "../../../utils";
 import { useSelector } from "react-redux";
 
+import ServiceSelectBox from "../selectStudent/ServiceSelectBox";
+import ServiceLayout from "../ServiceLayout";
+
 const AutismSpectrumDisorder = () => {
   const navigate = useNavigate(); // axios
   const [searchParams, setSearchParams] = useSearchParams();
@@ -133,8 +136,14 @@ const AutismSpectrumDisorder = () => {
     }
   }, [autismSpectrumDisorderSpecialData]);
   return (
-    <Container className="my-3">
+    <ServiceLayout>
       <h2 className="my-5">Autism Spectrum Disorder</h2>
+      <div>
+        <h5>Select a service</h5>
+        <div className="w-50">
+          <ServiceSelectBox currentService="autism-spectrum-disorder" />
+        </div>
+      </div>
       <Form
         onSubmit={(e) => {
           e.preventDefault();
@@ -142,10 +151,14 @@ const AutismSpectrumDisorder = () => {
         }}
       >
         {formData?.data.map((item, index) => (
-          <div key={index} style={{
-            borderBottom: index !== formData?.data.length - 1 ? "1px solid #000" : "",
-            marginBottom: "20px"
-          }}>
+          <div
+            key={index}
+            style={{
+              borderBottom:
+                index !== formData?.data.length - 1 ? "1px solid #000" : "",
+              marginBottom: "20px",
+            }}
+          >
             <h3>{item.title}</h3>
             {item.options.map((option, subIndex) => (
               <div key={subIndex} className="mt-3">
@@ -231,12 +244,11 @@ const AutismSpectrumDisorder = () => {
             className="secondaryButton m-2"
             disabled={mutation.isPending}
           >
-
             Back
           </Link>
         </center>
       </Form>
-    </Container>
+    </ServiceLayout>
   );
 };
 

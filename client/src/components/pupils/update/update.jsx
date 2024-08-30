@@ -9,6 +9,8 @@ import { errorToast, successToast } from '../../../utils/index';
 import Styles from './update.module.scss';
 import { InputField } from '../../inputField';
 import { Spinner } from '../../spinner';
+import { grades } from '../../../utils/globals';
+import Select from 'react-select';
 
 function UpdatePupilsScreen() {
 	const { loading, error } = useSelector((state) => state.pupil);
@@ -64,7 +66,7 @@ function UpdatePupilsScreen() {
 					setSchool(data.payload.school);
 					setFirstName(data.payload.student_firstname);
 					setLastName(data.payload.student_lastname);
-					setGradeNumber(data.payload.grade);
+					setGradeNumber(Number(data.payload.grade));
 					setSection(data.payload.student_section);
 					setDateOfBirth(new Date(data.payload.date_ofbirth).toISOString().split('T')[0]);
 
@@ -170,6 +172,9 @@ function UpdatePupilsScreen() {
 				errorToast("Error creating pupil, please try again later")
 			});
 	};
+	const handleGradeChange = (selectedOption) => {
+		setGradeNumber(selectedOption.value);
+	};
 
 	return (
 		<main className={Styles.mainContainer}>
@@ -197,7 +202,19 @@ function UpdatePupilsScreen() {
 												<InputField {...inputProps('Date of Birth', 'date')} value={dateOfBirth || ''} onChange={(e) => setDateOfBirth(e.target.value)} />
 											</Col>
 											<Col sm={12} lg={6}>
-												<InputField {...inputProps('Grade Number', 'number')} value={gradeNumber || ''} onChange={(e) => setGradeNumber(e.target.value)} />
+
+												<label className="mt-3">Grade Number</label>
+												<Select
+													className="basic-single"
+													onChange={handleGradeChange}
+													isSearchable={false}
+													name="gradeNumber"
+													options={grades}
+													value={grades.find(
+														(option) => option.value === gradeNumber
+													)}
+												/>
+
 												<InputField {...inputProps('Section', 'text')} value={section || ''} onChange={(e) => setSection(e.target.value)} />
 											</Col>
 											<Col sm={12} lg={6}>

@@ -5671,6 +5671,34 @@ const periodOptions = [
   { value: 7, label: 7 },
 ];
 
+const specialServicesOptions = [
+  { value: "speech-and-language", label: "Speech And Language" },
+  { value: "physically-impairment", label: "Physically Impairment" },
+  {
+    value: "emotional-or-behavioural-disorders",
+    label: "Emotional Or Behavioural Disorders",
+  },
+  { value: "autism-spectrum-disorder", label: "Autism Spectrum Disorder" },
+  {
+    value: "developmental-cognitive-disability",
+    label: "Developmental Cognitive Disability",
+  },
+  { value: "developmental-delay", label: "Developmental Delay" },
+  { value: "hearing-impairment", label: "Hearing Impairment" },
+  { value: "taumatic-brain-injury", label: "Traumatic Brain Injury" },
+  { value: "visual-impairment", label: "Visual Impairment" },
+  { value: "other-health-impairment", label: "Other Health Impairments" },
+  {
+    value: "specific-learning-disability",
+    label: "Specific Learning Disability",
+  },
+  {
+    value: "individial-education-plan",
+    label: "Individualized Education Plan",
+  },
+  { value: "special-scheme-of-work", label: "Scheme Of Work" },
+];
+
 export {
   grades,
   periodOptions,
@@ -5693,6 +5721,7 @@ export {
   specialization,
   academicYear,
   academicTerm,
+  specialServicesOptions,
   // qafTargets,
   topicsOrSubtopics,
   qafHandlingDisruptions,

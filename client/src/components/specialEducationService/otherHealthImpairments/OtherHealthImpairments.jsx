@@ -11,10 +11,14 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { successToast } from "../../../utils";
 import { useSelector } from "react-redux";
+
+import ServiceSelectBox from "../selectStudent/ServiceSelectBox";
+import ServiceLayout from "../ServiceLayout";
+
 const OtherHealthImpairments = () => {
   const navigate = useNavigate(); // axios
-  const specialData = searchParams.get("specialData");
   const [searchParams, setSearchParams] = useSearchParams();
+  const specialData = searchParams.get("specialData");
   const { selectedSchool } = useSelector((state) => state.school);
   const currentSelectedSchoolId =
     searchParams.get("school") || (selectedSchool && selectedSchool._id);
@@ -132,8 +136,15 @@ const OtherHealthImpairments = () => {
     }
   }, [otherHealthImpairmentsSpecialData]);
   return (
-    <Container className="my-3">
+    <ServiceLayout>
       <h2 className="my-5">Other Health Impairments</h2>
+      <div>
+        <h5>Select a service</h5>
+        <div className="w-50">
+          <ServiceSelectBox currentService="other-health-impairment" />
+        </div>
+      </div>
+
       <Form
         onSubmit={(e) => {
           e.preventDefault();
@@ -141,10 +152,14 @@ const OtherHealthImpairments = () => {
         }}
       >
         {formData?.data?.map((item, index) => (
-          <div key={index} style={{
-            borderBottom: index !== formData?.data.length - 1 ? "1px solid #000" : "",
-            marginBottom: "20px"
-          }}>
+          <div
+            key={index}
+            style={{
+              borderBottom:
+                index !== formData?.data.length - 1 ? "1px solid #000" : "",
+              marginBottom: "20px",
+            }}
+          >
             <h3>{item.title}</h3>
             {item.options.map((option, subIndex) => (
               <div key={subIndex} className="mt-3">
@@ -185,18 +200,24 @@ const OtherHealthImpairments = () => {
                       />
                     </div>
                   </Col>
-                  {option.contentLabel?.length ? <Row className="mx-5">
-                    <label className="mx-2" htmlFor={option.contentLabel}>{option.contentLabel}</label>
-                    <input type="text" id={option.contentLabel} value={option.content}
-
-                      onChange={e => {
-                        const newData = { ...formData };
-                        newData.data[index].options[subIndex].content = e.target.value;
-                        setFormData(newData);
-
-                      }}
-                    />
-                  </Row> : null}
+                  {option.contentLabel?.length ? (
+                    <Row className="mx-5">
+                      <label className="mx-2" htmlFor={option.contentLabel}>
+                        {option.contentLabel}
+                      </label>
+                      <input
+                        type="text"
+                        id={option.contentLabel}
+                        value={option.content}
+                        onChange={(e) => {
+                          const newData = { ...formData };
+                          newData.data[index].options[subIndex].content =
+                            e.target.value;
+                          setFormData(newData);
+                        }}
+                      />
+                    </Row>
+                  ) : null}
                 </Form.Group>
                 {/* Render child options if they exist and parent option is checked */}
                 {option?.options2 &&
@@ -242,12 +263,11 @@ const OtherHealthImpairments = () => {
             className="secondaryButton m-2"
             disabled={mutation.isPending}
           >
-
             Back
           </Link>
         </center>
       </Form>
-    </Container>
+    </ServiceLayout>
   );
 };
 
