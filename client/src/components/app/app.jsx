@@ -50,24 +50,23 @@ import CreateCorePhonics from "../targetScreenings/corePhonicsSurvey/CreateCoreP
 import { Qps } from "../targetScreenings/qps/Qps";
 import { ReallyGreatReading } from "../targetScreenings/reallyGreatReading/ReallyGreatReading";
 
-import SelectStudentsPage from "../targetScreenings/selectStudent/SelectStudentsPage";
 import SelectStudentsPage2 from "../specialEducationService/selectStudent/SelectStudentsPage";
+import SelectStudentsPage from "../targetScreenings/selectStudent/SelectStudentsPage";
 
-import { Past } from "../targetScreenings/past/Past";
-import SpeechAndLanguageSpecial from "../specialEducationService/speechAndLanguage/SpeechAndLanguage";
-import PhysicallyImpairment from "../specialEducationService/physicallyImpairment/PhyscallyImpairment";
-import EmotionalOrBehaviouralDisorders from "../specialEducationService/emotionalOrBehaviouralDisorders/EmotionalOrBehaviouralDisorders";
+import { Toaster } from "react-hot-toast";
 import AutismSpectrumDisorder from "../specialEducationService/autismSpectrumDisorder/AutismSpectrumDisorder";
 import DevelopmentalCognitiveDisability from "../specialEducationService/developmentalCognitiveDisability/developmentalCognitiveDisability";
 import DevelopmentalDelay from "../specialEducationService/developmentalDelay/DevelopmentalDelay";
+import EmotionalOrBehaviouralDisorders from "../specialEducationService/emotionalOrBehaviouralDisorders/EmotionalOrBehaviouralDisorders";
 import HearingImpairment from "../specialEducationService/hearingImpairment/HearingImpairment";
+import IndividualizedSpecialPlan from "../specialEducationService/individualSpecialPlan/IndividualizedSpecialPlan";
+import OtherHealthImpairments from "../specialEducationService/otherHealthImpairments/OtherHealthImpairments";
+import PhysicallyImpairment from "../specialEducationService/physicallyImpairment/PhyscallyImpairment";
+import SpecificLearningDisability from "../specialEducationService/specificLearningDisability/SpecificLearningDisability";
+import SpeechAndLanguageSpecial from "../specialEducationService/speechAndLanguage/SpeechAndLanguage";
 import TaumaticBrainInjury from "../specialEducationService/taumaticBrainInjury/TaumaticBrainInjury";
 import VisualImpairment from "../specialEducationService/visualImpairment/VisualImpairment";
-import OtherHealthImpairments from "../specialEducationService/otherHealthImpairments/OtherHealthImpairments";
-import SpecificLearningDisability from "../specialEducationService/specificLearningDisability/SpecificLearningDisability";
-import { Toaster } from "react-hot-toast";
-import IndividualizedSpecialPlan from "../specialEducationService/individualSpecialPlan/IndividualizedSpecialPlan";
-import SpecialSchemeOfWork from "../specialEducationService/specialSchemeOfWork/SpecialSchemeOfWork";
+import { Past } from "../targetScreenings/past/Past";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -560,7 +559,7 @@ function App() {
               />
             }
           />
-          <Route
+          {/* <Route
             path="/data-portal/special-education-service/special-scheme-of-work"
             element={
               <PrivateRoute
@@ -568,7 +567,7 @@ function App() {
                 Component={SpecialSchemeOfWork}
               />
             }
-          />
+          /> */}
           {/* special-scheme-of-work */}
         </Routes>
       </Layout>
@@ -587,3 +586,4 @@ const Layout = ({ children }) => (
 );
 
 export { App };
+

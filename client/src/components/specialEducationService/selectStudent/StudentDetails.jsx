@@ -24,7 +24,6 @@ const StudentDetails = () => {
         return null
     }
 
-    console.log("student", student);
 
 
     if (studentLoading) {

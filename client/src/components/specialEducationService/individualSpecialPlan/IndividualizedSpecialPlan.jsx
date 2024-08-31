@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import { useNavigate, Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import AxiosConfig from "../../../utils/axiosConfig";
 
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { successToast } from "../../../utils";
-import { initialData } from "./initialData";
 import { useSelector } from "react-redux";
+import { successToast } from "../../../utils";
+import { DateLabels, initialData, textFields, TextLabels } from "./initialData";
 
-import ServiceSelectBox from "../selectStudent/ServiceSelectBox";
 import ServiceLayout from "../ServiceLayout";
+import { DateTime } from "luxon";
+import IndividualSchemeOfWork from "./IndividualSchemeOfWork";
 
 const IndividualizedSpecialPlan = () => {
-  const navigate = useNavigate(); // axios
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
   const specialData = searchParams.get("specialData");
@@ -105,7 +105,7 @@ const IndividualizedSpecialPlan = () => {
     // eslint-disable-next-line
   }, [specialData, navigate]);
   useEffect(() => {
-    console.log(IndividualizedSpecialPlan);
+    console.log("IndividualizedSpecialPlan", IndividualizedSpecialPlan);
     if (IndividualizedSpecialPlan && !isLoading) {
       if (IndividualizedSpecialPlan?.accomodation?.table?.length === 0) {
         IndividualizedSpecialPlan.accomodation.table.push({
@@ -116,7 +116,27 @@ const IndividualizedSpecialPlan = () => {
           assement_modification: "",
         });
       }
-      setFormData((e) => ({ ...e, ...IndividualizedSpecialPlan }));
+
+      setFormData((e) => {
+        const res = {
+          ...e, ...IndividualizedSpecialPlan,
+
+        }
+
+        Object.keys(DateLabels).forEach((item) => {
+          if (IndividualizedSpecialPlan[item]) {
+
+            res[item] = DateTime.fromISO(
+              IndividualizedSpecialPlan[item]
+            ).toFormat("yyyy-MM-dd")
+          }
+        })
+
+
+
+
+        return res
+      });
     } else if (!isLoading) {
       setFormData((e) => ({
         ...e,
@@ -126,16 +146,12 @@ const IndividualizedSpecialPlan = () => {
         annualGoal: "",
       }));
     }
+
   }, [IndividualizedSpecialPlan]);
   return (
     <ServiceLayout>
       <h2 className="my-5">Individualized Education Plan</h2>
-      <div>
-        <h5>Select a service</h5>
-        <div className="w-50">
-          <ServiceSelectBox currentService="individial-education-plan" />
-        </div>
-      </div>
+
 
       <Form
         onSubmit={(e) => {
@@ -143,28 +159,64 @@ const IndividualizedSpecialPlan = () => {
           mutation.mutate();
         }}
       >
-        <Row>
-          <Col>
-            <Form.Group controlId="areasOfConcern">
-              <Form.Label>Areas of Concern</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
-                value={formData.areasOfConcern}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    areasOfConcern: e.target.value,
-                  })
-                }
-              />
-            </Form.Group>
-          </Col>
-        </Row>
-        <Row>
+        <div className="d-flex flex-wrap align-items-start mb-3 mt-5 justify-content-between">
+          {
+            Object.keys(DateLabels).map((item, index) => (
+              <div className="flex-grow-1 flex-basis-25 mb-3"
+                key={index}>
+                <h5>{DateLabels[item]}</h5>
+                <div className="mr-4">
+                  <input
+                    type="date"
+                    value={formData[item]}
+                    className="form-control"
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        [item]: e.target.value,
+                      })
+                    }
+                  />
+                </div>
+              </div>
+            ))
+
+          }
+
+        </div>
+
+        {
+          Object.keys(textFields).map((item, index) => (
+            <Row key={index}>
+              <Col>
+                <Form.Group controlId={item}>
+                  <Form.Label>{TextLabels[item]}</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    value={formData[item]}
+                    onChange={(e) => {
+                      // max 1000 words
+
+                      if (e.target.value.length > 1000) {
+                        return;
+                      }
+
+                      setFormData({
+                        ...formData,
+                        [item]: e.target.value,
+                      })
+                    }}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+          ))
+        }
+        {/* <Row>
           <Col>
             <Form.Group controlId="currentPerformance">
-              <Form.Label>Current Performance</Form.Label>
+              <Form.Label>Current Performance(max 1000 words)</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={3}
@@ -182,7 +234,7 @@ const IndividualizedSpecialPlan = () => {
         <Row>
           <Col>
             <Form.Group controlId="annualGoal">
-              <Form.Label>Annual Goal</Form.Label>
+              <Form.Label>Annual Goal(max 1000 words)</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={3}
@@ -196,8 +248,13 @@ const IndividualizedSpecialPlan = () => {
               />
             </Form.Group>
           </Col>
-        </Row>
+        </Row> */}
 
+        <IndividualSchemeOfWork
+          formData={formData}
+          setFormData={setFormData}
+          IndividualizedSpecialPlan={IndividualizedSpecialPlan}
+        />
         <Row>
           <h2 className="my-5">Related Services</h2>
           <table className="table">

@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 import { DateTime } from "luxon";
+import React, { useEffect, useState } from "react";
 import { Container, Spinner } from "react-bootstrap";
 import { Toaster } from "react-hot-toast";
-import { Link, useSearchParams, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Select from "react-select";
 import { getPupils } from "../../../store/pupil/pupilActions";
 import { errorToast } from "../../../utils";
 import AxiosConfig from "../../../utils/axiosConfig";
 import { grades, sections } from "../../../utils/globals";
 import Styles from "./list.module.scss";
-import StudentDetails from "./StudentDetails";
 import ServiceSelectBox from "./ServiceSelectBox";
+import StudentDetails from "./StudentDetails";
 
 const initialSpecialData = {
   pupil_id: "",
@@ -20,7 +20,19 @@ const initialSpecialData = {
   date_of_consent_evalutaion: "",
   date_of_eligibility: "",
   date_of_consent_iep: "",
+  item: "",
 };
+
+const items = [
+  {
+    label: "An Initial Evaluation",
+    value: "initial-evaluation",
+  },
+  {
+    label: "A 3-year re-evaluation",
+    value: "3-year-re-evaluation",
+  }
+]
 
 const SelectStudentsPage = () => {
   const dispatch = useDispatch();
@@ -122,6 +134,7 @@ const SelectStudentsPage = () => {
             ).toFormat("yyyy-MM-dd"),
           }
           : {}),
+
         ...(specialEducationService.date_of_consent_iep
           ? {
             date_of_consent_iep: DateTime.fromISO(
@@ -129,6 +142,9 @@ const SelectStudentsPage = () => {
             ).toFormat("yyyy-MM-dd"),
           }
           : {}),
+
+        item: items.find((item) => item.value === specialEducationService.item),
+
       });
     } else {
       setSpecialData(initialSpecialData);
@@ -402,16 +418,40 @@ const SelectStudentsPage = () => {
                   />
                 </div>
               </div>
+              <div className="flex-grow-1 flex-basis-25 mb-3">
+                <h5>This is an</h5>
+                <Select
+                  value={specialData.item}
+                  className="basic-single mr-4"
+                  onChange={
+                    (e) => setSpecialData({
+                      ...specialData,
+                      item: e,
+                    })
+                  }
+                  isSearchable={false}
+                  name="item"
+                  options={
+                    items
+                  }
+                />
+              </div>
             </div>
             <div className="w-100 mt-4">
               <center>
                 <button
                   className="primaryButton"
                   onClick={async () => {
+                    if (!specialData.item) {
+                      errorToast("Please select an item");
+                      return;
+                    }
+
                     try {
                       await AxiosConfig.post("/specialeducation", {
                         ...specialData,
                         pupil_id: selected,
+                        item: specialData.item.value,
                       });
                       refetchSpecialEducationService();
                     } catch (error) {
@@ -426,21 +466,7 @@ const SelectStudentsPage = () => {
 
             <br />
             {specialData?.id ? (
-              // <div>
-              //   <h4>Select a Service</h4>
-              //   <div className="w-50">
-              //     <Select
-              //       options={options}
-              //       onChange={handleSelectChange}
-              //       placeholder="Select a service"
-              //       menuPortalTarget={document.body}
-              //       menuPosition="fixed"
-              //       styles={{
-              //         menuPortal: (base) => ({ ...base, zIndex: 9999 }),
-              //       }}
-              //     />
-              //   </div>
-              // </div>
+
               <ServiceSelectBox handleSelectChange={handleSelectChange} />
             ) : (
               <p className="text-danger text-center">

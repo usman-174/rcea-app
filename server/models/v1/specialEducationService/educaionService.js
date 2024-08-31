@@ -11,6 +11,7 @@ const EducationService = new mongoose.Schema({
   date_of_consent_evalutaion: { type: Date, required: false },
   date_of_eligibility: { type: Date, required: false },
   date_of_consent_iep: { type: Date, required: false },
+  item: { type: String, required: false },
 });
 
 const EducationServiceModel = mongoose.model("educationService", EducationService);

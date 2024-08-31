@@ -7,6 +7,7 @@ import Select from "react-select";
 import { errorToast, successToast } from "../../../utils";
 import AxiosConfig from "../../../utils/axiosConfig";
 
+import { useSelector } from "react-redux";
 import {
   assessmentOptions,
   grades,
@@ -16,9 +17,7 @@ import {
   teachingStrategies,
   topicsOrSubtopics2,
 } from "../../../utils/globals";
-import { useSelector } from "react-redux";
 
-import ServiceSelectBox from "../selectStudent/ServiceSelectBox";
 import ServiceLayout from "../ServiceLayout";
 
 const SpecialSchemeOfWork = () => {

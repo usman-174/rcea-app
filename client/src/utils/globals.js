@@ -236,6 +236,74 @@ const prescribedBooks = [
   { value: "Grade 6 Creole-P1", label: "Grade 6 Creole-P1" },
   { value: "Grade 6 Creole-P2", label: "Grade 6 Creole-P2" },
 ];
+const prescribedBooks2 = {
+  1: [
+    { value: "French-P1", label: "French-P1" },
+    { value: "French-P2", label: "French-P2" },
+    { value: "English-P1", label: "English-P1" },
+    { value: "English-P2", label: "English-P2" },
+    { value: "Mathematics-P1", label: "Mathematics-P1" },
+    { value: "Mathematics-P2", label: "Mathematics-P2" },
+  ],
+  2: [
+    { value: "French-P1", label: "French-P1" },
+    { value: "French-P2", label: "French-P2" },
+    { value: "English-P1", label: "English-P1" },
+    { value: "English-P2", label: "English-P2" },
+    { value: "Mathematics-P1", label: "Mathematics-P1" },
+    { value: "Mathematics-P2", label: "Mathematics-P2" },
+  ],
+  3: [
+    { value: "French-P1", label: "French-P1" },
+    { value: "French-P2", label: "French-P2" },
+    { value: "English-P1", label: "English-P1" },
+    { value: "English-P2", label: "English-P2" },
+    { value: "Mathematics-P1", label: "Mathematics-P1" },
+    { value: "Mathematics-P2", label: "Mathematics-P2" },
+  ],
+  4: [
+    { value: "French-P1", label: "French-P1" },
+    { value: "French-P2", label: "French-P2" },
+    { value: "English-P1", label: "English-P1" },
+    { value: "English-P2", label: "English-P2" },
+    { value: "Mathematics-P1", label: "Mathematics-P1" },
+    { value: "Mathematics-P2", label: "Mathematics-P2" },
+    { value: "Science-P1", label: "Science-P1" },
+    { value: "Science-P2", label: "Science-P2" },
+    { value: "History Geography-P1", label: "History Geography-P1" },
+    { value: "History Geography-P2", label: "History Geography-P2" },
+    { value: "Creole-P1", label: "Creole-P1" },
+    { value: "Creole-P2", label: "Creole-P2" },
+  ],
+  5: [
+    { value: "French-P1", label: "French-P1" },
+    { value: "French-P2", label: "French-P2" },
+    { value: "English-P1", label: "English-P1" },
+    { value: "English-P2", label: "English-P2" },
+    { value: "Mathematics-P1", label: "Mathematics-P1" },
+    { value: "Mathematics-P2", label: "Mathematics-P2" },
+    { value: "Science-P1", label: "Science-P1" },
+    { value: "Science-P2", label: "Science-P2" },
+    { value: "History Geography-P1", label: "History Geography-P1" },
+    { value: "History Geography-P2", label: "History Geography-P2" },
+    { value: "Creole-P1", label: "Creole-P1" },
+    { value: "Creole-P2", label: "Creole-P2" },
+  ],
+  6: [
+    { value: "French-P1", label: "French-P1" },
+    { value: "French-P2", label: "French-P2" },
+    { value: "English-P1", label: "English-P1" },
+    { value: "English-P2", label: "English-P2" },
+    { value: "Mathematics-P1", label: "Mathematics-P1" },
+    { value: "Mathematics-P2", label: "Mathematics-P2" },
+    { value: "Science-P1", label: "Science-P1" },
+    { value: "Science-P2", label: "Science-P2" },
+    { value: "History Geography-P1", label: "History Geography-P1" },
+    { value: "History Geography-P2", label: "History Geography-P2" },
+    { value: "Creole-P1", label: "Creole-P1" },
+    { value: "Creole-P2", label: "Creole-P2" },
+  ],
+};
 
 const subjects = [
   {
@@ -5696,7 +5764,7 @@ const specialServicesOptions = [
     value: "individial-education-plan",
     label: "Individualized Education Plan",
   },
-  { value: "special-scheme-of-work", label: "Scheme Of Work" },
+  // { value: "special-scheme-of-work", label: "Scheme Of Work" },
 ];
 
 export {
@@ -5723,6 +5791,7 @@ export {
   academicTerm,
   specialServicesOptions,
   // qafTargets,
+  prescribedBooks2,
   topicsOrSubtopics,
   qafHandlingDisruptions,
   qafEngagementActivities,
