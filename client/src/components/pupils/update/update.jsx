@@ -13,6 +13,8 @@ import { grades } from '../../../utils/globals';
 import Select from 'react-select';
 
 function UpdatePupilsScreen() {
+	const [erros, setErrors] = useState({});
+	const errMsges = Object.values(erros).filter(Boolean);
 	const { loading, error } = useSelector((state) => state.pupil);
 	const params = useParams();
 	const location = useLocation();
@@ -124,16 +126,23 @@ function UpdatePupilsScreen() {
 		})
 	}
 
-	const inputProps = (label, type, required = true, name) => ({
+
+	const inputProps = (label, type, required = true, name, placeholder) => ({
+		name,
 		label,
 		type,
+		erros, setErrors,
 		required,
-		name
+		// onChange: handleInputChange,
+		// value: fields[name],
+		placeholder,
 	});
-
 	const pupilUpdate = (e) => {
 		e.preventDefault();
-
+		if (errMsges.length) {
+			errorToast('Please fill in all required fields');
+			return;
+		}
 		dispatch(updatePupil({
 			id: params.id,
 			academicYear,
@@ -189,6 +198,18 @@ function UpdatePupilsScreen() {
 								!error
 									? <form onSubmit={pupilUpdate}>
 										<Row>
+											<Col sm={12}>
+												{/* Show error msges */}
+												{errMsges.length > 0 && (
+													<div className="alert alert-danger">
+														{errMsges.map((msg, index) => (
+															<p key={index}>{msg}</p>
+														))}
+													</div>
+												)}
+											</Col>
+										</Row>
+										<Row>
 											<Col sm={12} lg={6}>
 												<InputField {...inputProps('Academic Year', 'text')} value={academicYear || ''} onChange={(e) => setAcademicYear(e.target.value)} />
 												<InputField {...inputProps('Term Number', 'number')} value={termNumber || ''} onChange={(e) => setTermNumber(e.target.value)} />
@@ -234,7 +255,10 @@ function UpdatePupilsScreen() {
 												<InputField {...inputProps('Home Number', 'number')} value={homeNumber || ''} onChange={(e) => setHomeNumber(e.target.value)} />
 											</Col>
 											<Col sm={12} lg={6}>
-												<InputField {...inputProps('Mobile Number', 'number')} value={mobileNumber || ''} onChange={(e) => setMobileNumber(e.target.value)} />
+												<InputField  {...inputProps("Phone Number", "text", true, "mobileNumber", "e.g., 5000 0000 or 8344 444")}
+													value={mobileNumber} isPhoneNumber
+													onChange={(e) => setMobileNumber(e.target.value)}
+												/>
 												<InputField {...inputProps('Admission Number', 'number')} value={admissionNumber || ''} onChange={(e) => setAdmissionNumber(e.target.value)} />
 											</Col>
 											<Col sm={12} lg={6}>

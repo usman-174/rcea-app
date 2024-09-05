@@ -138,12 +138,7 @@ const OtherHealthImpairments = () => {
   return (
     <ServiceLayout>
       <h2 className="my-5">Other Health Impairments</h2>
-      <div>
-        <h5>Select a service</h5>
-        <div className="w-50">
-          <ServiceSelectBox currentService="other-health-impairment" />
-        </div>
-      </div>
+    
 
       <Form
         onSubmit={(e) => {

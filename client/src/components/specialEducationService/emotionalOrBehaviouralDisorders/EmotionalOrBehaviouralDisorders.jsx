@@ -138,12 +138,7 @@ const EmotionalOrBehaviouralDisorders = () => {
   return (
     <ServiceLayout>
       <h2 className="my-5">Emotional / Behavioral Disorder</h2>
-      <div>
-        <h5>Select a service</h5>
-        <div className="w-50">
-          <ServiceSelectBox currentService="emotional-or-behavioural-disorders" />
-        </div>
-      </div>
+     
 
       <Form
         onSubmit={(e) => {
@@ -151,7 +146,7 @@ const EmotionalOrBehaviouralDisorders = () => {
           mutation.mutate();
         }}
       >
-        {formData?.data.map((item, index) => (
+        {formData?.data ?formData?.data?.map((item, index) => (
           <div key={index}>
             <h3>{item.title}</h3>
             {item.options.map((option, subIndex) => (
@@ -223,7 +218,7 @@ const EmotionalOrBehaviouralDisorders = () => {
               </div>
             ))}
           </div>
-        ))}
+        )):null}
         <br />
         <center>
           <button

@@ -9,7 +9,7 @@ const userSchema = new schema(
       ref: Pupil,
     },
 
-    plays_well_with_peers: {
+    works_well_with_peers: {
       type: String,
       required: false,
     },
@@ -29,7 +29,7 @@ const userSchema = new schema(
       type: String,
       required: false,
     },
-    doesnt_talk: {
+    verbally_aggressive: {
       type: String,
       required: false,
     },

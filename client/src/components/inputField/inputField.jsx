@@ -1,43 +1,34 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Styles from './inputField.module.scss';
 
-class InputField extends Component {
-	constructor(props) {
-		super(props);
+const InputField = (props) => {
+	const { erros, setErrors } = props;
+	const [showSensitiveInfo, setShowSensitiveInfo] = useState(false);
+	const [isValid, setIsValid] = useState(true);
 
-		this.state = {
-			showSensitiveInfo: false,
-			isValid: true,
-		};
-	}
-
-	toggleVisibility = () => {
-		this.setState({ showSensitiveInfo: !this.state.showSensitiveInfo });
+	const toggleVisibility = () => {
+		setShowSensitiveInfo(!showSensitiveInfo);
 	};
 
-	validatePhoneNumber = (value) => {
+	const validatePhoneNumber = (value) => {
 		const mobilePattern = /^5\d{3}\s\d{4}$/;
 		const landlinePattern = /^83\d{2}\s\d{3}$/;
-
 		return mobilePattern.test(value) || landlinePattern.test(value);
 	};
 
-	validateYearOfPosting = (value) => {
-		// Year should be exactly four digits
+	const validateYearOfPosting = (value) => {
 		return /^\d{4}$/.test(value);
 	};
 
-	formatPhoneNumber = (e) => {
+	const formatPhoneNumber = (e) => {
 		const input = e.target.value.replace(/\D/g, '');
 		let formattedNumber = '';
-		
-		
+
 		if (input.startsWith('5')) {
 			if (input.length > 4) {
 				formattedNumber = `${input.substring(0, 4)} ${input.substring(4, 8)}`;
 			} else {
 				formattedNumber = input;
-				
 			}
 		} else if (input.startsWith('83')) {
 			if (input.length > 5) {
@@ -48,80 +39,77 @@ class InputField extends Component {
 		} else {
 			formattedNumber = input;
 		}
-	
+
 		e.target.value = formattedNumber.trim();
-	
 	};
 
-	handleInputChange = (e) => {
+	const handleInputChange = (e) => {
 		const { name, value } = e.target;
 
-		if (this.props.isPhoneNumber) {
+		if (props.isPhoneNumber) {
 			const numericValue = value.replace(/\D/g, '');
-			if ((numericValue.startsWith('5') && numericValue.length > 8) ||
-				(numericValue.startsWith('83') && numericValue.length > 7)) {
-		
-
+			if (
+				(numericValue.startsWith('5') && numericValue.length > 8) ||
+				(numericValue.startsWith('83') && numericValue.length > 7)
+			) {
 				return;
 			}
 
-			this.formatPhoneNumber(e);
-			
-			const isValid = this.validatePhoneNumber(e.target.value);
-			this.setState({ isValid });
+			formatPhoneNumber(e);
+			const valid = validatePhoneNumber(e.target.value);
+			setIsValid(valid);
+			setErrors({ ...erros, [name]: valid ? '' : 'Invalid phone number' });
 		} else if (name === 'postingYear') {
-			// Remove non-numeric characters
 			let numericValue = value.replace(/\D/g, '');
 			numericValue = numericValue.slice(0, 4);
-			e.target.value = numericValue
-			const isValid = this.validateYearOfPosting(numericValue) && numericValue.length <= 4;
-			this.setState({ isValid });
-			// Set the input value to numericValue, limited to 4 digits
+			e.target.value = numericValue;
+			const valid = validateYearOfPosting(numericValue) && numericValue.length <= 4;
+			setIsValid(valid);
+			setErrors({ ...erros, [name]: valid ? '' : 'Invalid year' });
 		}
 
-		if (this.props.onChange) {
-			this.props.onChange(e);
+		if (props.onChange) {
+			props.onChange(e);
 		}
 	};
 
-	render() {
-		const inputStyle = this.state.isValid ? {} : { border: '1px solid red' };
+	const inputStyle = isValid ? {} : { border: '1px solid red' };
 
-		return (
-			<div className={`${Styles.inputContainer} ${this.props.className} ${this.props.formatText ? Styles.editableInputField : null}`}>
-				{this.props.label && <label>{this.props.label} {(this.props.required && this.props.label) ? '*' : null}</label>}
-				<div className={Styles.inputField}>
-					{this.props.type === 'textarea' ? (
-						<textarea
-							ref={this.props.inputRef}
-							type={this.props.sensitiveField && this.state.showSensitiveInfo ? 'text' : this.props.type}
-							onChange={this.handleInputChange}
-							required={this.props.required}
-							// value={this.props.value}
-							placeholder={this.props.placeholder}
-							style={inputStyle}
-						>
-							{this.props.value}
-						</textarea>
-					) : (
-						<input
-							placeholder={this.props.placeholder}
-							value={this.props.value}
-							// defaultValue={this.props.defaultValue}
-							name={this.props.name}
-							id={this.props.id}
-							ref={this.props.inputRef}
-							type={this.props.sensitiveField && this.state.showSensitiveInfo ? 'text' : this.props.type}
-							onChange={this.handleInputChange}
-							required={this.props.required}
-							style={inputStyle}
-						/>
-					)}
-				</div>
-				
+	return (
+		<div className={`${Styles.inputContainer} ${props.className} ${props.formatText ? Styles.editableInputField : ''}`}>
+			{props.label && (
+				<label>
+					{props.label} {props.required && props.label ? '*' : null}
+				</label>
+			)}
+			<div className={Styles.inputField}>
+				{props.type === 'textarea' ? (
+					<textarea
+						ref={props.inputRef}
+						type={props.sensitiveField && showSensitiveInfo ? 'text' : props.type}
+						onChange={handleInputChange}
+						required={props.required}
+						placeholder={props.placeholder}
+						style={inputStyle}
+					>
+						{props.value}
+					</textarea>
+				) : (
+					<input
+						placeholder={props.placeholder}
+						value={props.value}
+						name={props.name}
+						id={props.id}
+						ref={props.inputRef}
+						type={props.sensitiveField && showSensitiveInfo ? 'text' : props.type}
+						onChange={handleInputChange}
+						required={props.required}
+						style={inputStyle}
+					/>
+				)}
 			</div>
-		);
-	}
-}
+		</div>
+	);
+};
 
 export { InputField };

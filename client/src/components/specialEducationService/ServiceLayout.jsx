@@ -2,6 +2,7 @@ import React from 'react'
 import StudentDetails from './selectStudent/StudentDetails'
 import ServiceSelectBox from './selectStudent/ServiceSelectBox'
 import { Container } from 'react-bootstrap'
+import IndividualizedSpecialPlan from './individualSpecialPlan/IndividualizedSpecialPlan'
 
 const ServiceLayout = ({ children }) => {
     return (
@@ -10,7 +11,7 @@ const ServiceLayout = ({ children }) => {
             <ServiceSelectBox />
             <br />
             {children}
-
+            <IndividualizedSpecialPlan />
         </Container>
     )
 }

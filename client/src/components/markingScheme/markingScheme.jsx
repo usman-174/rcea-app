@@ -178,7 +178,7 @@ export const MarkingScheme = () => {
               onMenuOpen={() => setSelectOpen(true)}
               isSearchable={false}
 							name="subject"
-              options={[...subjects,...specialization]}
+              options={[...subjects]}
 
 						/>
 					</div>

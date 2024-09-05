@@ -4,7 +4,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTeacherDetails, updateTeacher } from '../../../store/teacher/teacherActions';
-import { successToast } from '../../../utils/index';
+import { errorToast,successToast } from '../../../utils/index';
 import Styles from './update.module.scss';
 import { InputField } from '../../inputField';
 import { Spinner } from '../../spinner';
@@ -35,6 +35,8 @@ const grades = [
 
 function UpdateTeacherScreen() {
 	const { loading, error } = useSelector((state) => state.teacher);
+	const [erros, setErrors] = useState({});
+	const errMsges = Object.values(erros).filter(Boolean);
 	const params = useParams();
 	const location = useLocation();
 	const navigate = useNavigate();
@@ -61,7 +63,7 @@ function UpdateTeacherScreen() {
 			dispatch(getTeacherDetails({ id: params.id }))
 				.then((data) => {
 					console.log("payload", data.payload);
-					
+
 					setFields({
 						address: data.payload.address,
 						firstName: data.payload.firstName,
@@ -72,7 +74,7 @@ function UpdateTeacherScreen() {
 						postingYear: data.payload.postingYear,
 						qualifications: data.payload.qualifications || [],
 						grade: data.payload.grade,
-						appointmentDate: new Date(data.payload.appointmentDate).toISOString().split('T')[0],
+						appointmentDate: data.payload?.appointmentDate ? new Date(data.payload.appointmentDate).toISOString().split('T')[0]: '',
 						remarks: data.payload.remarks,
 					});
 				});
@@ -83,6 +85,7 @@ function UpdateTeacherScreen() {
 	const inputProps = (label, type, required = true, name, placeholder) => ({
 		label,
 		name,
+		erros, setErrors,
 		type,
 		required,
 		onChange: handleInputChange,
@@ -111,7 +114,10 @@ function UpdateTeacherScreen() {
 
 	const teacherUpdate = (e) => {
 		e.preventDefault();
-
+		if (errMsges.length) {
+			errorToast('Please fill in all required fields');
+			return;
+		}
 		dispatch(updateTeacher({ ...fields, id: params.id }))
 			.then(() => {
 				e.target.reset();
@@ -132,8 +138,21 @@ function UpdateTeacherScreen() {
 								!error
 									? <form onSubmit={teacherUpdate}>
 										<Row>
+											<Col sm={12}>
+												{/* Show error msges */}
+												{errMsges.length > 0 && (
+													<div className="alert alert-danger">
+														{errMsges.map((msg, index) => (
+															<p key={index}>{msg}</p>
+														))}
+													</div>
+												)}
+											</Col>
+										</Row>
+										<Row>
 											<Col sm={12} lg={6}>
-												<InputField {...inputProps('Address', 'text', true, 'address', 'Enter the address')} />
+											<InputField {...inputProps('First Name', 'text', true, 'firstName', 'Enter the first name')} />
+												
 												<InputField {...inputProps('National ID', 'text', true, 'nationalID', 'Enter the national ID')} />
 												<InputField {...inputProps('Phone Number', 'text', true, 'phone', 'e.g., 5000 0000 or 8344 444')} isPhoneNumber />
 												<InputField {...inputProps('Hire Date', 'date', true, 'hire_date', 'Select the hire date')} />
@@ -141,8 +160,8 @@ function UpdateTeacherScreen() {
 												<InputField {...inputProps('Appointment Date', 'date', true, 'appointmentDate', 'Select the appointment date')} />
 											</Col>
 											<Col sm={12} lg={6}>
-												<InputField {...inputProps('First Name', 'text', true, 'firstName', 'Enter the first name')} />
 												<InputField {...inputProps('Last Name', 'text', true, 'lastName', 'Enter the last name')} />
+											<InputField {...inputProps('Address', 'text', true, 'address', 'Enter the address')} />
 												<div className="mt-2">
 													<label>Qualifications *</label><br />
 													<CreatableSelect isMulti options={qualifications} value={fields.qualifications} onChange={handleQualificationsChange} />

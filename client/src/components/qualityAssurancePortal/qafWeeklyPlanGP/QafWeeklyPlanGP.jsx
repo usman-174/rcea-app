@@ -1,16 +1,17 @@
+import { useMutation, useQuery } from "@tanstack/react-query";
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import { Container, Spinner } from "react-bootstrap";
 import { Toaster } from "react-hot-toast";
+import { useSelector } from "react-redux";
 import Select from "react-select";
+import { errorToast, successToast } from "../../../utils";
+import AxiosConfig from "../../../utils/axiosConfig";
 import {
   academicTerm,
   specialization,
-  topicsOrSubtopics,
+  subjects,
+  topicsBySubject
 } from "../../../utils/globals";
-import { useSelector } from "react-redux";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import AxiosConfig from "../../../utils/axiosConfig";
-import { errorToast, successToast } from "../../../utils";
 
 const days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
 
@@ -174,9 +175,9 @@ const QafWeeklyPlanGP = () => {
 
   const educatorsOptions = educators
     ? educators.map((educator) => ({
-        value: educator._id,
-        label: educator.firstName + " " + educator.lastName,
-      }))
+      value: educator._id,
+      label: educator.firstName + " " + educator.lastName,
+    }))
     : [];
 
   const manageDaysToShowReport = (e, index, day) => {
@@ -253,7 +254,7 @@ const QafWeeklyPlanGP = () => {
       }
     });
   };
-
+ 
   return (
     <div>
       <Toaster />
@@ -412,7 +413,7 @@ const QafWeeklyPlanGP = () => {
                                       }}
                                       className="basic-single "
                                       isSearchable={false}
-                                      options={specialization}
+                                      options={subjects}
                                     />
                                   </td>
                                   <td>
@@ -430,7 +431,7 @@ const QafWeeklyPlanGP = () => {
                                       }}
                                       className="basic-single "
                                       isSearchable={false}
-                                      options={topicsOrSubtopics}
+                                      options={topicsBySubject[row.subjects?.value]}
                                     />
                                   </td>
                                   <td>
@@ -449,7 +450,7 @@ const QafWeeklyPlanGP = () => {
                                       type="text"
                                       className="form-control"
                                       name={`classworkOrHomework_${tableIndex}`}
-                                      
+
                                     />
                                   </td>
                                   <td>
@@ -468,7 +469,7 @@ const QafWeeklyPlanGP = () => {
                                       type="text"
                                       className="form-control"
                                       name={`remarks_${tableIndex}`}
-                                      
+
                                     />
                                   </td>
                                   {tableIndex === 0 ? null : (
@@ -574,3 +575,4 @@ const QafWeeklyPlanGP = () => {
 };
 
 export { QafWeeklyPlanGP };
+

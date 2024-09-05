@@ -223,9 +223,9 @@ const QafClassVisit = () => {
               options={
                 schools?.schoolInfo
                   ? schools?.schoolInfo.map((school) => ({
-                      value: school?._id,
-                      label: school?.name,
-                    }))
+                    value: school?._id,
+                    label: school?.name,
+                  }))
                   : []
               }
             />
@@ -329,7 +329,8 @@ const QafClassVisit = () => {
                 </div>
               </div>
             </div>
-            <Collapse accordion={true}>
+            <Collapse accordion={true}
+            >
               <Panel header="PROFILING OF STUDENTS">
                 <div className="form-group">
                   <label htmlFor="profiling_A" className="font-xs test-xs">

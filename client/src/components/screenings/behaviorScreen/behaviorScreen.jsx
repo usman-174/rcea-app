@@ -17,7 +17,8 @@ import { getColumns } from "../../targetScreenings/settings/getColumns";
 import { getRows } from "../../targetScreenings/settings/getRows";
 import { grades, sections } from "../../../utils/globals";
 
-
+  console.log("Column_Row_Fields", Column_Row_Fields);
+  
 const headerRow = generateHeaderRow(Column_Row_Fields);
 
 const BehaviorScreen = () => {

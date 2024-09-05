@@ -138,19 +138,14 @@ const DevelopmentalDelay = () => {
   return (
     <ServiceLayout>
       <h2 className="my-5">Developmental Delay</h2>
-      <div>
-        <h5>Select a service</h5>
-        <div className="w-50">
-          <ServiceSelectBox currentService="developmental-delay" />
-        </div>
-      </div>
+     
       <Form
         onSubmit={(e) => {
           e.preventDefault();
           mutation.mutate();
         }}
       >
-        {formData?.data.map((item, index) => (
+        {formData?.data?.map((item, index) => (
           <div
             key={index}
             style={{

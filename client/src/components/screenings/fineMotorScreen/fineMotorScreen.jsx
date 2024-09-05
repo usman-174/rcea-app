@@ -10,7 +10,7 @@ import AxiosConfig from "../../../utils/axiosConfig";
 import { Spinner } from "../../spinner";
 import { addPropertiesToPupils } from "../../targetScreenings/settings/addProperties";
 import { generateHeaderRow } from "../../targetScreenings/settings/headerRow";
-import { Column_Row_Fields, fields } from "./fields";
+import { Column_Row_Fields, defaultValues, fields, validOptions } from "./fields";
 import { useSelector } from "react-redux";
 
 import { getColumns } from "../../targetScreenings/settings/getColumns";
@@ -22,7 +22,7 @@ const headerRow = generateHeaderRow(Column_Row_Fields);
 const FineMotorScreen = () => {
   const { selectedSchool } = useSelector((state) => state.school);
   const [selectOpen, setSelectOpen] = useState(false);
- 
+
 
   const [pupils, setPupils] = useState([]);
   const [successSave, setSuccessSave] = useState(false);
@@ -57,7 +57,8 @@ const FineMotorScreen = () => {
       if (change.type === "checkbox" && dataRow) {
         dataRow.selected = !dataRow.selected;
       } else {
-        updatedPeople[personIndex][fieldName] = change.newCell.text;
+        const val = validOptions[Number(change.newCell.text)] || change.newCell.text;
+        updatedPeople[personIndex][fieldName] = val || change.newCell.text;
         dataRow.selected = true;
       }
     });
@@ -132,7 +133,7 @@ const FineMotorScreen = () => {
     if (selectedGrade && selectedSection) {
       Promise.all([fetchStudentData(), fetchScreenPupils()]).then(() => {
         const combined = addPropertiesToPupils(pupilx, motorData, fields);
-        const updatedRows = getRows(combined, fields, headerRow);
+        const updatedRows = getRows(combined, fields, headerRow,defaultValues);
 
         setRows(updatedRows);
         setSuccessSave(false);
@@ -142,7 +143,7 @@ const FineMotorScreen = () => {
 
   useEffect(() => {
     if (pupils.length > 0) {
-      const updatedRows = getRows(pupils, fields, headerRow);
+      const updatedRows = getRows(pupils, fields, headerRow,defaultValues);
 
       setRows(updatedRows);
     }
@@ -167,14 +168,14 @@ const FineMotorScreen = () => {
             <h3> Grade</h3>
 
             <Select
-             
+
               value={selectedGrade}
               className="basic-single mr-4"
               onChange={(e) => setSelectedGrade(e)}
               name="grade"
-             
-              onMenuClose={()=>setSelectOpen(false)}
-              onMenuOpen={()=>setSelectOpen(true)}
+
+              onMenuClose={() => setSelectOpen(false)}
+              onMenuOpen={() => setSelectOpen(true)}
               isSearchable={false}
               options={grades}
             />
@@ -185,9 +186,9 @@ const FineMotorScreen = () => {
               value={selectedSection}
               className="basic-single"
               onChange={(e) => setSelectedSection(e)}
-             
-              onMenuClose={()=>setSelectOpen(false)}
-              onMenuOpen={()=>setSelectOpen(true)}
+
+              onMenuClose={() => setSelectOpen(false)}
+              onMenuOpen={() => setSelectOpen(true)}
               isSearchable={false}
               name="section"
               options={sections}
@@ -227,15 +228,28 @@ const FineMotorScreen = () => {
                   />
                 </div>
                 <div className="text-center mt-5">
-          <Button className="primaryButton" onClick={handleSave}>
-            Submit
-          </Button>
-        </div>
+                  <Button className="primaryButton" onClick={handleSave}>
+                    Submit
+                  </Button>
+                </div>
               </>
             ) : null}
+            <p>
+              Note: Please Enter data as follow
+              <br/>
+              {
+               Object.keys(validOptions).map((key, index) => (
+                  <span key={index} className="mr-2">
+                    {index}: {validOptions[key]}
+                    <br/>
+                  </span>
+                ))
+              }
+
+            </p>
           </div>
         )}
-       
+
       </Container>
     </div>
   );

@@ -10,7 +10,6 @@ import { useSelector } from "react-redux";
 import { successToast } from "../../../utils";
 import { DateLabels, initialData, textFields, TextLabels } from "./initialData";
 
-import ServiceLayout from "../ServiceLayout";
 import { DateTime } from "luxon";
 import IndividualSchemeOfWork from "./IndividualSchemeOfWork";
 
@@ -19,13 +18,13 @@ const IndividualizedSpecialPlan = () => {
   const [searchParams] = useSearchParams();
 
   const specialData = searchParams.get("specialData");
-  const [formData, setFormData] = useState(initialData);
+  const [individualData, setIndividualData] = useState(initialData);
   const { selectedSchool } = useSelector((state) => state.school);
   const currentSelectedSchoolId =
     searchParams.get("school") || (selectedSchool && selectedSchool._id);
   const selected = searchParams.get("selected");
   const addRow = () => {
-    setFormData((e) => ({
+    setIndividualData((e) => ({
       ...e,
       realtedService: {
         table: [
@@ -43,11 +42,11 @@ const IndividualizedSpecialPlan = () => {
   };
   const {
     data: IndividualizedSpecialPlan,
-    error,
+
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["specialData", specialData],
+    queryKey: ["individualSpecialData", specialData],
     queryFn: async () => {
       try {
         const { data: res } = await AxiosConfig.get(
@@ -79,7 +78,7 @@ const IndividualizedSpecialPlan = () => {
         const { data } = await AxiosConfig.post(
           "/specialeducation/individualizedspecialplan",
           {
-            ...formData,
+            ...individualData,
 
             educationService_id: specialData,
             id: IndividualizedSpecialPlan?._id,
@@ -117,7 +116,7 @@ const IndividualizedSpecialPlan = () => {
         });
       }
 
-      setFormData((e) => {
+      setIndividualData((e) => {
         const res = {
           ...e, ...IndividualizedSpecialPlan,
 
@@ -138,7 +137,7 @@ const IndividualizedSpecialPlan = () => {
         return res
       });
     } else if (!isLoading) {
-      setFormData((e) => ({
+      setIndividualData((e) => ({
         ...e,
         educationService_id: specialData,
         areasOfConcern: "",
@@ -149,7 +148,7 @@ const IndividualizedSpecialPlan = () => {
 
   }, [IndividualizedSpecialPlan]);
   return (
-    <ServiceLayout>
+    <div>
       <h2 className="my-5">Individualized Education Plan</h2>
 
 
@@ -168,11 +167,11 @@ const IndividualizedSpecialPlan = () => {
                 <div className="mr-4">
                   <input
                     type="date"
-                    value={formData[item]}
+                    value={individualData[item]}
                     className="form-control"
                     onChange={(e) =>
-                      setFormData({
-                        ...formData,
+                      setIndividualData({
+                        ...individualData,
                         [item]: e.target.value,
                       })
                     }
@@ -194,7 +193,7 @@ const IndividualizedSpecialPlan = () => {
                   <Form.Control
                     as="textarea"
                     rows={3}
-                    value={formData[item]}
+                    value={individualData[item]}
                     onChange={(e) => {
                       // max 1000 words
 
@@ -202,8 +201,8 @@ const IndividualizedSpecialPlan = () => {
                         return;
                       }
 
-                      setFormData({
-                        ...formData,
+                      setIndividualData({
+                        ...individualData,
                         [item]: e.target.value,
                       })
                     }}
@@ -213,46 +212,11 @@ const IndividualizedSpecialPlan = () => {
             </Row>
           ))
         }
-        {/* <Row>
-          <Col>
-            <Form.Group controlId="currentPerformance">
-              <Form.Label>Current Performance(max 1000 words)</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
-                value={formData.currentPerformance}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    currentPerformance: e.target.value,
-                  })
-                }
-              />
-            </Form.Group>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Form.Group controlId="annualGoal">
-              <Form.Label>Annual Goal(max 1000 words)</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
-                value={formData.annualGoal}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    annualGoal: e.target.value,
-                  })
-                }
-              />
-            </Form.Group>
-          </Col>
-        </Row> */}
+
 
         <IndividualSchemeOfWork
-          formData={formData}
-          setFormData={setFormData}
+          individualData={individualData}
+          setIndividualData={setIndividualData}
           IndividualizedSpecialPlan={IndividualizedSpecialPlan}
         />
         <Row>
@@ -269,17 +233,17 @@ const IndividualizedSpecialPlan = () => {
               </tr>
             </thead>
             <tbody>
-              {formData?.realtedService?.table?.map((item, index) => (
+              {individualData?.realtedService?.table?.map((item, index) => (
                 <tr key={index}>
                   <td>
                     {" "}
                     <Form.Control
                       value={item.service}
                       onChange={(e) => {
-                        const newTable = [...formData.realtedService.table];
+                        const newTable = [...individualData.realtedService.table];
                         newTable[index].service = e.target.value;
-                        setFormData({
-                          ...formData,
+                        setIndividualData({
+                          ...individualData,
                           realtedService: { table: newTable },
                         });
                       }}
@@ -295,10 +259,10 @@ const IndividualizedSpecialPlan = () => {
                           return;
                         }
 
-                        const newTable = [...formData.realtedService.table];
+                        const newTable = [...individualData.realtedService.table];
                         newTable[index].duration = e.target.value;
-                        setFormData({
-                          ...formData,
+                        setIndividualData({
+                          ...individualData,
                           realtedService: { table: newTable },
                         });
                       }}
@@ -308,10 +272,10 @@ const IndividualizedSpecialPlan = () => {
                     <Form.Control
                       value={item.frequency}
                       onChange={(e) => {
-                        const newTable = [...formData.realtedService.table];
+                        const newTable = [...individualData.realtedService.table];
                         newTable[index].frequency = e.target.value;
-                        setFormData({
-                          ...formData,
+                        setIndividualData({
+                          ...individualData,
                           realtedService: { table: newTable },
                         });
                       }}
@@ -321,10 +285,10 @@ const IndividualizedSpecialPlan = () => {
                     <Form.Control
                       value={item.place}
                       onChange={(e) => {
-                        const newTable = [...formData.realtedService.table];
+                        const newTable = [...individualData.realtedService.table];
                         newTable[index].place = e.target.value;
-                        setFormData({
-                          ...formData,
+                        setIndividualData({
+                          ...individualData,
                           realtedService: { table: newTable },
                         });
                       }}
@@ -334,10 +298,10 @@ const IndividualizedSpecialPlan = () => {
                     <Form.Control
                       value={item.provider}
                       onChange={(e) => {
-                        const newTable = [...formData.realtedService.table];
+                        const newTable = [...individualData.realtedService.table];
                         newTable[index].provider = e.target.value;
-                        setFormData({
-                          ...formData,
+                        setIndividualData({
+                          ...individualData,
                           realtedService: { table: newTable },
                         });
                       }}
@@ -348,10 +312,10 @@ const IndividualizedSpecialPlan = () => {
                       <span
                         className="secondaryButton text-white pt-2 pb-2 mx-2 px-0"
                         onClick={() => {
-                          const newTable = [...formData.realtedService.table];
+                          const newTable = [...individualData.realtedService.table];
                           newTable.splice(index, 1);
-                          setFormData({
-                            ...formData,
+                          setIndividualData({
+                            ...individualData,
                             realtedService: { table: newTable },
                           });
                         }}
@@ -397,7 +361,7 @@ const IndividualizedSpecialPlan = () => {
               </tr>
             </thead>
             <tbody>
-              {formData?.accomodation?.table?.map((item, index) => (
+              {individualData?.accomodation?.table?.map((item, index) => (
                 <tr
                   key={index}
                   style={{
@@ -409,10 +373,10 @@ const IndividualizedSpecialPlan = () => {
                     <Form.Control
                       value={item.need}
                       onChange={(e) => {
-                        const newTable = [...formData.accomodation.table];
+                        const newTable = [...individualData.accomodation.table];
                         newTable[index].need = e.target.value;
-                        setFormData({
-                          ...formData,
+                        setIndividualData({
+                          ...individualData,
                           accomodation: { table: newTable },
                         });
                       }}
@@ -422,10 +386,10 @@ const IndividualizedSpecialPlan = () => {
                     <Form.Control
                       value={item.instructions}
                       onChange={(e) => {
-                        const newTable = [...formData.accomodation.table];
+                        const newTable = [...individualData.accomodation.table];
                         newTable[index].instructions = e.target.value;
-                        setFormData({
-                          ...formData,
+                        setIndividualData({
+                          ...individualData,
                           accomodation: { table: newTable },
                         });
                       }}
@@ -435,10 +399,10 @@ const IndividualizedSpecialPlan = () => {
                     <Form.Control
                       value={item.assessment}
                       onChange={(e) => {
-                        const newTable = [...formData.accomodation.table];
+                        const newTable = [...individualData.accomodation.table];
                         newTable[index].assessment = e.target.value;
-                        setFormData({
-                          ...formData,
+                        setIndividualData({
+                          ...individualData,
                           accomodation: { table: newTable },
                         });
                       }}
@@ -448,11 +412,11 @@ const IndividualizedSpecialPlan = () => {
                     <Form.Control
                       value={item.instruction_modification}
                       onChange={(e) => {
-                        const newTable = [...formData.accomodation.table];
+                        const newTable = [...individualData.accomodation.table];
                         newTable[index].instruction_modification =
                           e.target.value;
-                        setFormData({
-                          ...formData,
+                        setIndividualData({
+                          ...individualData,
                           accomodation: { table: newTable },
                         });
                       }}
@@ -462,11 +426,11 @@ const IndividualizedSpecialPlan = () => {
                     <Form.Control
                       value={item.assessment_modification}
                       onChange={(e) => {
-                        const newTable = [...formData.accomodation.table];
+                        const newTable = [...individualData.accomodation.table];
                         newTable[index].assessment_modification =
                           e.target.value;
-                        setFormData({
-                          ...formData,
+                        setIndividualData({
+                          ...individualData,
                           accomodation: { table: newTable },
                         });
                       }}
@@ -477,10 +441,10 @@ const IndividualizedSpecialPlan = () => {
                       <span
                         className="secondaryButton text-white pt-2 pb-2 mx-2 px-0"
                         onClick={() => {
-                          const newTable = [...formData.accomodation.table];
+                          const newTable = [...individualData.accomodation.table];
                           newTable.splice(index, 1);
-                          setFormData({
-                            ...formData,
+                          setIndividualData({
+                            ...individualData,
                             accomodation: { table: newTable },
                           });
                         }}
@@ -510,7 +474,7 @@ const IndividualizedSpecialPlan = () => {
           </table>
           <button
             onClick={() => {
-              setFormData((e) => ({
+              setIndividualData((e) => ({
                 ...e,
                 accomodation: {
                   table: [
@@ -550,7 +514,7 @@ const IndividualizedSpecialPlan = () => {
           </Link>
         </center>
       </Form>
-    </ServiceLayout>
+    </div>
   );
 };
 

@@ -1,17 +1,17 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { Alert, Container } from 'react-bootstrap';
+import React, { Fragment } from 'react';
+import { Container } from 'react-bootstrap';
 import { Toaster } from 'react-hot-toast';
 import Select from "react-select";
-import { assessmentOptions, grades, prescribedBooks2, qatLessonPlanThemes2, subjects2, teachingStrategies, topicsOrSubtopics2 } from '../../../utils/globals';
+import { assessmentOptions, grades, prescribedBooks2, qatLessonPlanThemes2, subjects, teachingStrategies, topicsOrSubtopics2 } from '../../../utils/globals';
 import { schemeOfWorkInitial } from './initialData';
 
 const IndividualSchemeOfWork = ({
-    IndividualizedSpecialPlan,
-    formData,
-    setFormData
+   
+    individualData,
+    setIndividualData
 
 }) => {
-    const schemeOfWork = formData.schemeOfWork;
+    const schemeOfWork = individualData.schemeOfWork;
 
     const schemeData = schemeOfWork?.scheme_data || schemeOfWorkInitial.scheme_data;
 
@@ -29,10 +29,10 @@ const IndividualSchemeOfWork = ({
             REMARKS: "",
         };
 
-        setFormData({
-            ...formData,
+        setIndividualData({
+            ...individualData,
             schemeOfWork: {
-                ...formData.schemeOfWork,
+                ...individualData.schemeOfWork,
                 scheme_data: [...schemeData, row],
             },
         });
@@ -44,17 +44,17 @@ const IndividualSchemeOfWork = ({
         ];
         updatedForm.pop();
 
-        setFormData({
-            ...formData,
+        setIndividualData({
+            ...individualData,
             schemeOfWork: {
-                ...formData.schemeOfWork,
+                ...individualData.schemeOfWork,
                 scheme_data: updatedForm,
             },
         });
     };
 
     console.log(schemeOfWork);
-    
+
     return (
         <div>
             <Toaster />
@@ -71,10 +71,10 @@ const IndividualSchemeOfWork = ({
                             )}
                             className="basic-single mr-4"
                             onChange={(e) =>
-                                setFormData({
-                                    ...formData,
+                                setIndividualData({
+                                    ...individualData,
                                     schemeOfWork: {
-                                        ...formData.schemeOfWork,
+                                        ...individualData.schemeOfWork,
                                         grade: e.value,
                                     },
                                 })
@@ -87,23 +87,23 @@ const IndividualSchemeOfWork = ({
                     <div className="w-25">
                         <h3>Subject</h3>
                         <Select
-                            value={subjects2[schemeOfWork.grade]?.find(
+                            value={subjects?.find(
                                 (subject) => subject.value === schemeOfWork?.subject
                             ) ||
                                 { value: "", label: "" }}
                             className="basic-single mr-4"
                             onChange={(e) =>
-                                setFormData({
-                                    ...formData,
+                                setIndividualData({
+                                    ...individualData,
                                     schemeOfWork: {
-                                        ...formData.schemeOfWork,
+                                        ...individualData.schemeOfWork,
                                         subject: e.value,
                                     },
                                 })
                             }
                             isSearchable={false}
                             name="subject"
-                            options={subjects2[schemeOfWork.grade]}
+                            options={subjects}
                         />
                     </div>
                 </div>
@@ -123,10 +123,10 @@ const IndividualSchemeOfWork = ({
                                     }
                                     className="basic-single mr-4"
                                     onChange={(e) =>
-                                        setFormData({
-                                            ...formData,
+                                        setIndividualData({
+                                            ...individualData,
                                             schemeOfWork: {
-                                                ...formData.schemeOfWork,
+                                                ...individualData.schemeOfWork,
                                                 prescribes_book: e.value,
                                             },
                                         })
@@ -149,10 +149,10 @@ const IndividualSchemeOfWork = ({
                                     }
                                     className="basic-single mr-4"
                                     onChange={(e) =>
-                                        setFormData({
-                                            ...formData,
+                                        setIndividualData({
+                                            ...individualData,
                                             schemeOfWork: {
-                                                ...formData.schemeOfWork,
+                                                ...individualData.schemeOfWork,
                                                 number_of_period_per_week: e.value,
                                             },
                                         })
@@ -217,10 +217,10 @@ const IndividualSchemeOfWork = ({
                                                             const updatedForm = [...schemeData];
                                                             updatedForm[index].THEME = value;
 
-                                                            setFormData({
-                                                                ...formData,
+                                                            setIndividualData({
+                                                                ...individualData,
                                                                 schemeOfWork: {
-                                                                    ...formData.schemeOfWork,
+                                                                    ...individualData.schemeOfWork,
                                                                     scheme_data: updatedForm,
                                                                 },
                                                             });
@@ -232,20 +232,8 @@ const IndividualSchemeOfWork = ({
                                                     />
                                                 </td>
                                                 <td>
-                                                    {/* <input
-                                value={row.topics}
-                                type="text"
-                                className="form-control "
-                                onChange={(e) => {
-                                  const { value } = e.target;
-                                  const updatedForm = [...form];
-                                  updatedForm[index].topics = value;
-                                  setForm(updatedForm);
-                                }}
-                                style={{ width: "200px" }}
-                                name={`topics_${index}`}
-                                
-                              /> */}
+
+
                                                     <Select
                                                         value={topicsOrSubtopics2[schemeOfWork.grade]?.find(
                                                             (topic) => topic.value === row.TOPICS
@@ -259,10 +247,10 @@ const IndividualSchemeOfWork = ({
                                                             const updatedForm = [...schemeData,];
                                                             updatedForm[index].TOPICS = value
 
-                                                            setFormData({
-                                                                ...formData,
+                                                            setIndividualData({
+                                                                ...individualData,
                                                                 schemeOfWork: {
-                                                                    ...formData.schemeOfWork,
+                                                                    ...individualData.schemeOfWork,
                                                                     scheme_data: updatedForm,
                                                                 },
                                                             });
@@ -286,10 +274,10 @@ const IndividualSchemeOfWork = ({
                                                             const updatedForm = [...schemeData];
                                                             updatedForm[index].PEDAGOGICAL_STRATEGIES = value
 
-                                                            setFormData({
-                                                                ...formData,
+                                                            setIndividualData({
+                                                                ...individualData,
                                                                 schemeOfWork: {
-                                                                    ...formData.schemeOfWork,
+                                                                    ...individualData.schemeOfWork,
                                                                     scheme_data: updatedForm,
                                                                 },
                                                             });
@@ -308,10 +296,10 @@ const IndividualSchemeOfWork = ({
                                                             const updatedForm = [...schemeData];
                                                             updatedForm[index].EDUCATIONAL_RESOURCES = value;
 
-                                                            setFormData({
-                                                                ...formData,
+                                                            setIndividualData({
+                                                                ...individualData,
                                                                 schemeOfWork: {
-                                                                    ...formData.schemeOfWork,
+                                                                    ...individualData.schemeOfWork,
                                                                     scheme_data: updatedForm,
                                                                 },
                                                             });
@@ -333,10 +321,10 @@ const IndividualSchemeOfWork = ({
                                                             const updatedForm = [...schemeData];
                                                             updatedForm[index].ASSESSMENT_EVALUATION = value
 
-                                                            setFormData({
-                                                                ...formData,
+                                                            setIndividualData({
+                                                                ...individualData,
                                                                 schemeOfWork: {
-                                                                    ...formData.schemeOfWork,
+                                                                    ...individualData.schemeOfWork,
                                                                     scheme_data: updatedForm,
                                                                 },
                                                             });
@@ -353,10 +341,10 @@ const IndividualSchemeOfWork = ({
                                                             const updatedForm = [...schemeData];
                                                             updatedForm[index].REMARKS = value;
 
-                                                            setFormData({
-                                                                ...formData,
+                                                            setIndividualData({
+                                                                ...individualData,
                                                                 schemeOfWork: {
-                                                                    ...formData.schemeOfWork,
+                                                                    ...individualData.schemeOfWork,
                                                                     scheme_data: updatedForm,
                                                                 },
                                                             });
@@ -375,10 +363,10 @@ const IndividualSchemeOfWork = ({
                                                                 const updatedForm = [...schemeData];
                                                                 updatedForm.splice(index, 1);
 
-                                                                setFormData({
-                                                                    ...formData,
+                                                                setIndividualData({
+                                                                    ...individualData,
                                                                     schemeOfWork: {
-                                                                        ...formData.schemeOfWork,
+                                                                        ...individualData.schemeOfWork,
                                                                         scheme_data: updatedForm,
                                                                     },
                                                                 });

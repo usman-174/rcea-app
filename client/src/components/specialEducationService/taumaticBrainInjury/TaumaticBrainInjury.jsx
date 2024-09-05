@@ -139,12 +139,7 @@ const TaumaticBrainInjury = () => {
   return (
     <ServiceLayout >
       <h2 className="my-5">Traumatic Brain Injury</h2>
-      <div>
-        <h5>Select a service</h5>
-        <div className="w-50">
-          <ServiceSelectBox currentService="taumatic-brain-injury" />
-        </div>
-      </div>
+     
 
       <Form
         onSubmit={(e) => {
@@ -152,7 +147,7 @@ const TaumaticBrainInjury = () => {
           mutation.mutate();
         }}
       >
-        {formData?.data.map((item, index) => (
+        {formData?.data?.map((item, index) => (
           <div
             key={index}
             style={{

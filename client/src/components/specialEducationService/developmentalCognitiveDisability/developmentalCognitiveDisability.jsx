@@ -138,19 +138,14 @@ const DevelopmentalCognitiveDisability = () => {
   return (
     <ServiceLayout>
       <h2 className="my-5">Developmental Cognitive Disability</h2>
-      <div>
-        <h5>Select a service</h5>
-        <div className="w-50">
-          <ServiceSelectBox currentService="developmental-cognitive-disability" />
-        </div>
-      </div>
+      
       <Form
         onSubmit={(e) => {
           e.preventDefault();
           mutation.mutate();
         }}
       >
-        {formData?.data.map((item, index) => (
+        {formData?.data?.map((item, index) => (
           <div
             key={index}
             style={{

@@ -12,6 +12,8 @@ import { getSchools } from '../../../store/school/schoolActions';
 import { grades, sections } from '../../../utils/globals';
 
 function CreatePupilsScreen() {
+	const [erros, setErrors] = useState({});
+	const errMsges = Object.values(erros).filter(Boolean);
 	const dispatch = useDispatch();
 	const { selectedSchool } = useSelector((state) => state.school);
 	const { selectedTerm, selectedYear } = useSelector((state) => state.academics);
@@ -58,6 +60,7 @@ function CreatePupilsScreen() {
 		label,
 		type,
 		required,
+		erros, setErrors,
 		onChange: handleInputChange,
 		value: fields[name],
 		placeholder,
@@ -90,9 +93,14 @@ function CreatePupilsScreen() {
 	};
 
 	const pupilCreate = (e) => {
-		e.preventDefault();
-		console.log(fields);
 
+
+
+		e.preventDefault();
+		if (errMsges.length) {
+			errorToast('Please fill in all required fields');
+			return;
+		}
 
 		dispatch(createPupil({
 			academicYear: selectedYear,
@@ -108,11 +116,11 @@ function CreatePupilsScreen() {
 	};
 	const handleGradeChange = (selectedOption) => {
 		setFields((prevFields) => ({
-		  ...prevFields,
-		  gradeNumber: selectedOption.value,
+			...prevFields,
+			gradeNumber: selectedOption.value,
 		}));
-	  };
-	
+	};
+
 	useEffect(() => {
 		dispatch(getSchools());
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -125,6 +133,19 @@ function CreatePupilsScreen() {
 				<h2 className="pt-3 mb-4 pb-2">Create Pupil</h2>
 				<form onSubmit={pupilCreate}>
 					<Row>
+						<Col sm={12}>
+							{/* Show error msges */}
+							{errMsges.length > 0 && (
+								<div className="alert alert-danger">
+									{errMsges.map((msg, index) => (
+										<p key={index}>{msg}</p>
+									))}
+								</div>
+							)}
+						</Col>
+					</Row>
+					<Row>
+
 						<Col sm={12} lg={6}>
 							<InputField {...inputProps('First Name', 'text', true, 'firstName')} onChange={handleInputChange} value={fields.firstName} />
 							<label className='mt-3'>Select Section</label>

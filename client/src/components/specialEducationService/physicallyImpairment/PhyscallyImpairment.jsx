@@ -136,12 +136,7 @@ const PhysicallyImpairment = () => {
   return (
     <ServiceLayout>
       <h2 className="my-5">Physically Impairment</h2>
-      <div>
-        <h5>Select a service</h5>
-        <div className="w-50">
-          <ServiceSelectBox currentService="physically-impairment" />
-        </div>
-      </div>
+     
 
       <Form
         onSubmit={(e) => {
@@ -149,7 +144,7 @@ const PhysicallyImpairment = () => {
           mutation.mutate();
         }}
       >
-        {formData?.data.map((item, index) => (
+        {formData?.data?.map((item, index) => (
           <div
             key={index}
             style={{

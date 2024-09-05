@@ -124,12 +124,7 @@ const SpecificLearningDisability = () => {
   return (
     <ServiceLayout>
       <h2 className="my-5">Specific Learning Disability</h2>
-      <div>
-        <h5>Select a service</h5>
-        <div className="w-50">
-          <ServiceSelectBox currentService="specific-learning-disability" />
-        </div>
-      </div>
+     
 
       <Form
         onSubmit={(e) => {

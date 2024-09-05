@@ -1,5 +1,5 @@
 const generateHeaderRow = (fields) => {
-  const headerCells = fields.map((field) => ({
+  const headerCells = fields.map((field="") => ({
     type: "header",
     text: capitalizeWords(field),
   }));
@@ -11,11 +11,13 @@ const generateHeaderRow = (fields) => {
 };
 
 function capitalizeWords(str) {
-  let words = str.replace(/_/g, " ").split(" ");
-  words = str.replace(/_/g, "-").split(" ");
-  var capitalizedWords = words.map(function (word) {
-    return word.charAt(0).toUpperCase() + word.slice(1);
+  if (!str) return "";
+
+  let words = str?.replace(/_/g, " ").split(" ");
+  words = str?.replace(/_/g, "-").split(" ");
+  var capitalizedWords = words?.map(function (word) {
+    return word.charAt(0)?.toUpperCase() + word?.slice(1);
   });
-  return capitalizedWords.join(" ");
+  return capitalizedWords?.join(" ");
 }
 export { generateHeaderRow };

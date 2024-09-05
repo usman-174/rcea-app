@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { DateTime } from "luxon";
 import React, { useEffect, useState } from "react";
 import { Container, Spinner } from "react-bootstrap";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Select from "react-select";
@@ -143,7 +143,7 @@ const SelectStudentsPage = () => {
           }
           : {}),
 
-        item: items.find((item) => item.value === specialEducationService.item),
+        item: specialEducationService.item,
 
       });
     } else {
@@ -421,12 +421,12 @@ const SelectStudentsPage = () => {
               <div className="flex-grow-1 flex-basis-25 mb-3">
                 <h5>This is an</h5>
                 <Select
-                  value={specialData.item}
+                  value={items.find((item) => item.value === specialData.item)}
                   className="basic-single mr-4"
                   onChange={
                     (e) => setSpecialData({
                       ...specialData,
-                      item: e,
+                      item: e.value,
                     })
                   }
                   isSearchable={false}
@@ -451,9 +451,10 @@ const SelectStudentsPage = () => {
                       await AxiosConfig.post("/specialeducation", {
                         ...specialData,
                         pupil_id: selected,
-                        item: specialData.item.value,
+                        item: specialData.item,
                       });
                       refetchSpecialEducationService();
+                      toast.success("Data saved successfully");
                     } catch (error) {
                       errorToast("An error occurred");
                     }
@@ -465,7 +466,7 @@ const SelectStudentsPage = () => {
             </div>
 
             <br />
-            {specialData?.id ? (
+            {specialEducationService?._id ? (
 
               <ServiceSelectBox handleSelectChange={handleSelectChange} />
             ) : (

@@ -69,7 +69,8 @@ const grades = [
 
 function CreateTeacherScreen() {
   const { selectedSchool } = useSelector((state) => state.school);
-
+  const [erros, setErrors] = useState({});
+  const errMsges = Object.values(erros).filter(Boolean);
   const dispatch = useDispatch();
   const [fields, setFields] = useState({
     address: "",
@@ -91,6 +92,7 @@ function CreateTeacherScreen() {
     name,
     label,
     type,
+    erros, setErrors,
     required,
     onChange: handleInputChange,
     value: fields[name],
@@ -112,8 +114,13 @@ function CreateTeacherScreen() {
   };
 
   const submitHandler = (e) => {
+
     e.preventDefault();
 
+    if (errMsges.length) {
+      errorToast('Please fill in all required fields');
+      return;
+    }
     dispatch(createTeacher({ ...fields, school_id: selectedSchool._id }))
       .unwrap()
       .then(() => {
@@ -130,13 +137,25 @@ function CreateTeacherScreen() {
         <h2 className="pt-3 mb-4 pb-2">Create Teacher</h2>
         <form onSubmit={submitHandler}>
           <Row>
+            <Col sm={12}>
+              {/* Show error msges */}
+              {errMsges.length > 0 && (
+                <div className="alert alert-danger">
+                  {errMsges.map((msg, index) => (
+                    <p key={index}>{msg}</p>
+                  ))}
+                </div>
+              )}
+            </Col>
+          </Row>
+          <Row>
             <Col sm={12} lg={6}>
               <InputField {...inputProps("First Name", "text", true, "firstName", "Enter the first name")} />
               <InputField {...inputProps("Address", "text", true, "address", "Enter the address")} />
             </Col>
             <Col sm={12} lg={6}>
               <InputField
-                {...inputProps("Last Name", "text", true, "lastName","Enter the first name")}
+                {...inputProps("Last Name", "text", true, "lastName", "Enter the first name")}
               />
               <InputField
                 {...inputProps("Phone Number", "text", true, "phone", "e.g., 5000 0000 or 8344 444")}
@@ -204,7 +223,7 @@ function CreateTeacherScreen() {
               />
             </Col>
           </Row>
-          <div className="text-center mt-5 d-flex items-center justify-content-end">
+          <div className="text-center mt-5 d-flex items-center justify-content-center">
             <button type="submit" className={`px-5 ${Styles.submitButton}`}>
               Submit
             </button>

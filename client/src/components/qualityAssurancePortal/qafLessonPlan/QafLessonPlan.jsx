@@ -97,7 +97,7 @@ const QafLessonPlan = () => {
   const [selectedEducator, setSelectedEducator] = useState(null);
   const [selectedPeriod, setSelectedPeriod] = useState(null);
   const [selectedSubject, setSelectedSubject] = useState(null);
-  const [selectedSpecialization, setSelectedSpecialization] = useState(null);
+  // const [selectedSpecialization, setSelectedSpecialization] = useState(null);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [duration, setDuration] = useState("");
@@ -134,7 +134,7 @@ const QafLessonPlan = () => {
         school: currentSelectedSchool?.value,
         subject: selectedSubject?.value,
         period: selectedPeriod?.value,
-        specialization: selectedSpecialization?.value,
+        // specialization: selectedSpecialization?.value,
       },
     ],
     queryFn: async ({ queryKey }) => {
@@ -365,7 +365,7 @@ const QafLessonPlan = () => {
       grade: selectedGrade?.value,
       section: selectedSection?.value,
       subject: selectedSubject?.value,
-      specialization: selectedSpecialization?.value,
+      // specialization: selectedSpecialization?.value,
       term: currentSelectedTerm?.value,
       period: selectedPeriod?.value,
       year: currentSelectedYear?.value,
@@ -512,7 +512,7 @@ const QafLessonPlan = () => {
               options={subjects2[selectedGrade?.value]}
             />
           </div>
-          <div className="w-25">
+          {/* <div className="w-25">
             <h4>Specialistization</h4>
             <Select
               value={selectedSpecialization}
@@ -522,7 +522,7 @@ const QafLessonPlan = () => {
               name="subjects"
               options={specialization}
             />
-          </div>
+          </div> */}
           <div className="w-25">
             <h4>Term</h4>
             <Select
