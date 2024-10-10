@@ -3640,6 +3640,700 @@ const topicsBySubject = {
       label: "Ecrire une petite histoire",
       value: "ecrire une petite histoire",
     },
+    {
+      label: "Ma maison",
+      value: "Ma maison",
+    },
+    {
+      label: "Ma famille",
+      value: "Ma famille",
+    },
+    {
+      label: "Le nom propre",
+      value: "Le nom propre",
+    },
+    {
+      label: "Etude de son",
+      value: "Etude de son",
+    },
+    {
+      label: "Mon ecole",
+      value: "Mon ecole",
+    },
+    {
+      label: "Mon ami(e)",
+      value: "Mon ami(e)",
+    },
+    {
+      label: "Le matériel scolaire",
+      value: "Le matériel scolaire",
+    },
+    {
+      label: "Le nom commun",
+      value: "Le nom commun",
+    },
+    {
+      label: "Assemblage syllabique",
+      value: "Assemblage syllabique",
+    },
+    {
+      label: "Mes jeux",
+      value: "Mes jeux",
+    },
+    {
+      label: "Les jeux traditionnels",
+      value: "Les jeux traditionnels",
+    },
+    {
+      label: "Le temps",
+      value: "Le temps",
+    },
+    {
+      label: "Le nombre",
+      value: "Le nombre",
+    },
+    {
+      label: "le gouter",
+      value: "le gouter",
+    },
+    {
+      label: "Les fruits et les legumes",
+      value: "Les fruits et les legumes",
+    },
+    {
+      label: "autres produits",
+      value: "autres produits",
+    },
+    {
+      label: "Le repas",
+      value: "Le repas",
+    },
+    {
+      label: "Les articles",
+      value: "Les articles",
+    },
+    {
+      label: "Les vehicules",
+      value: "Les vehicules",
+    },
+    {
+      label: "les moyens de transport",
+      value: "les moyens de transport",
+    },
+    {
+      label: "les adjectifs",
+      value: "les adjectifs",
+    },
+    {
+      label: "Les animaux",
+      value: "Les animaux",
+    },
+    {
+      label: "Les animaux de compagnie",
+      value: "Les animaux de compagnie",
+    },
+    {
+      label: "Les animaux sauvages",
+      value: "Les animaux sauvages",
+    },
+    {
+      label: "Où habitent les animaux?",
+      value: "Où habitent les animaux?",
+    },
+    {
+      label: "Les métiers",
+      value: "Les métiers",
+    },
+    {
+      label: "Le genre",
+      value: "Le genre",
+    },
+    {
+      label: "Les vacances et la rentree",
+      value: "Les vacances et la rentree",
+    },
+    {
+      label: "Observation d&apos;image",
+      value: "Observation d&apos;image",
+    },
+    {
+      label: "Après les vacances",
+      value: "Après les vacances",
+    },
+    {
+      label: "La pêche",
+      value: "La pêche",
+    },
+    {
+      label: "La nature",
+      value: "La nature",
+    },
+    {
+      label: "La majuscule et la minuscule",
+      value: "La majuscule et la minuscule",
+    },
+    {
+      label: "Les signes de ponctuation",
+      value: "Les signes de ponctuation",
+    },
+    {
+      label: "Ecrire le son [o]",
+      value: "Ecrire le son [o]",
+    },
+    {
+      label: "Malcom de Chazal",
+      value: "Malcom de Chazal",
+    },
+    {
+      label: "Les livres et la lecture",
+      value: "Les livres et la lecture",
+    },
+    {
+      label: "Observation d&apos;images",
+      value: "Observation d&apos;images",
+    },
+    {
+      label: "A nous les livres",
+      value: "A nous les livres",
+    },
+    {
+      label: "La bibliothèque",
+      value: "La bibliothèque",
+    },
+    {
+      label: "Le livre",
+      value: "Le livre",
+    },
+    {
+      label: "Les animaux marins",
+      value: "Les animaux marins",
+    },
+    {
+      label: "Ecrire c/ç",
+      value: "Ecrire c/ç",
+    },
+    {
+      label: "Ecrire le son [e]",
+      value: "Ecrire le son [e]",
+    },
+    {
+      label: "Le présent de l&apos;indicatif",
+      value: "Le présent de l&apos;indicatif",
+    },
+    {
+      label: "La phrase négative",
+      value: "La phrase négative",
+    },
+    {
+      label: "Les animaux et leurs petits",
+      value: "Les animaux et leurs petits",
+    },
+    {
+      label: "Le passé et le présent",
+      value: "Le passé et le présent",
+    },
+    {
+      label: "En route pour l&apos;école",
+      value: "En route pour l&apos;école",
+    },
+    {
+      label: "Les moyens de transport",
+      value: "Les moyens de transport",
+    },
+    {
+      label: "Les commerces",
+      value: "Les commerces",
+    },
+    {
+      label: "Les arbres fruitiers",
+      value: "Les arbres fruitiers",
+    },
+    {
+      label: "Ecire les sons",
+      value: "Ecire les sons",
+    },
+    {
+      label: "La phrase interrogative",
+      value: "La phrase interrogative",
+    },
+    {
+      label: "Les maison du monde",
+      value: "Les maison du monde",
+    },
+    {
+      label: "Musique et chansons",
+      value: "Musique et chansons",
+    },
+    {
+      label: "Retour à Petit Gabriel",
+      value: "Retour à Petit Gabriel",
+    },
+    {
+      label: "Scènes de vie et métiers à Rodrigues",
+      value: "Scènes de vie et métiers à Rodrigues",
+    },
+    {
+      label: "Le son ɲ (gn); le son [wa] -oi",
+      value: "Le son ɲ (gn); le son [wa] -oi",
+    },
+    {
+      label: "Le passé composé de l&apos;indicatif",
+      value: "Le passé composé de l&apos;indicatif",
+    },
+    {
+      label: "L&apos;adjectif possessif",
+      value: "L&apos;adjectif possessif",
+    },
+    {
+      label: "Les sirandanes",
+      value: "Les sirandanes",
+    },
+    {
+      label: "la nature et les traitements des déchets",
+      value: "la nature et les traitements des déchets",
+    },
+    {
+      label: "La grande sortie",
+      value: "La grande sortie",
+    },
+    {
+      label: "Synonymes, contraires et mots de la même famille",
+      value: "Synonymes, contraires et mots de la même famille",
+    },
+    {
+      label: "Le recyclage",
+      value: "Le recyclage",
+    },
+    {
+      label: "Transformer des verbes en noms",
+      value: "Transformer des verbes en noms",
+    },
+    {
+      label: "Créer des verbes à partir des mots en -eur",
+      value: "Créer des verbes à partir des mots en -eur",
+    },
+    {
+      label: "Les sons bR, dR, fR, gR, kR, pR, tR, vR; oir/oire",
+      value: "Les sons bR, dR, fR, gR, kR, pR, tR, vR; oir/oire",
+    },
+    {
+      label: "Le futur simple de l&apos;indicatif-",
+      value: "Le futur simple de l&apos;indicatif-",
+    },
+    {
+      label: "Le pluriel des noms communs",
+      value: "Le pluriel des noms communs",
+    },
+    {
+      label: "Le compostage",
+      value: "Le compostage",
+    },
+    {
+      label: "Le dernier jour d&apos;école",
+      value: "Le dernier jour d&apos;école",
+    },
+    {
+      label: "La fête",
+      value: "La fête",
+    },
+    {
+      label: "L&apos;espace",
+      value: "L&apos;espace",
+    },
+    {
+      label: "Mots de la même famille et contraires",
+      value: "Mots de la même famille et contraires",
+    },
+    {
+      label: "Les sons : ail, aille, eil, eille",
+      value: "Les sons : ail, aille, eil, eille",
+    },
+    {
+      label: "Le futur simple de l&apos;indicatif",
+      value: "Le futur simple de l&apos;indicatif",
+    },
+    {
+      label: "L&apos;adjectif qualificatif",
+      value: "L&apos;adjectif qualificatif",
+    },
+    {
+      label: "Le voyage dans l&apos;espace",
+      value: "Le voyage dans l&apos;espace",
+    },
+    {
+      label: "Le nom",
+      value: "Le nom",
+    },
+    {
+      label: "La phrase simple",
+      value: "La phrase simple",
+    },
+    {
+      label: "Present de l&apos;indicatif",
+      value: "Present de l&apos;indicatif",
+    },
+    {
+      label: "Je parle des animaux:",
+      value: "Je parle des animaux:",
+    },
+    {
+      label: "Je lis, je reponds à des questions à l&apos;orale",
+      value: "Je lis, je reponds à des questions à l&apos;orale",
+    },
+    {
+      label: "Je lis, j&apos;encercle la bonne réponse",
+      value: "Je lis, j&apos;encercle la bonne réponse",
+    },
+    {
+      label: "Je lis, je complète un table avec des informations du texte",
+      value: "Je lis, je complète un table avec des informations du texte",
+    },
+    {
+      label: "Je reconnais quelques animaux grace à un dessin:",
+      value: "Je reconnais quelques animaux grace à un dessin:",
+    },
+    {
+      label: "Je reconnais quelques animaux grace à une definition",
+      value: "Je reconnais quelques animaux grace à une definition",
+    },
+    {
+      label: "Je trouve le cri de chaque animal:",
+      value: "Je trouve le cri de chaque animal:",
+    },
+    {
+      label: "Le pronom personnel sujet",
+      value: "Le pronom personnel sujet",
+    },
+    {
+      label: "Le present de l&apos;indicatif",
+      value: "Le present de l&apos;indicatif",
+    },
+    {
+      label: "Le groupe nominal sujet",
+      value: "Le groupe nominal sujet",
+    },
+    {
+      label: "Feminin des mots finissant en -eur, -teur",
+      value: "Feminin des mots finissant en -eur, -teur",
+    },
+    {
+      label: "Ecrire les homonymes",
+      value: "Ecrire les homonymes",
+    },
+    {
+      label: "Le présent de l&apos;indicatif  (3ème groupe)",
+      value: "Le présent de l&apos;indicatif  (3ème groupe)",
+    },
+    {
+      label: "Les déterminants démonstratifs",
+      value: "Les déterminants démonstratifs",
+    },
+    {
+      label: "Ecrire une bonne phrase",
+      value: "Ecrire une bonne phrase",
+    },
+    {
+      label: "Le verbe",
+      value: "Le verbe",
+    },
+    {
+      label: "Le contraire",
+      value: "Le contraire",
+    },
+    {
+      label: "Le futur de l&apos;indicatif (1er groupe)",
+      value: "Le futur de l&apos;indicatif (1er groupe)",
+    },
+    {
+      label: "Le pluriel",
+      value: "Le pluriel",
+    },
+    {
+      label: "Décrire les climats du monde",
+      value: "Décrire les climats du monde",
+    },
+    {
+      label: "Je lis, j&apos;encercle la bonne reponse",
+      value: "Je lis, j&apos;encercle la bonne reponse",
+    },
+    {
+      label: "Je lis,  je reponds à des questions à l&apos;ecrit",
+      value: "Je lis,  je reponds à des questions à l&apos;ecrit",
+    },
+    {
+      label: "Je relis chaque mot à son sens dans le texte",
+      value: "Je relis chaque mot à son sens dans le texte",
+    },
+    {
+      label: "Je complète une definition",
+      value: "Je complète une definition",
+    },
+    {
+      label: "Je coche les images",
+      value: "Je coche les images",
+    },
+    {
+      label: "Le groupe verbal",
+      value: "Le groupe verbal",
+    },
+    {
+      label: "Le complement d&apos;objet direct (COD)",
+      value: "Le complement d&apos;objet direct (COD)",
+    },
+    {
+      label: "Les determinants possessifs",
+      value: "Les determinants possessifs",
+    },
+    {
+      label: "Les préfixes",
+      value: "Les préfixes",
+    },
+    {
+      label: "Le futur de l&apos;indicatif (2eme groupe)",
+      value: "Le futur de l&apos;indicatif (2eme groupe)",
+    },
+    {
+      label: "Pluriel en -x",
+      value: "Pluriel en -x",
+    },
+    {
+      label: "Ecrire quelques phrases",
+      value: "Ecrire quelques phrases",
+    },
+    {
+      label: "La phrase negative",
+      value: "La phrase negative",
+    },
+    {
+      label: "Le passé composé",
+      value: "Le passé composé",
+    },
+    {
+      label: "Parler des plantes utilisées comme emblème nationale",
+      value: "Parler des plantes utilisées comme emblème nationale",
+    },
+    {
+      label: "Lire et répondre aux questions",
+      value: "Lire et répondre aux questions",
+    },
+    {
+      label: "Relier un mot à son sens dans le texte",
+      value: "Relier un mot à son sens dans le texte",
+    },
+    {
+      label: "Utiliser les mots du texte/donnés pour compléter une phrase",
+      value: "Utiliser les mots du texte/donnés pour compléter une phrase",
+    },
+    {
+      label: "Trouver un synonyme",
+      value: "Trouver un synonyme",
+    },
+    {
+      label: "Trouver le contraire",
+      value: "Trouver le contraire",
+    },
+    {
+      label: "Nommer les différentes parties d&apos;une plante",
+      value: "Nommer les différentes parties d&apos;une plante",
+    },
+    {
+      label: "Compléter un texte à trou",
+      value: "Compléter un texte à trou",
+    },
+    {
+      label: "Prépositions 1",
+      value: "Prépositions 1",
+    },
+    {
+      label: "Phrase negative",
+      value: "Phrase negative",
+    },
+    {
+      label: "Adjectif au féminin (e/euse)",
+      value: "Adjectif au féminin (e/euse)",
+    },
+    {
+      label: "Phrase interrogative",
+      value: "Phrase interrogative",
+    },
+    {
+      label: "Le complement d&apos;objet indirect (COI)",
+      value: "Le complement d&apos;objet indirect (COI)",
+    },
+    {
+      label: "Ecire une petite histoire",
+      value: "Ecire une petite histoire",
+    },
+    {
+      label: "Le déterminant indéfini",
+      value: "Le déterminant indéfini",
+    },
+    {
+      label: "Les éterminants possessifs",
+      value: "Les éterminants possessifs",
+    },
+    {
+      label: "Les moyens de cuisson",
+      value: "Les moyens de cuisson",
+    },
+    {
+      label:
+        "Utiliser le dictionnaire pour trouver la signification d&apos;un mot",
+      value:
+        "Utiliser le dictionnaire pour trouver la signification d&apos;un mot",
+    },
+    {
+      label: "Utiliser les mots donnés pour compléter une phrase",
+      value: "Utiliser les mots donnés pour compléter une phrase",
+    },
+    {
+      label: "Trouver le synonyme de mots",
+      value: "Trouver le synonyme de mots",
+    },
+    {
+      label: "Trouver le contraire de mots",
+      value: "Trouver le contraire de mots",
+    },
+    {
+      label: "Definir un mot avec ses propres exemples",
+      value: "Definir un mot avec ses propres exemples",
+    },
+    {
+      label: "Compléter un texte à l&apos;aide des mots d&apos;un texte",
+      value: "Compléter un texte à l&apos;aide des mots d&apos;un texte",
+    },
+    {
+      label: 'Le passé composé auxiliaire " avoir"  (3ème groupe):',
+      value: 'Le passé composé auxiliaire " avoir"  (3ème groupe):',
+    },
+    {
+      label: "Je relie deux phrases",
+      value: "Je relie deux phrases",
+    },
+    {
+      label: "L&apos;imparfait",
+      value: "L&apos;imparfait",
+    },
+    {
+      label: "Les pronoms  COI",
+      value: "Les pronoms  COI",
+    },
+    {
+      label: "Les mots interrogatifs",
+      value: "Les mots interrogatifs",
+    },
+    {
+      label: "Ecire une recette",
+      value: "Ecire une recette",
+    },
+    {
+      label: "Les déterminants définis",
+      value: "Les déterminants définis",
+    },
+    {
+      label: "l&apos;axe de temps",
+      value: "l&apos;axe de temps",
+    },
+    {
+      label: "Le COD",
+      value: "Le COD",
+    },
+    {
+      label: "Quelques prépositions",
+      value: "Quelques prépositions",
+    },
+    {
+      label: "Décrire une image sur le séga typique",
+      value: "Décrire une image sur le séga typique",
+    },
+    {
+      label:
+        "Ecrire les noms de musiciens qui jouent de différents instruments",
+      value:
+        "Ecrire les noms de musiciens qui jouent de différents instruments",
+    },
+    {
+      label: "Relier un mot à sa définition",
+      value: "Relier un mot à sa définition",
+    },
+    {
+      label: "Prépositions 2",
+      value: "Prépositions 2",
+    },
+    {
+      label: "L&apos;imparfait: 3eme  groupe",
+      value: "L&apos;imparfait: 3eme  groupe",
+    },
+    {
+      label: "Les pronoms COD",
+      value: "Les pronoms COD",
+    },
+    {
+      label: "Les indicateurs de temps",
+      value: "Les indicateurs de temps",
+    },
+    {
+      label: "Mettre des phrases en ordre pour faire une histoire",
+      value: "Mettre des phrases en ordre pour faire une histoire",
+    },
+    {
+      label: "l&apos;adjectif qualificatif",
+      value: "l&apos;adjectif qualificatif",
+    },
+    {
+      label: "Futur de l&apos;indicatif",
+      value: "Futur de l&apos;indicatif",
+    },
+    {
+      label: "Parler de différents métiers",
+      value: "Parler de différents métiers",
+    },
+    {
+      label: "Utiliser les mots donnés pour compléter un texte",
+      value: "Utiliser les mots donnés pour compléter un texte",
+    },
+    {
+      label: "Trouver un mot de la même famille",
+      value: "Trouver un mot de la même famille",
+    },
+    {
+      label:
+        "Compléter les tirets par un mot qui convient (un mot qui complète la définition)",
+      value:
+        "Compléter les tirets par un mot qui convient (un mot qui complète la définition)",
+    },
+    {
+      label: "Trouver le masculin ou féminin de certains métiers",
+      value: "Trouver le masculin ou féminin de certains métiers",
+    },
+    {
+      label: "Futur de l&apos;indicatif: 3eme groupe",
+      value: "Futur de l&apos;indicatif: 3eme groupe",
+    },
+    {
+      label: "Enrichissement du GN",
+      value: "Enrichissement du GN",
+    },
+    {
+      label: "Du verbe au nom",
+      value: "Du verbe au nom",
+    },
+    {
+      label: "Accord du Groupe Nominal",
+      value: "Accord du Groupe Nominal",
+    },
+    {
+      label: "L&apos;Infinitif",
+      value: "L&apos;Infinitif",
+    },
+    {
+      label: "L&apos;Impératif",
+      value: "L&apos;Impératif",
+    },
+    {
+      label: "Ecrire une petite histoire",
+      value: "Ecrire une petite histoire",
+    },
   ],
   English: [
     {
@@ -3994,6 +4688,742 @@ const topicsBySubject = {
       label: "Apostrophe to indicate possessive form",
       value: "apostrophe to indicate possessive form",
     },
+    {
+      label: "Forming letters (integrated )",
+      value: "Forming letters (integrated )",
+    },
+    {
+      label:
+        "Learning letter names (formally integrate with teaching of letter sound correspondence)",
+      value:
+        "Learning letter names (formally integrate with teaching of letter sound correspondence)",
+    },
+    {
+      label:
+        "Naming colours (integrate with practice of fine motor skills)-colour by letters",
+      value:
+        "Naming colours (integrate with practice of fine motor skills)-colour by letters",
+    },
+    {
+      label: "My name is …../Fill a name tag",
+      value: "My name is …../Fill a name tag",
+    },
+    {
+      label: "Members of the family",
+      value: "Members of the family",
+    },
+    {
+      label: "Greetings",
+      value: "Greetings",
+    },
+    {
+      label: "Action verbs (self-care routine)",
+      value: "Action verbs (self-care routine)",
+    },
+    {
+      label: "Rooms in the house",
+      value: "Rooms in the house",
+    },
+    {
+      label: "Weather",
+      value: "Weather",
+    },
+    {
+      label: "Answering questions",
+      value: "Answering questions",
+    },
+    {
+      label: "Sound out words",
+      value: "Sound out words",
+    },
+    {
+      label: "Days of the week",
+      value: "Days of the week",
+    },
+    {
+      label: "School",
+      value: "School",
+    },
+    {
+      label: "Stationary/in  a classroom",
+      value: "Stationary/in  a classroom",
+    },
+    {
+      label: "The sentence",
+      value: "The sentence",
+    },
+    {
+      label: "Blend and segment with known letter sounds",
+      value: "Blend and segment with known letter sounds",
+    },
+    {
+      label: "Complete words",
+      value: "Complete words",
+    },
+    {
+      label: "months",
+      value: "months",
+    },
+    {
+      label: "games",
+      value: "games",
+    },
+    {
+      label: "directions",
+      value: "directions",
+    },
+    {
+      label: "action verbs (games)",
+      value: "action verbs (games)",
+    },
+    {
+      label: "Feelings",
+      value: "Feelings",
+    },
+    {
+      label: "Question words",
+      value: "Question words",
+    },
+    {
+      label: "Personal pronouns",
+      value: "Personal pronouns",
+    },
+    {
+      label: "Little writers (forming sentences)",
+      value: "Little writers (forming sentences)",
+    },
+    {
+      label: "Form simple sentences",
+      value: "Form simple sentences",
+    },
+    {
+      label: "Food items",
+      value: "Food items",
+    },
+    {
+      label: "Cutlery",
+      value: "Cutlery",
+    },
+    {
+      label: "Meals",
+      value: "Meals",
+    },
+    {
+      label: "Politeness",
+      value: "Politeness",
+    },
+    {
+      label: "Identify different words in a sentence",
+      value: "Identify different words in a sentence",
+    },
+    {
+      label: "Spacing between words",
+      value: "Spacing between words",
+    },
+    {
+      label: "Means of transport",
+      value: "Means of transport",
+    },
+    {
+      label: "Places we go to",
+      value: "Places we go to",
+    },
+    {
+      label: "clothing items",
+      value: "clothing items",
+    },
+    {
+      label: "Prepositions",
+      value: "Prepositions",
+    },
+    {
+      label: "Write words in correct order",
+      value: "Write words in correct order",
+    },
+    {
+      label: "Phonemic Awarenes",
+      value: "Phonemic Awarenes",
+    },
+    {
+      label: "Animals",
+      value: "Animals",
+    },
+    {
+      label: "Professions",
+      value: "Professions",
+    },
+    {
+      label: "Parts of the body",
+      value: "Parts of the body",
+    },
+    {
+      label: "Singular and plural forms",
+      value: "Singular and plural forms",
+    },
+    {
+      label: "Complete sentences with correct word",
+      value: "Complete sentences with correct word",
+    },
+    {
+      label: "Clothing",
+      value: "Clothing",
+    },
+    {
+      label: "School and the classroom",
+      value: "School and the classroom",
+    },
+    {
+      label: "Song",
+      value: "Song",
+    },
+    {
+      label: "Game",
+      value: "Game",
+    },
+    {
+      label: "Poem",
+      value: "Poem",
+    },
+    {
+      label: "Phonics",
+      value: "Phonics",
+    },
+    {
+      label: "The new girl in grade 3",
+      value: "The new girl in grade 3",
+    },
+    {
+      label: "Letter writing",
+      value: "Letter writing",
+    },
+    {
+      label: "Capital letters and full-stops",
+      value: "Capital letters and full-stops",
+    },
+    {
+      label: "Possessive adjectives",
+      value: "Possessive adjectives",
+    },
+    {
+      label: "Simple present tense",
+      value: "Simple present tense",
+    },
+    {
+      label: "Present continuous tense",
+      value: "Present continuous tense",
+    },
+    {
+      label: "Foods, fruits, and vegetables",
+      value: "Foods, fruits, and vegetables",
+    },
+    {
+      label: "Tableware and utensils",
+      value: "Tableware and utensils",
+    },
+    {
+      label: "Parts of the house",
+      value: "Parts of the house",
+    },
+    {
+      label: "Places to go shopping",
+      value: "Places to go shopping",
+    },
+    {
+      label: "A lunch for mother",
+      value: "A lunch for mother",
+    },
+    {
+      label: "Writing a recipe",
+      value: "Writing a recipe",
+    },
+    {
+      label: "Determiners",
+      value: "Determiners",
+    },
+    {
+      label: "Affirmative and negative forms",
+      value: "Affirmative and negative forms",
+    },
+    {
+      label: "Question mark & Interrogative form",
+      value: "Question mark & Interrogative form",
+    },
+    {
+      label: "Islands",
+      value: "Islands",
+    },
+    {
+      label: "Places in Mauritius",
+      value: "Places in Mauritius",
+    },
+    {
+      label: "Holiday/Travel",
+      value: "Holiday/Travel",
+    },
+    {
+      label: "Role play",
+      value: "Role play",
+    },
+    {
+      label: "A letter to Sam",
+      value: "A letter to Sam",
+    },
+    {
+      label: "Nouns",
+      value: "Nouns",
+    },
+    {
+      label: "Plural forms",
+      value: "Plural forms",
+    },
+    {
+      label: "Conjunctions",
+      value: "Conjunctions",
+    },
+    {
+      label: "A variety of jobs",
+      value: "A variety of jobs",
+    },
+    {
+      label: "Items and tools related to different jobs",
+      value: "Items and tools related to different jobs",
+    },
+    {
+      label: "Rhyme",
+      value: "Rhyme",
+    },
+    {
+      label: "Different jobs",
+      value: "Different jobs",
+    },
+    {
+      label: "Use a given frame to write a note",
+      value: "Use a given frame to write a note",
+    },
+    {
+      label: "Use of commas",
+      value: "Use of commas",
+    },
+    {
+      label: "Countable and uncountable nouns",
+      value: "Countable and uncountable nouns",
+    },
+    {
+      label: "Future tense",
+      value: "Future tense",
+    },
+    {
+      label: "Plural form",
+      value: "Plural form",
+    },
+    {
+      label: "Special powers",
+      value: "Special powers",
+    },
+    {
+      label: "Superhero qualities",
+      value: "Superhero qualities",
+    },
+    {
+      label: "Speaking cards",
+      value: "Speaking cards",
+    },
+    {
+      label: "Going to the cinema",
+      value: "Going to the cinema",
+    },
+    {
+      label: "Newspaper article",
+      value: "Newspaper article",
+    },
+    {
+      label: "Opposites",
+      value: "Opposites",
+    },
+    {
+      label: "Past tense of verb to be",
+      value: "Past tense of verb to be",
+    },
+    {
+      label: "Simple past tense",
+      value: "Simple past tense",
+    },
+    {
+      label: "Telling time",
+      value: "Telling time",
+    },
+    {
+      label: "Nature",
+      value: "Nature",
+    },
+    {
+      label: "Recycle/Protect/Pollution",
+      value: "Recycle/Protect/Pollution",
+    },
+    {
+      label: "Picture description",
+      value: "Picture description",
+    },
+    {
+      label: "The humming bird in the garden",
+      value: "The humming bird in the garden",
+    },
+    {
+      label: "Nature card",
+      value: "Nature card",
+    },
+    {
+      label: "Certificate of friendship",
+      value: "Certificate of friendship",
+    },
+    {
+      label: "Present tense of verb &apos;to do&apos;",
+      value: "Present tense of verb &apos;to do&apos;",
+    },
+    {
+      label: "Negative form",
+      value: "Negative form",
+    },
+    {
+      label: "Masculine and feminine",
+      value: "Masculine and feminine",
+    },
+    {
+      label: "Possessive pronouns",
+      value: "Possessive pronouns",
+    },
+    {
+      label: "Travel",
+      value: "Travel",
+    },
+    {
+      label: "Transport",
+      value: "Transport",
+    },
+    {
+      label: "Comparison speaking activity",
+      value: "Comparison speaking activity",
+    },
+    {
+      label: "I read about different countries",
+      value: "I read about different countries",
+    },
+    {
+      label: "Postcard",
+      value: "Postcard",
+    },
+    {
+      label: "Past tense of verb to have",
+      value: "Past tense of verb to have",
+    },
+    {
+      label: "Past tense of common irregular verbs",
+      value: "Past tense of common irregular verbs",
+    },
+    {
+      label: "Adjectives",
+      value: "Adjectives",
+    },
+    {
+      label: "Comparative form",
+      value: "Comparative form",
+    },
+    {
+      label: "Song: The people in  your neighborhood",
+      value: "Song: The people in  your neighborhood",
+    },
+    {
+      label: "I talk about my neighbourhood",
+      value: "I talk about my neighbourhood",
+    },
+    {
+      label: "Identifying rhyming words",
+      value: "Identifying rhyming words",
+    },
+    {
+      label: "Long a",
+      value: "Long a",
+    },
+    {
+      label: "Read a text, answer questions",
+      value: "Read a text, answer questions",
+    },
+    {
+      label: "Keywords in a text",
+      value: "Keywords in a text",
+    },
+    {
+      label: "Email",
+      value: "Email",
+    },
+    {
+      label: "Common and proper nouns",
+      value: "Common and proper nouns",
+    },
+    {
+      label: "Personal pronouns as object",
+      value: "Personal pronouns as object",
+    },
+    {
+      label: "The negative form",
+      value: "The negative form",
+    },
+    {
+      label: "The present tense",
+      value: "The present tense",
+    },
+    {
+      label: "A helpful neighbour",
+      value: "A helpful neighbour",
+    },
+    {
+      label: "Poem: my capital city",
+      value: "Poem: my capital city",
+    },
+    {
+      label: "Answering wh-, h- questions in simple sentences",
+      value: "Answering wh-, h- questions in simple sentences",
+    },
+    {
+      label: "Key words in a text",
+      value: "Key words in a text",
+    },
+    {
+      label: "Match words to their correct meaning",
+      value: "Match words to their correct meaning",
+    },
+    {
+      label: "Fact sheet",
+      value: "Fact sheet",
+    },
+    {
+      label: "Past Simple Tense",
+      value: "Past Simple Tense",
+    },
+    {
+      label: "Article",
+      value: "Article",
+    },
+    {
+      label: "Dippy visists Port Louis",
+      value: "Dippy visists Port Louis",
+    },
+    {
+      label: "Tongue twister",
+      value: "Tongue twister",
+    },
+    {
+      label: "Show reading comprehension",
+      value: "Show reading comprehension",
+    },
+    {
+      label: "Keywords from a story",
+      value: "Keywords from a story",
+    },
+    {
+      label: "Short story",
+      value: "Short story",
+    },
+    {
+      label: "Quantifiers referring to countable and uncountable nouns",
+      value: "Quantifiers referring to countable and uncountable nouns",
+    },
+    {
+      label: "Irregular plural forms",
+      value: "Irregular plural forms",
+    },
+    {
+      label: "The mermaid in the shell",
+      value: "The mermaid in the shell",
+    },
+    {
+      label: "Poem: Rodrigues, my beautiful island",
+      value: "Poem: Rodrigues, my beautiful island",
+    },
+    {
+      label: "Consonant culsuters",
+      value: "Consonant culsuters",
+    },
+    {
+      label: "Answer wh- questions using complete sentences",
+      value: "Answer wh- questions using complete sentences",
+    },
+    {
+      label: "Items to take on a trip/to put in your suitcase",
+      value: "Items to take on a trip/to put in your suitcase",
+    },
+    {
+      label: "Interrogative form",
+      value: "Interrogative form",
+    },
+    {
+      label: "Punctuation",
+      value: "Punctuation",
+    },
+    {
+      label: "Interrogative",
+      value: "Interrogative",
+    },
+    {
+      label: "Adverbs of manner",
+      value: "Adverbs of manner",
+    },
+    {
+      label: "A Visit to Rodrigues",
+      value: "A Visit to Rodrigues",
+    },
+    {
+      label: "Talk about hobbies and leisure time",
+      value: "Talk about hobbies and leisure time",
+    },
+    {
+      label: "Mime and guess",
+      value: "Mime and guess",
+    },
+    {
+      label: "Long I aɪ",
+      value: "Long I aɪ",
+    },
+    {
+      label: "Read aloud",
+      value: "Read aloud",
+    },
+    {
+      label: "Key words from a story",
+      value: "Key words from a story",
+    },
+    {
+      label: "Match definitions to words",
+      value: "Match definitions to words",
+    },
+    {
+      label: "Write a note",
+      value: "Write a note",
+    },
+    {
+      label: "Activity planner",
+      value: "Activity planner",
+    },
+    {
+      label: "Adjective",
+      value: "Adjective",
+    },
+    {
+      label: "Time markers-adverbs of time",
+      value: "Time markers-adverbs of time",
+    },
+    {
+      label: "Gendered nouns-animals",
+      value: "Gendered nouns-animals",
+    },
+    {
+      label: "Communication skills- Listening and speaking",
+      value: "Communication skills- Listening and speaking",
+    },
+    {
+      label: "Sing a song",
+      value: "Sing a song",
+    },
+    {
+      label: "eəʳ (WHERE, AIR) versus  ʊəʳ\t(PURE, TOURIST)",
+      value: "eəʳ (WHERE, AIR) versus  ʊəʳ\t(PURE, TOURIST)",
+    },
+    {
+      label: "An unforgettable event",
+      value: "An unforgettable event",
+    },
+    {
+      label: "Key words about a performance",
+      value: "Key words about a performance",
+    },
+    {
+      label: "Define words: What I think it means/ real meaning",
+      value: "Define words: What I think it means/ real meaning",
+    },
+    {
+      label: "Sequence a story",
+      value: "Sequence a story",
+    },
+    {
+      label: "Write a song",
+      value: "Write a song",
+    },
+    {
+      label: "Apostrophe in contraction",
+      value: "Apostrophe in contraction",
+    },
+    {
+      label: "Questions with tags",
+      value: "Questions with tags",
+    },
+    {
+      label: "Adverbs of place",
+      value: "Adverbs of place",
+    },
+    {
+      label: "Adverbs of time",
+      value: "Adverbs of time",
+    },
+    {
+      label: "Exclamatory form",
+      value: "Exclamatory form",
+    },
+    {
+      label: "Exclamation mark",
+      value: "Exclamation mark",
+    },
+    {
+      label: "Communication skills-listening and speaking",
+      value: "Communication skills-listening and speaking",
+    },
+    {
+      label: "Equipment needed for various sports",
+      value: "Equipment needed for various sports",
+    },
+    {
+      label: "Different types of sports",
+      value: "Different types of sports",
+    },
+    {
+      label: "How to be healthy and happy",
+      value: "How to be healthy and happy",
+    },
+    {
+      label: "Reading for pleasure",
+      value: "Reading for pleasure",
+    },
+    {
+      label: "Key words",
+      value: "Key words",
+    },
+    {
+      label: "Match words to their definitions",
+      value: "Match words to their definitions",
+    },
+    {
+      label: "Write about a sport",
+      value: "Write about a sport",
+    },
+    {
+      label: "Acrostic poem",
+      value: "Acrostic poem",
+    },
+    {
+      label: "Use of &apos;may&apos; to ask permission",
+      value: "Use of &apos;may&apos; to ask permission",
+    },
+    {
+      label: "Past tense verb &apos;to have&apos;",
+      value: "Past tense verb &apos;to have&apos;",
+    },
+    {
+      label: "Recap apostrophe and questions with tags",
+      value: "Recap apostrophe and questions with tags",
+    },
+    {
+      label: "Apostrophe to indicate possessive form",
+      value: "Apostrophe to indicate possessive form",
+    },
   ],
   Mathematics: [
     {
@@ -4063,6 +5493,206 @@ const topicsBySubject = {
     {
       label: "Graphs - Charts",
       value: "graphs - charts",
+    },
+    {
+      label: "Shapes",
+      value: "Shapes",
+    },
+    {
+      label: "Colours",
+      value: "Colours",
+    },
+    {
+      label: "Numbers",
+      value: "Numbers",
+    },
+    {
+      label: "Length",
+      value: "Length",
+    },
+    {
+      label: "Time",
+      value: "Time",
+    },
+    {
+      label: "Measure",
+      value: "Measure",
+    },
+    {
+      label: "Mass",
+      value: "Mass",
+    },
+    {
+      label: "Addition",
+      value: "Addition",
+    },
+    {
+      label: "Ordering",
+      value: "Ordering",
+    },
+    {
+      label: "Ordinal Numbers",
+      value: "Ordinal Numbers",
+    },
+    {
+      label: "Money",
+      value: "Money",
+    },
+    {
+      label: "Shapes and Colours",
+      value: "Shapes and Colours",
+    },
+    {
+      label: "Numbers 1 - 10",
+      value: "Numbers 1 - 10",
+    },
+    {
+      label: "Numbers 0 - 10",
+      value: "Numbers 0 - 10",
+    },
+    {
+      label: "Sides",
+      value: "Sides",
+    },
+    {
+      label: "Vertex",
+      value: "Vertex",
+    },
+    {
+      label: "Pattern",
+      value: "Pattern",
+    },
+    {
+      label: "Tessellation",
+      value: "Tessellation",
+    },
+    {
+      label: "Pictogram",
+      value: "Pictogram",
+    },
+    {
+      label: "0 to 1000",
+      value: "0 to 1000",
+    },
+    {
+      label: '"No" Tens',
+      value: '"No" Tens',
+    },
+    {
+      label: "Number names",
+      value: "Number names",
+    },
+    {
+      label: "One thousand",
+      value: "One thousand",
+    },
+    {
+      label: "The Abacus",
+      value: "The Abacus",
+    },
+    {
+      label: "Subtraction",
+      value: "Subtraction",
+    },
+    {
+      label: "Capacity",
+      value: "Capacity",
+    },
+    {
+      label: "Roman Numerals",
+      value: "Roman Numerals",
+    },
+    {
+      label: "Multiplication",
+      value: "Multiplication",
+    },
+    {
+      label: "Arbitrary Units",
+      value: "Arbitrary Units",
+    },
+    {
+      label: "The metre",
+      value: "The metre",
+    },
+    {
+      label: "Measuring length",
+      value: "Measuring length",
+    },
+    {
+      label: "Graduated Metre Strip",
+      value: "Graduated Metre Strip",
+    },
+    {
+      label: "m to cm",
+      value: "m to cm",
+    },
+    {
+      label: "Conservation of length",
+      value: "Conservation of length",
+    },
+    {
+      label: "Fractions",
+      value: "Fractions",
+    },
+    {
+      label: "Clockface",
+      value: "Clockface",
+    },
+    {
+      label: "Half past",
+      value: "Half past",
+    },
+    {
+      label: "Quarter past",
+      value: "Quarter past",
+    },
+    {
+      label: "a.m. and p.m.",
+      value: "a.m. and p.m.",
+    },
+    {
+      label: "Days of the week",
+      value: "Days of the week",
+    },
+    {
+      label: "Months of the year",
+      value: "Months of the year",
+    },
+    {
+      label: "Division",
+      value: "Division",
+    },
+    {
+      label: "Numeration and Notation",
+      value: "Numeration and Notation",
+    },
+    {
+      label: "Patterns",
+      value: "Patterns",
+    },
+    {
+      label: "Even and Odd Numbers",
+      value: "Even and Odd Numbers",
+    },
+    {
+      label: "Lines",
+      value: "Lines",
+    },
+    {
+      label: "Angles",
+      value: "Angles",
+    },
+    {
+      label: "2-D Shapes",
+      value: "2-D Shapes",
+    },
+    {
+      label: "3-D Shapes",
+      value: "3-D Shapes",
+    },
+    {
+      label: "Graphs - Charts",
+      value: "Graphs - Charts",
     },
   ],
   "SOCIAL, SCIENTIFIC AND ENVIRONMENTAL EDUCATION": [
@@ -4264,6 +5894,204 @@ const topicsBySubject = {
       value:
         "observe and identify the use of plastics in rainy weather and in \r\ndaily life",
     },
+    {
+      label: "Write a simple definition of the environment.",
+      value: "Write a simple definition of the environment.",
+    },
+    {
+      label: "Ask many questions about your environment.",
+      value: "Ask many questions about your environment.",
+    },
+    {
+      label:
+        "Name the different parts of the body that help you observe your environment.",
+      value:
+        "Name the different parts of the body that help you observe your environment.",
+    },
+    {
+      label:
+        "Use your eyes, ears, nose, tongue and hands to observe your environment.",
+      value:
+        "Use your eyes, ears, nose, tongue and hands to observe your environment.",
+    },
+    {
+      label: "Identify and name the five sense organs.",
+      value: "Identify and name the five sense organs.",
+    },
+    {
+      label: "Tell what each sense organ helps you to do.",
+      value: "Tell what each sense organ helps you to do.",
+    },
+    {
+      label: "Name the five senses.",
+      value: "Name the five senses.",
+    },
+    {
+      label:
+        "Relate the five senses to how you see, hear, touch, smell and taste.",
+      value:
+        "Relate the five senses to how you see, hear, touch, smell and taste.",
+    },
+    {
+      label: "Remember Events And Dates Related To Yourself",
+      value: "Remember Events And Dates Related To Yourself",
+    },
+    {
+      label: "List Events In The Correct Order",
+      value: "List Events In The Correct Order",
+    },
+    {
+      label: "Collect And Observe Pictures And Photographs Of Yourself",
+      value: "Collect And Observe Pictures And Photographs Of Yourself",
+    },
+    {
+      label: "Identify Members Of The Family And Compare Their Age",
+      value: "Identify Members Of The Family And Compare Their Age",
+    },
+    {
+      label: "Draw And Complete A Simple Family Tree",
+      value: "Draw And Complete A Simple Family Tree",
+    },
+    {
+      label: "List And Name Some Features Of Our Natural Environment",
+      value: "List And Name Some Features Of Our Natural Environment",
+    },
+    {
+      label: "Use Pictures And Drawings To Describe The Natural Environment",
+      value: "Use Pictures And Drawings To Describe The Natural Environment",
+    },
+    {
+      label: "Observe The Natural Environment Around You",
+      value: "Observe The Natural Environment Around You",
+    },
+    {
+      label: "Draw Maps And Symbols To Represent Natural Features",
+      value: "Draw Maps And Symbols To Represent Natural Features",
+    },
+    {
+      label: "Explore The Natural Environment Of Our Islands",
+      value: "Explore The Natural Environment Of Our Islands",
+    },
+    {
+      label: "Name Three Islands Of Our Republic.",
+      value: "Name Three Islands Of Our Republic.",
+    },
+    {
+      label: "State That There Is A Variety Of Things In Our Environment",
+      value: "State That There Is A Variety Of Things In Our Environment",
+    },
+    {
+      label: "Observe Living And Non-Living Things",
+      value: "Observe Living And Non-Living Things",
+    },
+    {
+      label: "Classify Living Things Into Animals And Plants",
+      value: "Classify Living Things Into Animals And Plants",
+    },
+    {
+      label: "State That Living Things Grow And Change, Need Food And Breathe.",
+      value: "State That Living Things Grow And Change, Need Food And Breathe.",
+    },
+    {
+      label: "Name Living And Non-Living Things",
+      value: "Name Living And Non-Living Things",
+    },
+    {
+      label:
+        "Demonstrate Skills To Care For Animals And Plants In\r\n Your Environment",
+      value:
+        "Demonstrate Skills To Care For Animals And Plants In\r\n Your Environment",
+    },
+    {
+      label:
+        "Observe And Identify Some Non-Living Things Made Of Wood, Plastic \r\nAnd Glass",
+      value:
+        "Observe And Identify Some Non-Living Things Made Of Wood, Plastic \r\nAnd Glass",
+    },
+    {
+      label: "Classify Things Made Of Wood, Plastic And Glass",
+      value: "Classify Things Made Of Wood, Plastic And Glass",
+    },
+    {
+      label: "Identify Some Features In Your Locality",
+      value: "Identify Some Features In Your Locality",
+    },
+    {
+      label: "Draw Maps To Show Features In The Locality",
+      value: "Draw Maps To Show Features In The Locality",
+    },
+    {
+      label: "Identify And Compare Changes In The Locality",
+      value: "Identify And Compare Changes In The Locality",
+    },
+    {
+      label: "Name And Describe The Features In The Locality",
+      value: "Name And Describe The Features In The Locality",
+    },
+    {
+      label: "Show A Caring Attitude Towards Your Locality",
+      value: "Show A Caring Attitude Towards Your Locality",
+    },
+    {
+      label: "Feel The Presence Of Air Through Observations",
+      value: "Feel The Presence Of Air Through Observations",
+    },
+    {
+      label:
+        "Demonstrate The Presence Of Air In Empty Bottles, In The Soil\r\n And In Water",
+      value:
+        "Demonstrate The Presence Of Air In Empty Bottles, In The Soil\r\n And In Water",
+    },
+    {
+      label: "State That We Breathe Air All The Time",
+      value: "State That We Breathe Air All The Time",
+    },
+    {
+      label: "Conclude That Breathing Dirty Air Is Bad For Health",
+      value: "Conclude That Breathing Dirty Air Is Bad For Health",
+    },
+    {
+      label: "List Some Uses Of Water",
+      value: "List Some Uses Of Water",
+    },
+    {
+      label: "State That Water Is Obtained From Rain",
+      value: "State That Water Is Obtained From Rain",
+    },
+    {
+      label: "Name Some Places Where Water Is Found",
+      value: "Name Some Places Where Water Is Found",
+    },
+    {
+      label: "State That Sea Water Is Salty",
+      value: "State That Sea Water Is Salty",
+    },
+    {
+      label: "State That We Must Not Waste Water",
+      value: "State That We Must Not Waste Water",
+    },
+    {
+      label: "Explain How Water Can Become Dirty",
+      value: "Explain How Water Can Become Dirty",
+    },
+    {
+      label: "Describe The Weather Of The Day",
+      value: "Describe The Weather Of The Day",
+    },
+    {
+      label: "Draw And Use Weather Symbols",
+      value: "Draw And Use Weather Symbols",
+    },
+    {
+      label: "Read And Draw A Weather Chart",
+      value: "Read And Draw A Weather Chart",
+    },
+    {
+      label:
+        "Observe And Identify The Use Of Plastics In Rainy Weather And In \r\nDaily Life",
+      value:
+        "Observe And Identify The Use Of Plastics In Rainy Weather And In \r\nDaily Life",
+    },
   ],
   Science: [
     {
@@ -4298,6 +6126,38 @@ const topicsBySubject = {
       label: "Pollution in our environment",
       value: "pollution in our environment",
     },
+    {
+      label: "Living things",
+      value: "Living things",
+    },
+    {
+      label: "Air",
+      value: "Air",
+    },
+    {
+      label: "Plants",
+      value: "Plants",
+    },
+    {
+      label: "Animals",
+      value: "Animals",
+    },
+    {
+      label: "Water",
+      value: "Water",
+    },
+    {
+      label: "Materials in our environment",
+      value: "Materials in our environment",
+    },
+    {
+      label: "Energy",
+      value: "Energy",
+    },
+    {
+      label: "Pollution in our environment",
+      value: "Pollution in our environment",
+    },
   ],
   "History & Geography": [
     {
@@ -4323,6 +6183,30 @@ const topicsBySubject = {
     {
       label: "Voyages of discovery",
       value: "voyages of discovery",
+    },
+    {
+      label: "Working with maps",
+      value: "Working with maps",
+    },
+    {
+      label: "Our natural environment",
+      value: "Our natural environment",
+    },
+    {
+      label: "Weather",
+      value: "Weather",
+    },
+    {
+      label: "Locality: Past and Present",
+      value: "Locality: Past and Present",
+    },
+    {
+      label: "People in the locality",
+      value: "People in the locality",
+    },
+    {
+      label: "Voyages of discovery",
+      value: "Voyages of discovery",
     },
   ],
 };
