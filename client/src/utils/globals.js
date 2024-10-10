@@ -6495,6 +6495,7 @@ const subjects2 = {
     { value: "Français", label: "Français" },
     { value: "English", label: "English" },
     { value: "Science", label: "Science" },
+    { value: "Mathematics", label: "Mathematics" },
     { value: "History & Geography", label: "History & Geography" },
   ],
 };
